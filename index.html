@@ -49,6 +49,9 @@ h2.sec{font-size:clamp(19px,3vw,25px);margin-bottom:6px}
 .opt:hover{border-color:var(--spruce-2)}
 .opt[aria-pressed="true"]{background:var(--spruce);border-color:var(--spruce);color:#F3F5EE}
 select{font-family:var(--mono);font-size:12px;padding:7px 10px;border:1px solid var(--line);border-radius:2px;background:var(--card);color:var(--ink)}
+.inseason{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--smoke);letter-spacing:.03em;
+  margin:16px 0 0;padding:11px 13px;background:var(--card);border:1px solid var(--line-soft);border-radius:2px}
+.inseason b{color:var(--spruce);font-weight:600;letter-spacing:.11em;text-transform:uppercase;font-size:10px}
 .rollbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px}
 .btn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   background:transparent;border:1px solid var(--line);color:var(--ink);padding:9px 14px;border-radius:2px;cursor:pointer}
@@ -175,6 +178,7 @@ footer p{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
       <select id="fNights"><option value="2">2 extra dinners</option><option value="1">1 extra dinner</option><option value="3">3 extra dinners</option></select>
     </div>
   </div>
+  <p class="inseason" id="inSeason"></p>
   <div class="rollbar">
     <button class="btn primary" id="rollBtn">Roll the week</button>
     <button class="btn" id="clearBtn">Reset filters</button>
@@ -449,6 +453,9 @@ function fmtQty(q,u){
 function render(){
   renderMenu();renderPrep();renderGroc();
   document.getElementById("seedLine").textContent="Seed "+S.seed+" · "+activeSeason();
+  var pl=(DB.produce||{})[activeSeason()];
+  document.getElementById("inSeason").innerHTML=pl&&pl.length?
+    '<b>In season now</b><br>'+pl.join(" · "):'';
 }
 
 function renderMenu(){
@@ -575,7 +582,7 @@ function cartMeter(){
 /* ============ events ============ */
 document.getElementById("rollBtn").onclick=function(){
   S.seed=(S.seed+1013)%100000;roll();
-  document.getElementById("menuSec").scrollIntoView({behavior:"smooth",block:"start"});};
+  var t=document.getElementById("menuSec");if(t.scrollIntoView)t.scrollIntoView({behavior:"smooth",block:"start"});};
 document.getElementById("clearBtn").onclick=function(){
   S.proteins.length=0;S.cuisines.length=0;S.season="auto";S.locked={};
   document.querySelectorAll("#fProtein .opt,#fCuisine .opt").forEach(function(b){

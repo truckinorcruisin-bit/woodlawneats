@@ -1,0 +1,123 @@
+{
+  "id": "artichoke-tacos",
+  "title": "Breaded {Protein} tacos with tartar sauce",
+  "source": "Love & Lemons (Jeanine Donofrio), adapted, Breaded & Baked Artichoke Fish Tacos",
+  "role": "weeknight",
+  "effort": "assemble",
+  "activeMin": 25,
+  "serves": 4,
+  "cuisines": [
+    "texmex",
+    "mexican",
+    "american"
+  ],
+  "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+  ],
+  "slots": {
+    "protein": {
+      "default": "artichoke",
+      "accepts": [
+        "artichoke",
+        "whitefish",
+        "shrimp",
+        "chicken",
+        "tofu"
+      ]
+    },
+    "starch": {
+      "default": "tortilla",
+      "accepts": [
+        "tortilla"
+      ]
+    }
+  },
+  "needs": [
+    "tartar-sauce",
+    "slaw"
+  ],
+  "ingredients": [
+    {
+      "slot": "protein",
+      "mult": 1.2
+    },
+    {
+      "slot": "starch",
+      "qty": 8,
+      "unit": "ea"
+    },
+    {
+      "item": "ground flaxseed",
+      "qty": 1,
+      "unit": "Tbsp",
+      "cat": "Pantry"
+    },
+    {
+      "item": "almond milk",
+      "qty": 0.25,
+      "unit": "cup",
+      "cat": "Fridge"
+    },
+    {
+      "item": "GF panko breadcrumbs",
+      "qty": 1,
+      "unit": "cup",
+      "cat": "Pantry"
+    },
+    {
+      "item": "hemp seeds",
+      "qty": 2,
+      "unit": "Tbsp",
+      "cat": "Pantry"
+    },
+    {
+      "item": "smoked paprika",
+      "qty": 0.5,
+      "unit": "tsp",
+      "cat": "Spice"
+    },
+    {
+      "item": "red cabbage",
+      "qty": 1,
+      "unit": "head",
+      "cat": "Produce"
+    },
+    {
+      "item": "radishes",
+      "qty": 2,
+      "unit": "ea",
+      "cat": "Produce"
+    },
+    {
+      "item": "serrano pepper",
+      "qty": 1,
+      "unit": "ea",
+      "cat": "Produce"
+    },
+    {
+      "item": "limes",
+      "qty": 3,
+      "unit": "ea",
+      "cat": "Produce"
+    },
+    {
+      "item": "cilantro",
+      "qty": 1,
+      "unit": "bunch",
+      "cat": "Produce"
+    }
+  ],
+  "steps": [
+    "Whisk the ground flaxseed into the almond milk and let it sit 5 minutes until it thickens into a slurry — this is the binder that replaces egg.",
+    "In a second bowl combine GF panko, hemp seeds, smoked paprika, salt, and pepper. Note the original called for onion powder here; the smoked paprika covers it.",
+    "{PROTEIN_PREP} Dip each piece in the flax slurry, then press firmly into the GF panko mixture.",
+    "{PROTEIN_COOK} Or air fry at 400°F for 12 minutes, flipping once and spritzing with oil.",
+    "Toss the shredded red cabbage with lime juice, olive oil, salt, and pepper. Ten minutes is enough.",
+    "{STARCH_REHEAT} Fill each with tartar sauce, cabbage, protein, thin radish, serrano if you want heat, and cilantro. Lime to finish."
+  ],
+  "kid": "Breaded and crispy with a dipping sauce is the whole appeal. Skip the serrano and serve the cabbage on the side.",
+  "note": "The breading loses its crunch fast. Bread it Sunday, bake it the night you eat it."
+}
