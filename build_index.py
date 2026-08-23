@@ -3,24 +3,28 @@
 Merges data/recipes/*.json + data/components/*.json + data/swaps.json
 into a single data/index.json for the front end to fetch.
 
-Also validates every ingredient against the household diet rules and
-fails the build if anything violates them.
+Household default: cook normally, including red meat, gluten, and alliums.
+The spouse needs an accommodation for all three. Rather than banning those
+ingredients, the build requires that every place they appear carries a
+documented workaround:
+
+  - Proteins/starches tagged "red meat" or "containsGluten" in swaps.json
+    must carry an `accommodateNote`.
+  - Any literal ingredient (not slot-driven) that reads as allium, gluten,
+    or red meat must live in a recipe/component that has a top-level
+    `accommodate` field explaining the swap for that dish specifically.
 """
 import json, os, sys, glob, re, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, "data")
 
-# --- diet rules -------------------------------------------------------------
-ALLIUM = ["onion", "garlic", "shallot", "leek", "scallion", "chive", "ramp",
-          "asafoetida", "sofrito"]
+ALLIUM = ["onion", "garlic", "shallot", "leek", "scallion", "chive", "ramp", "asafoetida"]
 RED_MEAT = ["beef", "pork", "lamb", "veal", "bacon", "prosciutto", "chorizo",
             "pancetta", "steak", "brisket", "sausage", "ham "]
 GLUTEN = ["soy sauce", "panko", "barley", "rye", "semolina", "farro", "couscous",
           "seitan", "wheat", "breadcrumb", "flour tortilla"]
-# phrases that make an otherwise-flagged term acceptable
 ALLOW = ["gf ", "gluten-free", "gluten free", "certified gf", "tamari"]
-# explanatory mentions ("in place of onion") are not violations
 NEGATED = ["place of", "instead of", "without", "no onion", "-free", " free",
            "normally", "rather than", "not ", "skip", "unlike", "would"]
 
@@ -38,7 +42,6 @@ def violations(text):
         for w in words:
             if not _hit(w.strip(), t):
                 continue
-            # look at the clause around the hit for a negating phrase
             i = t.find(w.strip())
             window = t[max(0, i - 60):i + 60]
             if any(n in window for n in NEGATED):
@@ -64,10 +67,23 @@ def main():
     components = load(os.path.join(D, "components", "*.json"))
     with open(os.path.join(D, "swaps.json")) as f:
         swaps = json.load(f)
+    produce_path = os.path.join(D, "produce.json")
+    produce = {}
+    if os.path.exists(produce_path):
+        with open(produce_path) as f:
+            produce = json.load(f)
 
     errors, warnings = [], []
     comp_ids = {c["id"] for c in components}
     seen = set()
+
+    # swap-level check: red meat / gluten entries need a documented accommodation
+    for pool_name in ("proteins", "starches"):
+        for key, entry in swaps.get(pool_name, {}).items():
+            flagged = "red meat" in entry.get("tags", []) or entry.get("containsGluten")
+            if flagged and not entry.get("accommodateNote"):
+                errors.append("swaps.%s.%s: flagged (red meat/gluten) but has no accommodateNote"
+                              % (pool_name, key))
 
     for r in recipes + components:
         rid = r.get("id")
@@ -78,17 +94,22 @@ def main():
             errors.append("Duplicate id: %s" % rid)
         seen.add(rid)
 
+        has_accommodate = bool(r.get("accommodate"))
+
         for ing in r.get("ingredients", []):
             name = ing.get("item", "")
             if not name:
-                continue  # slot-driven ingredient, resolved at runtime
-            for kind, word in violations(name):
-                errors.append("%s: ingredient '%s' contains %s (%s)"
-                              % (rid, name, kind, word))
+                continue  # slot-driven ingredient — covered by the swap-level check above
+            hits = violations(name)
+            if hits and not has_accommodate:
+                errors.append("%s: literal ingredient '%s' reads as %s but recipe/component has no "
+                              "'accommodate' field explaining the spouse workaround"
+                              % (rid, name, ", ".join(sorted({k for k, _ in hits}))))
 
         for step in r.get("steps", []):
             for kind, word in violations(step):
-                warnings.append("%s: step text mentions %s (%s)" % (rid, kind, word))
+                warnings.append("%s: step text mentions %s (%s) — confirm the accommodate note covers it"
+                                % (rid, kind, word))
 
         for need in r.get("needs", []):
             if need not in comp_ids:
@@ -114,6 +135,7 @@ def main():
         "builtAt": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "counts": {"recipes": len(recipes), "components": len(components)},
         "swaps": swaps,
+        "produce": produce,
         "components": components,
         "recipes": recipes,
     }

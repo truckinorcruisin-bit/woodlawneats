@@ -88,6 +88,7 @@ select{font-family:var(--mono);font-size:12px;padding:7px 10px;border:1px solid 
 .note{background:#F1F3EC;padding:11px 18px;font-size:14.5px;border-top:1px solid var(--line-soft)}
 .note b{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
   display:block;margin-bottom:3px;color:var(--turmeric)}
+.note.spouse b{color:var(--beet)}
 
 /* prep flow */
 .flow-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ink);color:#EDEFE7;
@@ -161,7 +162,7 @@ footer p{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
 <header class="hero">
   <div class="wrap">
     <h1>Woodlawn Eats</h1>
-    <div class="house"><span>No red meat</span><span>Gluten-free</span><span>No alliums</span><span>Family of 4</span></div>
+    <div class="house"><span>Family of 4</span><span>Spouse plate: no red meat · GF · no alliums</span></div>
   </div>
 </header>
 
@@ -458,6 +459,18 @@ function render(){
     '<b>In season now</b><br>'+pl.join(" · "):'';
 }
 
+function spouseNote(r,res){
+  var bits=[];
+  if(res.protein){var P=DB.swaps.proteins[res.protein];if(P&&P.accommodateNote)bits.push(P.accommodateNote);}
+  if(res.starch){var T=DB.swaps.starches[res.starch];if(T&&T.accommodateNote)bits.push(T.accommodateNote);}
+  if(r.accommodate)bits.push(r.accommodate);
+  (r.needs||[]).forEach(function(id){
+    var c=DB.components.filter(function(x){return x.id===id;})[0];
+    if(c&&c.accommodate)bits.push(c.accommodate);
+  });
+  if(!bits.length)return"";
+  return '<div class="note spouse"><b>Spouse plate</b>'+bits.join(" ")+'</div>';
+}
 function renderMenu(){
   var days=["Sunday","Night two","Night three","Night four"];
   document.getElementById("menu").innerHTML=S.menu.map(function(m,i){
@@ -480,6 +493,7 @@ function renderMenu(){
       '<div class="slotrow">'+swaps+'</div>'+
       '<div class="mbody"><ol>'+r.steps.map(function(s){return "<li>"+expand(s,m.res)+"</li>";}).join("")+'</ol></div>'+
       (r.kid?'<div class="note"><b>Kid move</b>'+r.kid+'</div>':'')+
+      spouseNote(r,m.res)+
       (r.note?'<div class="note"><b>Note</b>'+r.note+'</div>':'')+
       '</article>';
   }).join("");
@@ -542,7 +556,8 @@ function renderPrep(){
     return '<div class="task comp"><b>'+c.name+'</b><span class="k">Component · '+c.keeps+
       ' · feeds '+uses+' meal'+(uses>1?'s':'')+'</span><ol>'+
       c.steps.map(function(s){return "<li>"+s+"</li>";}).join("")+'</ol>'+
-      (c.why?'<div class="why">'+c.why+'</div>':'')+'</div>';}).join("");
+      (c.why?'<div class="why">'+c.why+'</div>':'')+
+      (c.accommodate?'<div class="why" style="color:var(--beet)"><b style="font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase">Spouse plate</b> '+c.accommodate+'</div>':'')+'</div>';}).join("");
   cards+='<div class="task"><b>'+title(anchor.recipe,anchor.res)+'</b>'+
     '<span class="k">Sunday dinner · cook double</span><ol>'+
     anchor.recipe.steps.map(function(s){return "<li>"+expand(s,anchor.res)+"</li>";}).join("")+'</ol></div>';

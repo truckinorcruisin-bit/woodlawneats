@@ -4,7 +4,44 @@ One JSON file per recipe in `data/recipes/`. Filename should match the `id`.
 Push to `main` and the **Build recipe index** workflow rebuilds `data/index.json`,
 which is the only file the front end actually fetches.
 
-## Before you paste in a cookbook recipe
+## Diet model: household default + spouse accommodation
+
+The family eats normally — red meat, gluten, and alliums are all fine by default.
+Sean's spouse needs an accommodation for all three. Rather than banning those
+ingredients from the whole site, every recipe or component that uses one carries
+a documented one-line workaround for her plate specifically.
+
+**Two places this lives:**
+
+1. **`accommodateNote` on a protein or starch in `swaps.json`.** Anything tagged
+   `"red meat"` or with `"containsGluten": true` needs this. It's written once per
+   ingredient and applies everywhere that ingredient is used — e.g. every recipe
+   that resolves to `beef` automatically shows the same note about searing chicken
+   alongside.
+2. **`accommodate` on the recipe or component itself.** For alliums (not a slot,
+   so not swappable) or any other literal ingredient that needs a per-dish
+   workaround — e.g. "reserve 2 cups of sauce before the garlic goes in."
+
+The build fails if a flagged ingredient shows up without one of these two. It
+does **not** fail if a recipe simply contains onion, garlic, steak, or regular
+pasta — that's the normal case now.
+
+```json
+{
+  "id": "marinara",
+  "ingredients": [
+    { "item": "yellow onion, diced", "qty": 1, "unit": "ea", "cat": "Produce" },
+    { "item": "garlic cloves, minced", "qty": 3, "unit": "ea", "cat": "Produce" }
+  ],
+  "accommodate": "Set aside 2 cups of crushed tomatoes before the onion and garlic go in. Simmer that portion separately with a splash of vinegar for the accommodated plate."
+}
+```
+
+The front end surfaces these automatically as a "Spouse plate" note on every menu
+card and Sunday prep task — no need to duplicate the text anywhere else.
+
+---
+
 
 This repo is public. Ingredient lists are largely facts and fine to record, but the
 written method is the copyrightable part — rewrite each step in your own words rather
@@ -103,10 +140,12 @@ nights. `data/components/<id>.json`:
 
 ## Validation
 
-`scripts/build_index.py` fails the build if any ingredient contains an allium, red meat,
-or gluten term, if a recipe references a component that doesn't exist, or if a slot
-accepts a value missing from `swaps.json`. Step text gets a warning rather than an error,
-since explanatory mentions ("in place of onion") are legitimate.
+`scripts/build_index.py` requires an `accommodateNote` on any `swaps.json` entry
+tagged `red meat` or `containsGluten`, and an `accommodate` field on any
+recipe/component containing a literal allium, gluten, or red-meat ingredient.
+It does not block the ingredients themselves. Step text gets a warning rather
+than an error if it mentions one of these terms — that's just a nudge to check
+the accommodate note actually covers what the step describes.
 
 Run it locally with `python scripts/build_index.py` if you have a checkout.
 

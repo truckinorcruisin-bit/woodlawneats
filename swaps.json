@@ -140,6 +140,86 @@
       "cook": "Jammy-boil 7 minutes, then ice bath. They keep peeled for four days.",
       "reheat": "Serve at room temperature.",
       "prep": "Older eggs peel more cleanly."
+    },
+    "artichoke": {
+      "label": "artichoke hearts",
+      "buy": "canned whole artichoke hearts",
+      "cat": "Pantry",
+      "lbPerServing": 0.35,
+      "tags": [
+        "plant"
+      ],
+      "grill": true,
+      "smoke": false,
+      "roast": true,
+      "cook": "Halve, pat very dry, bread, and bake at 425°F for 20 minutes until browned and crisp.",
+      "reheat": "Air fry 5 minutes at 375°F. They lose their crunch fast, so bread them Sunday and bake the night you eat them.",
+      "prep": "Drain and dry thoroughly — wet artichokes will not take breading."
+    },
+    "chickpeas": {
+      "label": "chickpeas",
+      "buy": "chickpeas, canned",
+      "cat": "Pantry",
+      "lbPerServing": 0.35,
+      "tags": [
+        "plant",
+        "pantry"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": true,
+      "cook": "Dry well, toss with oil and smoked paprika, roast at 425°F for 25 minutes until they rattle.",
+      "reheat": "Air fry 4 minutes at 375°F to bring back the crunch.",
+      "prep": "Rinse and dry on a towel. Skip seasoned varieties."
+    },
+    "beef": {
+      "label": "beef",
+      "buy": "flank or skirt steak",
+      "cat": "Protein",
+      "lbPerServing": 0.5,
+      "tags": [
+        "red meat"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Grill over high heat 4–5 minutes a side for medium-rare, then rest 10 minutes before slicing against the grain.",
+      "reheat": "Warm gently, covered, with a splash of broth — red meat overcooks fast on a second pass.",
+      "prep": "Salt at least 40 minutes ahead, or overnight, and bring to room temperature before it hits the grill.",
+      "accommodateNote": "Grill or sear a portion of chicken thighs or salmon alongside with the same rub, for your spouse's plate — same timing as the household default, different protein."
+    },
+    "pork": {
+      "label": "pork",
+      "buy": "pork tenderloin or shoulder",
+      "cat": "Protein",
+      "lbPerServing": 0.5,
+      "tags": [
+        "red meat"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Tenderloin: grill or roast to 140–145°F, about 20 minutes. Shoulder: smoke low and slow to 195°F for pulling.",
+      "reheat": "Warm with a splash of liquid, covered — pork dries out fast reheated uncovered.",
+      "prep": "Trim the silver skin off tenderloin before cooking.",
+      "accommodateNote": "Cook a portion of chicken thighs the same way for your spouse — same rub, same pan or smoker, pulled a bit earlier since poultry cooks faster."
+    },
+    "groundbeef": {
+      "label": "ground beef",
+      "buy": "ground beef, 85/15",
+      "cat": "Protein",
+      "lbPerServing": 0.45,
+      "tags": [
+        "red meat",
+        "ground"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": true,
+      "cook": "Brown in a hot pan in batches, breaking it up once it's developed a crust, not before.",
+      "reheat": "Warm gently with a splash of water or sauce.",
+      "prep": "Don't crowd the pan or it steams instead of browning.",
+      "accommodateNote": "Brown a half-pound of ground turkey separately, same seasoning, same pan — it's a small enough batch to cook alongside without extra dishes."
     }
   },
   "starches": {
@@ -177,11 +257,13 @@
     },
     "pasta": {
       "label": "GF pasta",
-      "buy": "GF penne or spaghetti",
+      "buy": "penne or spaghetti",
       "cat": "Pantry",
       "lane": "stove",
       "cook": "Boil to just under package time, drain, rinse cold, toss with oil.",
-      "reheat": "Warm directly in sauce with a splash of pasta water."
+      "reheat": "Warm directly in sauce with a splash of pasta water.",
+      "containsGluten": true,
+      "accommodateNote": "Boil a small separate pot of GF penne or spaghetti for your spouse — a cup dry is plenty for one serving. Keep it in its own pot; GF pasta clouds the water fast."
     }
   }
 }
