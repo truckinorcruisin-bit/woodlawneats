@@ -1,0 +1,56 @@
+name: Build recipe index
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/recipes/**"
+      - "data/components/**"
+      - "data/swaps.json"
+      - "scripts/build_index.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build and validate index
+        run: python scripts/build_index.py
+
+      - name: Commit index if it changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/index.json; then
+            echo "No change to data/index.json"
+            exit 0
+          fi
+          git add data/index.json
+          git commit -m "Rebuild recipe index [skip ci]"
+          # retry-with-rebase, in case another workflow pushed first
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $i"
+              exit 0
+            fi
+            echo "Push failed, rebasing and retrying ($i)"
+            git pull --rebase --autostash origin main || true
+            sleep $((RANDOM % 5 + 2))
+          done
+          echo "Could not push after 5 attempts"
+          exit 1

@@ -3,1328 +3,590 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sunday Build — One cook, three dinners</title>
+<title>Woodlawn Eats</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --page:#E9EBE3;
-  --card:#F8F9F4;
-  --ink:#18211B;
-  --spruce:#2C5545;
-  --spruce-2:#3E7060;
-  --turmeric:#C98A08;
-  --beet:#8E2F55;
-  --smoke:#6E756B;
-  --line:#CBD0C4;
-  --line-soft:#DDE1D6;
-  --lane-smoker:#4A4741;
-  --lane-grill:#A93C22;
-  --lane-oven:#2C5545;
-  --lane-air:#C98A08;
-  --lane-rice:#4E7FA0;
-  --lane-stove:#8E2F55;
+  --page:#E9EBE3;--card:#F8F9F4;--ink:#18211B;--spruce:#2C5545;--spruce-2:#3E7060;
+  --turmeric:#C98A08;--beet:#8E2F55;--smoke:#6E756B;--line:#CBD0C4;--line-soft:#DDE1D6;
+  --lane-smoker:#4A4741;--lane-grill:#A93C22;--lane-oven:#2C5545;
+  --lane-air:#C98A08;--lane-rice:#4E7FA0;--lane-stove:#8E2F55;
   --display:"Bricolage Grotesque",system-ui,sans-serif;
-  --body:"Source Serif 4",Georgia,serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --body:"Source Serif 4",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--page);color:var(--ink);
-  font-family:var(--body);font-size:17px;line-height:1.55;
-}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
 .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.025em;margin:0}
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--smoke)}
 
-/* ---------- utility type ---------- */
-.eyebrow{
-  font-family:var(--mono);font-size:11px;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);
-}
-h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.02em;margin:0}
-a{color:var(--spruce)}
-
-/* ---------- top rail ---------- */
-.rail{
-  position:sticky;top:0;z-index:40;background:var(--ink);color:#EDEFE7;
-  border-bottom:3px solid var(--turmeric);
-}
-.rail-in{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:9px 22px;max-width:1080px;margin:0 auto}
-.mark{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-.03em;white-space:nowrap}
+.rail{position:sticky;top:0;z-index:40;background:var(--ink);color:#EDEFE7;border-bottom:3px solid var(--turmeric)}
+.rail-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:9px 22px;max-width:1080px;margin:0 auto}
+.mark{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-.03em}
 .mark span{color:var(--turmeric)}
-.seasons{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
-.season-btn{
-  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  background:transparent;color:#9BA79C;border:1px solid transparent;border-radius:2px;
-  padding:6px 10px;cursor:pointer;transition:color .15s,background .15s;
-}
-.season-btn:hover{color:#EDEFE7}
-.season-btn[aria-pressed="true"]{background:var(--turmeric);color:#18211B}
-.season-btn .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:6px;vertical-align:middle;opacity:.55}
-.season-btn[aria-pressed="true"] .dot{opacity:1}
+.rail .meta{font-family:var(--mono);font-size:10.5px;color:#8B948C;letter-spacing:.06em;margin-left:auto}
 
-/* ---------- hero ---------- */
-.hero{padding:52px 0 34px;border-bottom:1px solid var(--line)}
-.thesis{
-  font-family:var(--display);font-weight:800;font-size:clamp(38px,7.4vw,74px);
-  line-height:.97;letter-spacing:-.035em;max-width:15ch;
-}
-.thesis em{font-style:normal;color:var(--spruce)}
-.thesis .u{color:var(--turmeric)}
-.hero p{max-width:56ch;color:#39423A;margin:20px 0 0;font-size:18px}
-.house{
-  display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--smoke);
-}
-.house b{color:var(--ink);font-weight:600}
+.hero{padding:22px 0 16px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(24px,4vw,34px)}
+.house{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.house span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  background:var(--card);border:1px solid var(--line-soft);border-radius:99px;padding:5px 11px;color:var(--spruce)}
 
-/* ---------- plan picker ---------- */
-.picker{padding:26px 0 0}
-.auto-note{
-  font-family:var(--mono);font-size:11.5px;color:var(--smoke);letter-spacing:.04em;
-  display:flex;align-items:center;gap:8px;margin-bottom:12px;
-}
-.auto-note .live{width:6px;height:6px;border-radius:50%;background:var(--turmeric);flex:none}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{
-  background:var(--card);border:1px solid var(--line);border-radius:2px;cursor:pointer;
-  padding:11px 14px;text-align:left;min-width:190px;flex:1 1 190px;transition:border-color .15s,background .15s;
-  font-family:inherit;color:inherit;
-}
-.chip:hover{border-color:var(--spruce-2)}
-.chip[aria-pressed="true"]{background:var(--spruce);border-color:var(--spruce);color:#F3F5EE}
-.chip .n{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke);display:block}
-.chip[aria-pressed="true"] .n{color:#A8C3B7}
-.chip .t{font-family:var(--display);font-weight:600;font-size:15.5px;letter-spacing:-.01em;display:block;margin-top:3px}
+section{padding:30px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2.sec{font-size:clamp(19px,3vw,25px);margin-bottom:6px}
+.sec-note{color:var(--smoke);font-size:14.5px;margin:0 0 18px;max-width:62ch}
 
-/* ---------- plan header ---------- */
-.plan-head{padding:38px 0 8px}
-.plan-title{font-size:clamp(30px,5.2vw,50px);line-height:1.02;letter-spacing:-.03em;max-width:18ch}
-.plan-sub{font-size:18.5px;color:#39423A;max-width:58ch;margin:14px 0 0}
-
-/* ---------- sections ---------- */
-section{padding:44px 0;border-top:1px solid var(--line)}
-.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
-.sec-head h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.025em}
-.sec-note{color:var(--smoke);font-size:15.5px;max-width:60ch;margin:0 0 24px}
-
-/* ---------- cook flow (signature) ---------- */
-.flow-bar{
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  background:var(--ink);color:#EDEFE7;padding:10px 14px;border-radius:2px;margin-bottom:16px;
-}
-.flow-bar label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9BA79C}
-.flow-bar input[type=time]{
-  font-family:var(--mono);font-size:13px;background:#242E26;color:#EDEFE7;
-  border:1px solid #3A453C;border-radius:2px;padding:5px 8px;
-}
-.flow-bar .tot{font-family:var(--mono);font-size:11.5px;color:var(--turmeric);margin-left:auto;letter-spacing:.06em}
-.flow-scroll{overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-.flow-grid{min-width:660px}
-.lane{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:12px;margin-bottom:5px}
-.lane-name{
-  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
-  text-align:right;color:var(--ink);display:flex;align-items:center;justify-content:flex-end;gap:7px;
-}
-.lane-name i{width:8px;height:8px;border-radius:1px;flex:none}
-.lane-track{position:relative;height:38px;background:var(--card);border:1px solid var(--line-soft);border-radius:2px}
-.lane-track::before{
-  content:"";position:absolute;inset:0;
-  background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(var(--tick) - 1px),var(--line-soft) calc(var(--tick) - 1px),var(--line-soft) var(--tick));
-}
-.bar{
-  position:absolute;top:4px;bottom:4px;border-radius:2px;color:#fff;
-  display:flex;align-items:center;padding:0 9px;overflow:hidden;
-  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.01em;white-space:nowrap;
-}
-.bar .clock{opacity:.72;margin-left:8px;font-size:10px}
-.axis{display:grid;grid-template-columns:118px 1fr;gap:12px;margin-top:6px}
-.axis-ticks{position:relative;height:16px}
-.axis-ticks span{
-  position:absolute;top:0;transform:translateX(-50%);
-  font-family:var(--mono);font-size:10px;color:var(--smoke);white-space:nowrap;
-}
-.flow-legend{font-family:var(--mono);font-size:11px;color:var(--smoke);margin-top:14px;letter-spacing:.03em}
-
-/* ---------- grocery ---------- */
-.cart-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.meter{flex:1 1 200px;height:5px;background:var(--line-soft);border-radius:99px;overflow:hidden;min-width:140px}
-.meter i{display:block;height:100%;background:var(--turmeric);width:0;transition:width .2s}
-.count{font-family:var(--mono);font-size:11.5px;color:var(--smoke);letter-spacing:.06em;white-space:nowrap}
-.btn{
-  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  background:transparent;border:1px solid var(--line);color:var(--ink);
-  padding:7px 12px;border-radius:2px;cursor:pointer;
-}
+/* filters */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.fgroup h3{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--spruce);margin-bottom:9px}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opt{font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:var(--card);border:1px solid var(--line);
+  border-radius:99px;padding:6px 12px;cursor:pointer;color:var(--ink);transition:.12s}
+.opt:hover{border-color:var(--spruce-2)}
+.opt[aria-pressed="true"]{background:var(--spruce);border-color:var(--spruce);color:#F3F5EE}
+select{font-family:var(--mono);font-size:12px;padding:7px 10px;border:1px solid var(--line);border-radius:2px;background:var(--card);color:var(--ink)}
+.rollbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px}
+.btn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line);color:var(--ink);padding:9px 14px;border-radius:2px;cursor:pointer}
 .btn:hover{border-color:var(--spruce);color:var(--spruce)}
-.groc{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
-.groc-col{background:var(--card);padding:18px 18px 20px}
-.groc-col h3{
-  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--spruce);padding-bottom:9px;border-bottom:1px solid var(--line-soft);margin-bottom:11px;
-}
-.groc-col ul{list-style:none;margin:0;padding:0}
-.groc-col li{margin:0 0 3px}
-.groc-col label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:15.5px;line-height:1.4;padding:2px 0}
-.groc-col input{
-  appearance:none;-webkit-appearance:none;flex:none;width:15px;height:15px;margin-top:4px;
-  border:1.5px solid var(--smoke);border-radius:2px;background:transparent;cursor:pointer;position:relative;
-}
-.groc-col input:checked{background:var(--spruce);border-color:var(--spruce)}
-.groc-col input:checked::after{
-  content:"";position:absolute;left:4px;top:.5px;width:4px;height:9px;
-  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg);
-}
-.groc-col input:focus-visible{outline:2px solid var(--turmeric);outline-offset:2px}
-.groc-col input:checked + span{color:var(--smoke);text-decoration:line-through;text-decoration-color:var(--line)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--turmeric);padding:11px 22px;font-size:12px}
+.btn.primary:hover{background:var(--spruce);border-color:var(--spruce);color:#fff}
+.seedline{font-family:var(--mono);font-size:10.5px;color:var(--smoke);letter-spacing:.05em}
 
-/* ---------- prep output ---------- */
-.yield{display:grid;grid-template-columns:repeat(auto-fit,minmax(226px,1fr));gap:14px}
-.yield-card{background:var(--card);border:1px solid var(--line-soft);border-left:3px solid var(--spruce);padding:15px 16px;border-radius:2px}
-.yield-card b{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:-.01em;display:block}
-.yield-card span{font-size:14.5px;color:var(--smoke);display:block;margin-top:5px;line-height:1.45}
+/* menu cards */
+.menu{display:grid;gap:14px}
+.mcard{background:var(--card);border:1px solid var(--line-soft);border-radius:2px;overflow:hidden}
+.mcard.locked{border-color:var(--turmeric);box-shadow:inset 3px 0 0 var(--turmeric)}
+.mtop{display:flex;gap:12px;align-items:flex-start;padding:16px 18px 0;flex-wrap:wrap}
+.daytag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--ink);color:var(--turmeric);padding:5px 9px;border-radius:2px;flex:none;margin-top:3px}
+.mcard h3{font-size:clamp(18px,2.6vw,23px);flex:1 1 220px;line-height:1.15}
+.mact{display:flex;gap:6px;flex:none}
+.icobtn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;
+  border:1px solid var(--line);border-radius:2px;padding:5px 9px;cursor:pointer;color:var(--smoke)}
+.icobtn:hover{border-color:var(--spruce);color:var(--spruce)}
+.icobtn.on{background:var(--turmeric);border-color:var(--turmeric);color:var(--ink)}
+.mmeta{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--smoke);padding:9px 18px 0;
+  display:flex;gap:14px;flex-wrap:wrap}
+.swapped{color:var(--beet)}
+.mbody{padding:12px 18px 18px}
+.mbody ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.mbody ol li{counter-increment:s;position:relative;padding:0 0 9px 30px;line-height:1.5;font-size:15.5px}
+.mbody ol li::before{content:counter(s);position:absolute;left:0;top:2px;font-family:var(--mono);font-size:10px;
+  font-weight:600;color:var(--spruce);border:1px solid var(--line);border-radius:2px;width:19px;height:19px;
+  display:flex;align-items:center;justify-content:center}
+.slotrow{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px}
+.slotrow label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--smoke);
+  align-self:center}
+.note{background:#F1F3EC;padding:11px 18px;font-size:14.5px;border-top:1px solid var(--line-soft)}
+.note b{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  display:block;margin-bottom:3px;color:var(--turmeric)}
 
-/* ---------- dinners ---------- */
-.dinner{background:var(--card);border:1px solid var(--line-soft);border-radius:2px;margin-bottom:16px;overflow:hidden}
-.dinner-top{display:flex;gap:16px;align-items:flex-start;padding:20px 22px 0;flex-wrap:wrap}
-.daytag{
-  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
-  background:var(--ink);color:var(--turmeric);padding:5px 9px;border-radius:2px;flex:none;margin-top:4px;
-}
-.dinner h3{font-size:clamp(21px,3vw,27px);letter-spacing:-.025em;line-height:1.1;flex:1 1 260px}
-.dinner-meta{
-  font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--smoke);
-  padding:10px 22px 0;display:flex;gap:16px;flex-wrap:wrap;
-}
-.dinner-body{padding:14px 22px 22px}
-.dinner-body > p{margin:0 0 14px;color:#39423A}
-.dinner-body ol{margin:0;padding:0;list-style:none;counter-reset:s}
-.dinner-body ol li{
-  counter-increment:s;position:relative;padding:0 0 11px 34px;line-height:1.5;
-}
-.dinner-body ol li::before{
-  content:counter(s);position:absolute;left:0;top:2px;
-  font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--spruce);
-  border:1px solid var(--line);border-radius:2px;width:21px;height:21px;
-  display:flex;align-items:center;justify-content:center;
-}
-.notes{display:grid;gap:2px;background:var(--line-soft);border-top:1px solid var(--line-soft)}
-.note{background:#F1F3EC;padding:13px 22px;font-size:15px;line-height:1.5}
-.note b{
-  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
-  display:block;margin-bottom:4px;
-}
-.note.kid b{color:var(--turmeric)}
-.note.safe b{color:var(--beet)}
-.note.again b{color:var(--spruce)}
+/* prep flow */
+.flow-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ink);color:#EDEFE7;
+  padding:9px 14px;border-radius:2px;margin-bottom:14px}
+.flow-bar label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9BA79C}
+.flow-bar input[type=time]{font-family:var(--mono);font-size:13px;background:#242E26;color:#EDEFE7;
+  border:1px solid #3A453C;border-radius:2px;padding:5px 8px}
+.flow-bar .tot{font-family:var(--mono);font-size:10.5px;color:var(--turmeric);margin-left:auto;letter-spacing:.06em}
+.flow-scroll{overflow-x:auto;padding-bottom:6px}
+.flow-grid{min-width:640px}
+.lane{display:grid;grid-template-columns:112px 1fr;align-items:center;gap:11px;margin-bottom:5px}
+.lane-name{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-align:right;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.lane-name i{width:8px;height:8px;border-radius:1px;flex:none}
+.lane-track{position:relative;height:36px;background:var(--card);border:1px solid var(--line-soft);border-radius:2px}
+.bar{position:absolute;top:4px;bottom:4px;border-radius:2px;color:#fff;display:flex;align-items:center;
+  padding:0 8px;overflow:hidden;font-family:var(--mono);font-size:10.5px;white-space:nowrap}
+.bar .clock{opacity:.7;margin-left:7px;font-size:9.5px}
+.axis{display:grid;grid-template-columns:112px 1fr;gap:11px;margin-top:5px}
+.axis-ticks{position:relative;height:15px}
+.axis-ticks span{position:absolute;top:0;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;color:var(--smoke)}
 
-/* ---------- ground rules ---------- */
-.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px}
-.rule{background:var(--card);border:1px solid var(--line-soft);padding:19px 20px;border-radius:2px}
-.rule h3{font-size:18px;letter-spacing:-.02em;margin-bottom:9px}
-.rule ul{margin:0;padding-left:17px;font-size:15.5px;line-height:1.5}
-.rule li{margin-bottom:6px}
-.rule p{font-size:15.5px;margin:0 0 9px;color:#39423A}
-.rule.warn{border-left:3px solid var(--beet)}
-.rule.base{border-left:3px solid var(--turmeric)}
-kbd{
-  font-family:var(--mono);font-size:12px;background:#E4E8DE;border:1px solid var(--line);
-  border-radius:2px;padding:1px 5px;
-}
+/* prep tasks */
+.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:18px}
+.task{background:var(--card);border:1px solid var(--line-soft);border-left:3px solid var(--spruce);padding:14px 15px;border-radius:2px}
+.task.comp{border-left-color:var(--turmeric)}
+.task b{font-family:var(--display);font-weight:600;font-size:15.5px;display:block}
+.task .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--smoke);display:block;margin:4px 0 6px}
+.task ol{margin:6px 0 0;padding-left:16px;font-size:14.5px;line-height:1.45}
+.task li{margin-bottom:4px}
+.task .why{font-size:13.5px;color:var(--smoke);font-style:italic;margin-top:7px}
 
-/* ---------- footer ---------- */
-footer{background:var(--ink);color:#A8B0A6;padding:34px 0;margin-top:44px}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-footer b{color:#EDEFE7;font-family:var(--display);font-weight:600}
-footer p{margin:0;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em}
+/* grocery */
+.cart-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.meter{flex:1 1 180px;height:5px;background:var(--line-soft);border-radius:99px;overflow:hidden;min-width:120px}
+.meter i{display:block;height:100%;background:var(--turmeric);width:0;transition:width .2s}
+.count{font-family:var(--mono);font-size:10.5px;color:var(--smoke);letter-spacing:.06em}
+.groc{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.gcol{background:var(--card);padding:16px 16px 18px}
+.gcol h3{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--spruce);padding-bottom:8px;border-bottom:1px solid var(--line-soft);margin-bottom:10px}
+.gcol ul{list-style:none;margin:0;padding:0}
+.gcol label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:15px;line-height:1.4;padding:2px 0}
+.gcol input{appearance:none;-webkit-appearance:none;flex:none;width:15px;height:15px;margin-top:4px;
+  border:1.5px solid var(--smoke);border-radius:2px;cursor:pointer;position:relative}
+.gcol input:checked{background:var(--spruce);border-color:var(--spruce)}
+.gcol input:checked::after{content:"";position:absolute;left:4px;top:.5px;width:4px;height:9px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
+.gcol input:checked + span{color:var(--smoke);text-decoration:line-through}
+.qty{font-family:var(--mono);font-size:11.5px;color:var(--smoke)}
+.used{font-family:var(--mono);font-size:9.5px;color:var(--turmeric);letter-spacing:.05em;display:block}
 
+.empty{background:var(--card);border:1px dashed var(--line);padding:30px;text-align:center;color:var(--smoke);border-radius:2px}
+footer{background:var(--ink);color:#A8B0A6;padding:26px 0;margin-top:36px}
+footer p{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
 @media (max-width:620px){
-  body{font-size:16px}
-  .lane{grid-template-columns:92px 1fr}
-  .axis{grid-template-columns:92px 1fr}
-  .lane-name{font-size:9.5px;letter-spacing:.07em}
-  .dinner-top,.dinner-body,.dinner-meta,.note{padding-left:16px;padding-right:16px}
+  body{font-size:16px}.lane,.axis{grid-template-columns:84px 1fr}.lane-name{font-size:9px;letter-spacing:.05em}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media print{
-  .rail,.flow-bar,.btn,.chips,.picker{display:none!important}
-  body{background:#fff;font-size:11pt}
-  section{page-break-inside:avoid;border-top:1px solid #999}
-  .dinner{page-break-inside:avoid}
-}
+@media print{.rail,.rollbar,.fgrid,.icobtn,.flow-bar,.btn{display:none!important}body{background:#fff}}
 </style>
 </head>
 <body>
 
 <div class="rail">
   <div class="rail-in">
-    <div class="mark">SUNDAY<span>/</span>BUILD</div>
-    <nav class="seasons" id="seasons" aria-label="Season"></nav>
+    <div class="mark">WOODLAWN<span>/</span>EATS</div>
+    <span class="meta" id="railMeta"></span>
   </div>
 </div>
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Weekly meal prep · family of four</div>
-    <h1 class="thesis">One cook.<br>Three <em>dinners.</em><br><span class="u">Zero</span> weeknight panic.</h1>
-    <p>Every plan is a single Sunday session that puts dinner on the table that night and sets up two more nights the same week. Shop the list, run the cook flow, then reheat and assemble.</p>
-    <div class="house">
-      <span><b>No red meat</b> · poultry, fish, eggs, beans only</span>
-      <span><b>Gluten-free</b> · every ingredient</span>
-      <span><b>No alliums</b> · no onion, garlic, shallot, leek, scallion, chive</span>
-    </div>
+    <h1>Woodlawn Eats</h1>
+    <div class="house"><span>No red meat</span><span>Gluten-free</span><span>No alliums</span><span>Family of 4</span></div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="picker">
-    <div class="auto-note"><i class="live"></i><span id="autoNote"></span></div>
-    <div class="chips" id="chips"></div>
+
+<section>
+  <h2 class="sec">Roll the week</h2>
+  <p class="sec-note">Pick what you feel like. Leave everything off for a straight random roll.</p>
+  <div class="fgrid">
+    <div class="fgroup"><h3>Feature a protein</h3><div class="opts" id="fProtein"></div></div>
+    <div class="fgroup"><h3>Cuisine</h3><div class="opts" id="fCuisine"></div></div>
+    <div class="fgroup"><h3>Season</h3><div class="opts" id="fSeason"></div></div>
+    <div class="fgroup"><h3>Weeknights</h3>
+      <select id="fNights"><option value="2">2 extra dinners</option><option value="1">1 extra dinner</option><option value="3">3 extra dinners</option></select>
+    </div>
   </div>
-
-  <div class="plan-head">
-    <div class="eyebrow" id="planEyebrow"></div>
-    <h2 class="plan-title" id="planTitle"></h2>
-    <p class="plan-sub" id="planSub"></p>
+  <div class="rollbar">
+    <button class="btn primary" id="rollBtn">Roll the week</button>
+    <button class="btn" id="clearBtn">Reset filters</button>
+    <span class="seedline" id="seedLine"></span>
   </div>
+</section>
 
-  <section id="flowSec">
-    <div class="sec-head"><h2>Sunday cook flow</h2></div>
-    <p class="sec-note">Which appliance is running when. Bars that overlap are meant to overlap — set your dinner time and work backward.</p>
-    <div class="flow-bar">
-      <label for="startTime">Session starts</label>
-      <input type="time" id="startTime" value="14:00">
-      <span class="tot" id="flowTotal"></span>
-    </div>
-    <div class="flow-scroll"><div class="flow-grid" id="flowGrid"></div></div>
-    <p class="flow-legend" id="flowLegend"></p>
-  </section>
+<section id="menuSec">
+  <h2 class="sec">This week</h2>
+  <p class="sec-note">Lock anything you want to keep, then roll again to replace the rest.</p>
+  <div class="menu" id="menu"></div>
+</section>
 
-  <section id="grocSec">
-    <div class="sec-head"><h2>Grocery list</h2></div>
-    <p class="sec-note">Everything for all three dinners. Quantities feed two adults and two elementary-age kids, with enough slack for one packed lunch.</p>
-    <div class="cart-bar">
-      <span class="count" id="cartCount"></span>
-      <span class="meter"><i id="cartMeter"></i></span>
-      <button class="btn" id="clearBtn">Clear all checks</button>
-      <button class="btn" id="printBtn">Print this plan</button>
-    </div>
-    <div class="groc" id="groc"></div>
-  </section>
+<section id="prepSec">
+  <h2 class="sec">Sunday cook session</h2>
+  <p class="sec-note">Everything that gets cooked this week happens here. Weeknights are reheat and assemble only.</p>
+  <div class="flow-bar">
+    <label for="startTime">Starts</label>
+    <input type="time" id="startTime" value="14:00">
+    <span class="tot" id="flowTotal"></span>
+  </div>
+  <div class="flow-scroll"><div class="flow-grid" id="flowGrid"></div></div>
+  <div class="tasks" id="tasks"></div>
+</section>
 
-  <section id="yieldSec">
-    <div class="sec-head"><h2>What's in the fridge when you're done</h2></div>
-    <p class="sec-note">Cool everything uncovered for 20 minutes before it goes in containers, or you'll steam it soggy.</p>
-    <div class="yield" id="yield"></div>
-  </section>
+<section id="grocSec">
+  <h2 class="sec">Grocery list</h2>
+  <p class="sec-note">Merged across all three dinners, quantities summed. Items feeding more than one meal are flagged.</p>
+  <div class="cart-bar">
+    <span class="count" id="cartCount"></span>
+    <span class="meter"><i id="cartMeter"></i></span>
+    <button class="btn" id="clearChecks">Clear checks</button>
+    <button class="btn" id="printBtn">Print</button>
+  </div>
+  <div class="groc" id="groc"></div>
+</section>
 
-  <section id="dinnerSec">
-    <div class="sec-head"><h2>The three dinners</h2></div>
-    <p class="sec-note">Sunday is the cook. Nights two and three are assembly — 25 minutes or less, start to plate.</p>
-    <div id="dinners"></div>
-  </section>
-
-  <section id="rulesSec">
-    <div class="sec-head"><h2>Ground rules</h2></div>
-    <p class="sec-note">The three base recipes below replace the store-bought products that would otherwise sneak onion powder or wheat into almost every plan. Make them once a month and freeze.</p>
-    <div class="rules">
-      <div class="rule warn">
-        <h3>Label landmines</h3>
-        <p>These almost always contain onion or garlic powder even when the front of the package says nothing:</p>
-        <ul>
-          <li>Boxed and canned broth or stock — including "low sodium" and "organic"</li>
-          <li>Taco, fajita, chili, and BBQ seasoning packets</li>
-          <li>Jarred salsa, marinara, enchilada sauce, curry paste</li>
-          <li>Rotisserie chicken and pre-marinated meats</li>
-          <li>Worcestershire, most steak sauces, many mustards</li>
-          <li>Bouillon cubes, "natural flavors" on snack foods</li>
-          <li>Soy sauce (wheat) — use tamari and check it's certified GF</li>
-        </ul>
-      </div>
-      <div class="rule base">
-        <h3>Base 1 · Allium-free chicken broth</h3>
-        <p>Makes about 3 quarts. Freezes flat in quart bags for four months.</p>
-        <ul>
-          <li>2 chicken carcasses or 3 lb wings, 4 carrots, 4 celery ribs, 1 fennel bulb quartered</li>
-          <li>2 bay leaves, 1 tsp black peppercorns, 1 tsp fennel seed, a big handful of parsley stems</li>
-          <li>Cover with 4 qt cold water. Bare simmer 3 hours, never boiling. Strain, salt to taste.</li>
-          <li>Fennel and celery do the aromatic work that onion normally does. Do not skip the fennel.</li>
-        </ul>
-      </div>
-      <div class="rule base">
-        <h3>Base 2 · All-purpose rub</h3>
-        <p>Goes on everything that touches the grill, smoker, or air fryer. Makes about 1 cup.</p>
-        <ul>
-          <li>4 Tbsp smoked paprika, 3 Tbsp kosher salt, 2 Tbsp brown sugar</li>
-          <li>1 Tbsp each ground cumin, ground coriander, black pepper</li>
-          <li>2 tsp ground fennel, 1 tsp celery seed, 1 tsp dry mustard</li>
-          <li>Optional heat: 1–2 tsp chipotle powder. Keeps six months in a jar.</li>
-        </ul>
-      </div>
-      <div class="rule base">
-        <h3>Base 3 · BBQ and tomato sauce</h3>
-        <p>One tomato base, two finishes. Both freeze well.</p>
-        <ul>
-          <li><b>BBQ:</b> 1 can tomato paste, 1 cup water, ⅓ cup cider vinegar, ⅓ cup molasses, 2 Tbsp Dijon, 2 Tbsp rub above. Simmer 20 min.</li>
-          <li><b>Marinara:</b> 2 Tbsp olive oil, 1 diced fennel bulb, 1 grated carrot, sweat 10 min. Add 28 oz crushed tomatoes, 1 tsp oregano, pinch chili. Simmer 30 min.</li>
-        </ul>
-      </div>
-      <div class="rule">
-        <h3>Flavor without alliums</h3>
-        <ul>
-          <li><b>Sweet base:</b> fennel bulb, celery, carrot, roasted red pepper</li>
-          <li><b>Sharp:</b> ginger, Dijon, capers, olives, horseradish, radish</li>
-          <li><b>Savory depth:</b> tomato paste, chickpea miso, GF fish sauce, dried mushroom powder, anchovy</li>
-          <li><b>Bright:</b> lemon and lime zest, vinegar, fresh herbs added off the heat</li>
-          <li><b>Warm:</b> smoked paprika, cumin, coriander, fennel seed, celery seed</li>
-        </ul>
-      </div>
-      <div class="rule">
-        <h3>Two questions worth settling</h3>
-        <ul>
-          <li><b>Garlic-infused oil.</b> If the issue is FODMAPs, infused oil is usually fine — the fructans don't dissolve into oil. If it's a true allium sensitivity, it's out. Nothing in these plans depends on it.</li>
-          <li><b>Pork.</b> Treated as red meat here, so it's absent. If pork tenderloin is fair game, it swaps one-for-one anywhere chicken thighs appear on the grill or smoker.</li>
-          <li><b>Cross-contact.</b> If gluten is celiac rather than preference, run GF items on their own grill grate and use a separate air fryer basket liner.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 </div>
 
-<footer>
-  <div class="wrap">
-    <p><b>Sunday Build</b> — shop once, cook once, eat three times.</p>
-    <p id="footNote"></p>
-  </div>
-</footer>
+<footer><div class="wrap"><p id="footMeta">Loading…</p></div></footer>
 
 <script>
-var PLANS=[
+/* ============ state ============ */
+var DB=null, S={proteins:[],cuisines:[],season:"auto",nights:2,seed:0,
+                menu:[],locked:{},checked:{}};
+var LANES=[["smoker","Smoker","var(--lane-smoker)"],["grill","Grill","var(--lane-grill)"],
+  ["oven","Oven","var(--lane-oven)"],["air","Air fryer","var(--lane-air)"],
+  ["rice","Rice cooker","var(--lane-rice)"],["stove","Stovetop","var(--lane-stove)"]];
+var SEASONS=["spring","summer","fall","winter"];
 
-/* ================= SPRING ================= */
-{
-season:"spring",tag:"Early spring",name:"Lemon & Fire",
-sub:"Four pounds of grilled thighs, a rice cooker working overtime, and a pot of broth that turns Wednesday into soup night.",
-flowNote:"Whisk the dill-yogurt together any time you are waiting. The broth is the long pole — start it first and ignore it. Everything else clusters in the last hour.",
-flow:[
-{lane:"stove",t:"Allium-free broth",s:0,d:175},
-{lane:"rice",t:"Jasmine rice, double batch",s:75,d:50},
-{lane:"oven",t:"Baby potatoes + carrots, 425°F",s:60,d:45},
-{lane:"grill",t:"Chicken thighs, two loads",s:105,d:40},
-{lane:"grill",t:"Asparagus + lemon halves",s:148,d:12}
-],
-groceries:[
-{cat:"Produce",items:["2 bunches asparagus (about 2 lb)","2 lb rainbow carrots","2 lb baby potatoes","2 English cucumbers","1 pint cherry tomatoes","5 lemons","1 bunch fresh dill","1 bunch flat-leaf parsley","1 head romaine","1 fennel bulb (for the broth)","4 celery ribs (for the broth)"]},
-{cat:"Protein",items:["4 lb boneless skinless chicken thighs","3 lb chicken wings or 2 saved carcasses","1 dozen eggs"]},
-{cat:"Fridge",items:["32 oz plain whole-milk Greek yogurt","8 oz block feta","1 stick butter","Parmesan wedge"]},
-{cat:"Pantry",items:["3 cups jasmine rice","Olive oil","Red wine vinegar","Cornstarch","GF corn tortillas (for the kids)"]},
-{cat:"Spice & sauce",items:["Dried oregano","Smoked paprika","Ground fennel","Ground coriander","Bay leaves","Black peppercorns","Kosher salt"]}
-],
-yield:[
-{t:"4 lb grilled thighs",n:"Half sliced against the grain for bowls, half rough-chopped for soup. Two separate containers."},
-{t:"6 cups jasmine rice",n:"Spread on a sheet pan to cool fast, then bag it. Cold rice reheats better than warm-stored rice."},
-{t:"Roasted potatoes and carrots",n:"One large container. They will go soft — that is fine, they get re-crisped in the air fryer."},
-{t:"3 quarts broth",n:"One quart in the fridge for Wednesday, the rest frozen flat."},
-{t:"3 cups dill-yogurt sauce",n:"Yogurt, grated cucumber squeezed dry, dill, lemon, salt. Lasts five days."}
-],
-dinners:[
-{day:"Sunday",title:"Charred oregano chicken, asparagus, lemon rice",time:"About 3 hours, mostly unattended",gear:"Grill + rice cooker + oven",
-blurb:"The whole point of the session lands on the table hot. You are only eating about a quarter of what you cooked.",
-steps:[
-"Toss the thighs with olive oil, 2 Tbsp dried oregano, 1 Tbsp smoked paprika, 2 tsp ground fennel, and a heavy hand of salt. Let them sit while the grill heats.",
-"Grill over direct medium heat, 6–7 minutes a side, until they hit 175°F. Thighs want to be overcooked relative to breast — that is where they get tender. Work in two loads so you are not crowding.",
-"Asparagus goes on last: oiled, salted, straight on the grates, 4 minutes total with one roll. Halve two lemons and grill them cut-side down alongside.",
-"Fluff the rice with the juice of one grilled lemon, a handful of chopped parsley, and a knob of butter.",
-"Plate four thighs, half the asparagus, rice, and a spoon of dill-yogurt. Everything else goes into containers."
-],
-kid:"Grilled lemon is a hard sell at seven. Give the kids plain rice with butter and Parmesan, and cut one thigh into strips they can dip in the yogurt sauce.",
-safe:"Oregano and smoked paprika are single-ingredient spices — check that yours are not blends. The fennel bulb in the broth is doing the aromatic work onion normally would.",
-again:"You just made three more dinners. Do not eat the second container of chicken tonight."},
+function seasonNow(){var m=new Date().getMonth();
+  return m<2||m===11?"winter":m<5?"spring":m<8?"summer":"fall";}
+function rng(seed){var a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;
+  var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;
+  return((t^t>>>14)>>>0)/4294967296;};}
+function pick(arr,r){return arr[Math.floor(r()*arr.length)];}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
-{day:"Night two",title:"Chicken and rice bowls, green sauce",time:"20 minutes",gear:"Air fryer + stovetop",
-blurb:"Reheat, re-crisp, assemble. This is the night that justifies the Sunday.",
-steps:[
-"Air fry the roasted potatoes and carrots at 400°F for 8 minutes to bring back the edges.",
-"Warm the sliced chicken in a covered skillet with a splash of broth over low heat — the steam keeps it from drying out. Microwave works too, 90 seconds at half power.",
-"Reheat rice with a tablespoon of water per cup, covered.",
-"Build bowls: rice, chicken, potatoes and carrots, halved cherry tomatoes, crumbled feta, torn romaine.",
-"Thin the dill-yogurt with lemon juice until it pours, and spoon it over everything."
-],
-kid:"Serve theirs deconstructed on a plate with the components not touching. Same food, zero negotiation.",
-safe:"Feta is naturally gluten-free but check the brine ingredients on flavored varieties."},
+/* ============ load ============ */
+fetch("data/index.json").then(function(r){
+  if(!r.ok)throw new Error("HTTP "+r.status);return r.json();
+}).then(function(d){
+  DB=d;boot();
+}).catch(function(e){
+  document.getElementById("menu").innerHTML='<div class="empty">Could not load <code>data/index.json</code>.'+
+    '<br><br>Run the build workflow, or if you are opening this file directly from disk, serve it over HTTP instead — '+
+    'browsers block fetch on file:// URLs.<br><br><small>'+e.message+'</small></div>';
+  document.getElementById("footMeta").textContent="Data not loaded.";
+});
 
-{day:"Night three",title:"Lemon chicken and rice soup",time:"25 minutes",gear:"Stovetop",
-blurb:"Avgolemono without the fuss. The broth you simmered on Sunday is the entire reason this tastes like it took all day.",
-steps:[
-"Bring 2 quarts of the broth to a simmer with 2 sliced carrots and 2 sliced celery ribs. Cook 8 minutes until just tender.",
-"Add the chopped chicken and 2 cups of cooked rice. Simmer 3 minutes.",
-"In a bowl, whisk 3 eggs with the juice of 2 lemons. Ladle in a cup of hot broth while whisking hard — this tempers the eggs so they thicken instead of scramble.",
-"Pour the egg mixture back into the pot off the heat. Stir constantly for a minute; it will go silky and pale.",
-"Finish with dill, black pepper, and more lemon than feels right. Do not let it boil after the eggs go in."
-],
-kid:"Ladle the kids' portions before the lemon-egg step if they are texture-sensitive — it is basically chicken and rice soup at that point.",
-safe:"This is the plan's biggest label trap. Boxed broth is nearly always onion-forward, which is exactly why Base 1 exists.",
-again:"Leftover soup thickens overnight into something closer to a rice porridge. Loosen with water, not more broth."}
-]},
-
-{
-season:"spring",tag:"Mid spring",name:"The Smoked Side of Salmon",
-sub:"One two-pound side of salmon on the smoker at 225°F becomes dinner, bowls, and crisp air-fried cakes.",
-flowNote:"Salmon at 225°F is forgiving but not infinitely so — pull it at 125°F internal and let carryover finish the job.",
-flow:[
-{lane:"smoker",t:"Salmon side, 225°F",s:40,d:80},
-{lane:"rice",t:"Wild rice blend",s:35,d:55},
-{lane:"stove",t:"Dill-caper yogurt",s:60,d:12},
-{lane:"oven",t:"Smashed potatoes, 450°F",s:80,d:40},
-{lane:"stove",t:"Ginger-tamari glaze",s:100,d:12},
-{lane:"grill",t:"Snap peas + radicchio",s:105,d:12}
-],
-groceries:[
-{cat:"Produce",items:["1 lb sugar snap peas","2 heads radicchio or 1 bunch broccolini","2 lb small yellow potatoes","1 bunch asparagus","2 lb carrots","1 bunch fresh dill","1 bunch cilantro","3 limes","3 lemons","2-inch knob fresh ginger","1 head butter lettuce"]},
-{cat:"Protein",items:["2 lb side of salmon, skin on","1 lb salmon fillets (for the cakes)","1 dozen eggs"]},
-{cat:"Fridge",items:["24 oz plain Greek yogurt","1 stick butter","Mayonnaise (check for GF)"]},
-{cat:"Pantry",items:["2 cups wild rice blend","GF panko breadcrumbs","Tamari (certified GF)","Toasted sesame oil","Honey","Olive oil","Capers","Rice vinegar"]},
-{cat:"Spice & sauce",items:["Smoked paprika","Ground coriander","Celery seed","Dijon mustard","Kosher salt","Black pepper","Applewood or alder smoking chunks"]}
-],
-yield:[
-{t:"Smoked salmon side",n:"Flake two-thirds off the skin into a container; leave the rest in one piece for Sunday plates."},
-{t:"5 cups wild rice",n:"Wild rice blends hold texture better than white rice through three days of reheating."},
-{t:"Smashed potatoes",n:"Crisp them again in the air fryer any night — they come back almost new."},
-{t:"Dill-caper yogurt",n:"Yogurt, chopped capers, dill, lemon zest, black pepper."},
-{t:"Ginger-tamari glaze",n:"Tamari, honey, grated ginger, rice vinegar, sesame oil. Reduce until it coats a spoon."}
-],
-dinners:[
-{day:"Sunday",title:"Smoked salmon, wild rice, charred snap peas",time:"About 2 hours",gear:"Smoker + rice cooker + oven + grill",
-blurb:"Low smoke on salmon is a different animal from hot-smoked lox — it stays moist and flaky, closer to roasted with a campfire edge.",
-steps:[
-"Salt the salmon side 45 minutes ahead and leave it uncovered in the fridge. The surface dries into a tacky pellicle that grabs smoke.",
-"Smoker at 225°F with a light wood — alder or apple. Salmon skin-down directly on the grate, no foil. Pull at 125°F internal, roughly 70–80 minutes for a two-pound side.",
-"Boil the potatoes until fork-tender, smash them flat on an oiled sheet pan, drizzle with olive oil and salt, roast at 450°F for 35 minutes.",
-"Snap peas and halved radicchio get oiled and grilled hard for 5 minutes — you want char, not tenderness.",
-"Serve a third of the salmon over wild rice with a spoon of dill-caper yogurt and a lemon wedge."
-],
-kid:"Kids get salmon without the smoky skin, plain rice, and snap peas raw rather than charred. Raw snap peas are the most reliably kid-approved vegetable in this whole guide.",
-safe:"Tamari, not soy sauce — soy sauce is brewed with wheat. Confirm the bottle says gluten-free; a few tamari brands still cut with wheat."},
-
-{day:"Night two",title:"Ginger-glazed salmon rice bowls",time:"15 minutes",gear:"Stovetop",
-blurb:"Cold-smoked-flavor salmon plus a sharp ginger glaze reads as a completely different meal from Sunday.",
-steps:[
-"Warm the rice with a splash of water in a covered pan.",
-"Fold the flaked salmon into the warm rice off the heat — do not cook it again or it goes chalky.",
-"Shave carrots into ribbons with a peeler and toss with rice vinegar and salt for a 10-minute quick pickle.",
-"Build bowls with rice and salmon, pickled carrot, butter lettuce, cilantro, and blanched asparagus.",
-"Drizzle the ginger-tamari glaze over the top and finish with sesame oil and lime."
-],
-kid:"Roll theirs into hand rolls with lettuce leaves instead of a bowl. Anything they build themselves gets eaten.",
-safe:"Ginger and citrus carry the whole flavor here — there is no onion-shaped hole to fill."},
-
-{day:"Night three",title:"Air fryer salmon cakes",time:"25 minutes",gear:"Air fryer",
-blurb:"The remaining pound of fresh salmon, quickly poached and bound, comes out with a crust the air fryer does better than a skillet.",
-steps:[
-"Poach the fresh salmon fillets in barely simmering salted water for 8 minutes, then flake and cool.",
-"Mix with 1 egg, ¾ cup GF panko, 3 Tbsp mayo, 1 Tbsp Dijon, chopped dill, lemon zest, ½ tsp celery seed, salt and pepper.",
-"Form eight patties about ¾ inch thick. Chill 10 minutes so they hold together.",
-"Air fry at 380°F for 12 minutes, flipping at the halfway mark. Spritz with oil for a deeper crust.",
-"Serve on butter lettuce with dill-caper yogurt, re-crisped smashed potatoes, and lemon."
-],
-kid:"Call them salmon nuggets and serve with a ketchup-and-yogurt dip. This works far more often than it should.",
-safe:"GF panko is the swap that makes this work. Standard panko is wheat. Crushed GF rice crackers also do the job.",
-again:"Uncooked cakes freeze on a sheet pan then bag well — air fry from frozen at 380°F for 16 minutes."}
-]},
-
-{
-season:"spring",tag:"Late spring",name:"Green Chile Taco Sunday",
-sub:"Roasted tomatillo salsa verde with no onion in it at all, plus enough grilled chile-lime chicken to carry taquitos and burrito bowls.",
-flowNote:"Roast the tomatillos and poblanos first — the sauce needs to be blended before the chicken comes off the grill.",
-flow:[
-{lane:"oven",t:"Poblanos + tomatillos, 450°F",s:0,d:30},
-{lane:"rice",t:"Cilantro-lime rice, double",s:20,d:50},
-{lane:"stove",t:"Blend + simmer salsa verde",s:34,d:26},
-{lane:"grill",t:"Chile-lime chicken",s:62,d:26},
-{lane:"air",t:"Roll + par-crisp taquitos",s:75,d:16},
-{lane:"grill",t:"Corn + peppers",s:90,d:14}
-],
-groceries:[
-{cat:"Produce",items:["2 lb tomatillos","4 poblano peppers","2 jalapeños","4 ears corn","2 red bell peppers","3 avocados","2 bunches cilantro","6 limes","1 head green cabbage","1 pint cherry tomatoes","2 lb sweet potatoes","1 bunch radishes"]},
-{cat:"Protein",items:["3 lb boneless skinless chicken breasts","1 lb chicken thighs","2 cans black beans","2 cans pinto beans"]},
-{cat:"Fridge",items:["16 oz Mexican crema or sour cream","12 oz Monterey Jack, shredded","8 oz cotija"]},
-{cat:"Pantry",items:["3 cups long-grain white rice","30 GF corn tortillas","Olive oil","Neutral oil for the air fryer","Cider vinegar"]},
-{cat:"Spice & sauce",items:["Ground cumin","Ground coriander","Mexican oregano","Chipotle powder","Smoked paprika","Kosher salt"]}
-],
-yield:[
-{t:"3 lb grilled chile-lime chicken",n:"Slice half, shred the other half. Shredded goes into the taquitos, sliced goes into bowls."},
-{t:"6 cups salsa verde",n:"Tomatillo, poblano, jalapeño, cilantro, lime, salt. That is the entire recipe — no onion, no garlic, no compromise."},
-{t:"18 rolled taquitos",n:"Par-crisped and refrigerated on a sheet pan, ready to finish Tuesday."},
-{t:"7 cups cilantro-lime rice",n:"Fluffed with lime juice and cilantro after cooking, never during."},
-{t:"Charred corn and peppers",n:"Cut the kernels off the cob while warm — it is miserable once they are cold."}
-],
-dinners:[
-{day:"Sunday",title:"Chile-lime chicken tacos, salsa verde",time:"About 2 hours",gear:"Oven + grill + rice cooker + air fryer",
-blurb:"Taco night without a single seasoning packet. The salsa verde is the anchor and it makes six cups on purpose.",
-steps:[
-"Halve tomatillos, stem the poblanos and jalapeños, spread on a sheet pan with oil and salt. Roast at 450°F for 25 minutes until blistered and slack.",
-"Blend the roasted vegetables with a big bunch of cilantro, juice of 3 limes, 1 tsp cumin, and salt. Simmer 20 minutes in a saucepan to knock off the raw edge and tighten it up.",
-"Rub the chicken with cumin, coriander, Mexican oregano, chipotle, and lime zest. Grill over direct heat 6 minutes a side to 160°F, then rest — it climbs to 165°F off the fire.",
-"Corn and whole bell peppers go on the grill until blackened in patches, about 12 minutes.",
-"Warm tortillas directly on the grill grates for 20 seconds a side. Build with sliced chicken, corn, salsa verde, avocado, cotija, and cabbage."
-],
-kid:"Chipotle heat is the risk. Pull the kids' portion of chicken before the rub goes on and season it with just cumin, paprika, and salt.",
-safe:"Corn tortillas are naturally gluten-free but many brands add wheat flour for pliability — read the bag. Jarred salsa verde almost always contains onion, which is why you are roasting your own.",
-again:"Roll the taquitos tonight while the chicken is still warm and pliable. Twelve minutes of work saves Tuesday."},
-
-{day:"Night two",title:"Air fryer chicken taquitos",time:"18 minutes",gear:"Air fryer",
-blurb:"The most reliably kid-devoured meal in the whole rotation, and it takes almost no effort on a Tuesday.",
-steps:[
-"Roll on Sunday: warm tortillas until flexible, lay a line of shredded chicken and Monterey Jack down the middle, roll tight, seam-side down.",
-"Spritz all sides with oil and air fry at 400°F for 9 minutes until deep golden and crackling.",
-"Meanwhile shred cabbage and toss with lime juice, cider vinegar, salt, and cilantro. Ten minutes of sitting is all it needs.",
-"Warm black beans with cumin and a splash of the salsa verde.",
-"Serve four or five taquitos per adult with slaw, beans, salsa verde, crema, and sliced radish."
-],
-kid:"Taquitos are a dipping delivery system. Set out crema, salsa verde, and plain cheese in three small bowls and let them go.",
-safe:"Check the crema — some brands use modified food starch that is not GF."},
-
-{day:"Night three",title:"Sweet potato and black bean burrito bowls",time:"25 minutes",gear:"Air fryer + stovetop",
-blurb:"Uses the last of the chicken and turns the sweet potatoes into the star. This is the vegetable-forward night.",
-steps:[
-"Cube the sweet potatoes, toss with oil, cumin, smoked paprika, and salt. Air fry at 400°F for 18 minutes, shaking twice.",
-"Simmer pinto and black beans with cumin, oregano, and a ladle of salsa verde until they thicken slightly.",
-"Reheat the cilantro-lime rice with a splash of water.",
-"Build bowls: rice, beans, sweet potato, remaining chicken, charred corn, avocado, cherry tomatoes, cotija.",
-"Finish with salsa verde, crema, and a hard squeeze of lime."
-],
-kid:"Serve theirs as a quesadilla instead — beans and cheese between two corn tortillas, four minutes in the air fryer at 375°F.",
-safe:"Canned beans are usually fine, but rinse them and skip any labeled seasoned, chili-style, or ranch-style."}
-]},
-
-/* ================= SUMMER ================= */
-{
-season:"summer",tag:"Early summer",name:"Full Grill Sunday",
-sub:"Two spatchcocked chickens, every vegetable in the crisper on the grates, and a cold GF pasta salad waiting in the fridge.",
-flowNote:"Spatchcocking cuts roast time nearly in half and gets the whole bird cooking evenly. Ask the butcher to do it if you would rather not.",
-flow:[
-{lane:"grill",t:"Spatchcock chickens, indirect",s:20,d:70},
-{lane:"rice",t:"Long-grain rice",s:45,d:50},
-{lane:"stove",t:"GF pasta for the salad",s:60,d:16},
-{lane:"grill",t:"Corn, zucchini, peppers",s:95,d:20},
-{lane:"air",t:"Sweet potato wedges",s:100,d:20}
-],
-groceries:[
-{cat:"Produce",items:["4 zucchini","2 yellow squash","6 ears corn","3 bell peppers","2 pints cherry tomatoes","2 lb sweet potatoes","2 English cucumbers","1 lb green beans","3 lemons","3 limes","1 bunch basil","1 bunch cilantro","1 head romaine","2 avocados"]},
-{cat:"Protein",items:["2 whole chickens, about 4 lb each, spatchcocked","1 dozen eggs","1 can chickpeas"]},
-{cat:"Fridge",items:["8 oz feta block","8 oz fresh mozzarella pearls","Greek yogurt","Butter"]},
-{cat:"Pantry",items:["1 lb GF penne or fusilli","3 cups long-grain rice","GF corn tortillas or tostada shells","Olive oil","Red wine vinegar","Dijon mustard","Capers"]},
-{cat:"Spice & sauce",items:["All-purpose rub (Base 2)","Dried oregano","Smoked paprika","Ground fennel","Kosher salt","Black pepper"]}
-],
-yield:[
-{t:"Two grilled chickens",n:"Carve one for Sunday. Strip the second entirely — breast sliced, dark meat pulled — and save both carcasses for stock."},
-{t:"Grilled summer vegetables",n:"Zucchini, squash, peppers, corn kernels. Store together; they become the pasta salad on night two."},
-{t:"1 lb cooked GF pasta",n:"Rinse GF pasta under cold water after draining. It is the only way to keep it from gluing itself together."},
-{t:"6 cups rice",n:"Backup starch for night three."},
-{t:"Air fryer sweet potato wedges",n:"Re-crisp any night at 400°F for 6 minutes."}
-],
-dinners:[
-{day:"Sunday",title:"Grilled spatchcock chicken and everything else",time:"About 2 hours",gear:"Grill + rice cooker + air fryer",
-blurb:"The single best use of a summer grill: one long indirect cook and a fast hot round of vegetables at the end.",
-steps:[
-"Rub both birds all over and under the skin with olive oil and the all-purpose rub. Do this an hour ahead if you can.",
-"Set up two-zone heat: coals or burners on one side only, target 375–400°F. Chickens go skin-up on the cool side, breast facing away from the fire.",
-"Cook 55–65 minutes until the thigh reads 170°F. Slide them over the direct side for the last 4 minutes to crisp the skin, watching closely.",
-"While the birds rest 15 minutes, run the vegetables over the hot side: zucchini and squash planks 3 minutes a side, whole peppers until blackened, corn until spotted.",
-"Carve one bird. Serve with rice, grilled vegetables, and lemon halves charred on the grill."
-],
-kid:"Drumsticks are the whole strategy. Two birds means four drumsticks, which means nobody negotiates.",
-safe:"Base 2 rub is built to be allium-free. Commercial poultry rubs and brines are almost universally not.",
-again:"Strip the second chicken completely tonight while it is warm. Cold chicken does not want to come off the bone."},
-
-{day:"Night two",title:"Cold GF pasta salad with grilled vegetables",time:"15 minutes, no heat",gear:"No cooking",
-blurb:"The best answer to a 92-degree evening. Everything is already cooked; you are just dressing it.",
-steps:[
-"Whisk a dressing: ⅓ cup olive oil, 3 Tbsp red wine vinegar, 1 Tbsp Dijon, 1 tsp oregano, salt, pepper.",
-"Chop the grilled vegetables into bite-size pieces and toss with the cold pasta.",
-"Add sliced chicken breast, halved cherry tomatoes, mozzarella pearls, chickpeas, capers, and torn basil.",
-"Dress and toss. Let it sit 15 minutes — GF pasta absorbs dressing more than wheat pasta, so hold back some and add more before serving.",
-"Crumble feta over the top at the table."
-],
-kid:"Reserve a plain portion of pasta with butter, mozzarella pearls, and corn before dressing the rest.",
-safe:"Dijon is the sneaky one here. A few brands use onion or garlic — Grey Poupon and Maille are both clean as of last check, but verify yours."},
-
-{day:"Night three",title:"Chicken tostadas with corn and avocado",time:"20 minutes",gear:"Air fryer + stovetop",
-blurb:"Pulled dark meat, crisped tortillas, and everything cold and fresh piled on top.",
-steps:[
-"Air fry corn tortillas at 400°F for 4 minutes a side until rigid, or use store-bought tostada shells.",
-"Warm the pulled chicken in a skillet with lime juice, smoked paprika, and a splash of water.",
-"Make a quick corn salad: charred kernels, diced cucumber, cherry tomato, cilantro, lime, salt, and feta.",
-"Mash avocado with lime and salt.",
-"Layer: tostada, avocado, chicken, corn salad, shredded romaine. Eat immediately or it goes soft."
-],
-kid:"Break the tostadas into chips and let them build nachos in the air fryer with cheese for two minutes.",
-safe:"Tostada shells are usually just corn, oil, and salt — but flavored varieties add onion powder."}
-]},
-
-{
-season:"summer",tag:"High summer",name:"Smoked Turkey & Peaches",
-sub:"A turkey breast on the smoker for three hours, a homemade BBQ glaze with no onion in it, and stone fruit doing the work that raw onion normally does in salsa.",
-flowNote:"A 6-pound bone-in turkey breast at 250°F runs about three hours. Start it and go do something else for two of them.",
-flow:[
-{lane:"smoker",t:"Turkey breast, 250°F to 160°F",s:0,d:180},
-{lane:"stove",t:"BBQ glaze",s:118,d:24},
-{lane:"rice",t:"Jasmine rice",s:130,d:50},
-{lane:"oven",t:"GF cornbread, 400°F",s:150,d:28},
-{lane:"stove",t:"Peach salsa",s:152,d:16},
-{lane:"grill",t:"Peaches + zucchini, charred",s:170,d:14}
-],
-groceries:[
-{cat:"Produce",items:["6 ripe peaches","4 zucchini","1 head green cabbage","2 large carrots","2 pints cherry tomatoes","2 English cucumbers","1 jalapeño","2 bunches cilantro","5 limes","2 lemons","1 bunch mint","2 lb green beans"]},
-{cat:"Protein",items:["1 bone-in turkey breast, 6–7 lb","1 lb shrimp, peeled (for night three)","1 dozen eggs"]},
-{cat:"Fridge",items:["Buttermilk","2 sticks butter","Greek yogurt","8 oz sharp cheddar"]},
-{cat:"Pantry",items:["3 cups jasmine rice","GF cornmeal","GF all-purpose flour blend","Tomato paste","Molasses","Cider vinegar","Dijon mustard","Olive oil","Honey"]},
-{cat:"Spice & sauce",items:["All-purpose rub (Base 2)","Smoked paprika","Ground cumin","Chipotle powder","Celery seed","Kosher salt","Hickory or pecan smoking wood"]}
-],
-yield:[
-{t:"Smoked turkey breast",n:"Slice a third for Sunday, chop the rest. Turkey breast dries out fast once sliced, so store it in large pieces and cut as needed."},
-{t:"2 cups BBQ glaze",n:"Tomato paste, cider vinegar, molasses, Dijon, and Base 2 rub. Nothing else."},
-{t:"4 cups peach salsa",n:"Diced peach, cherry tomato, jalapeño, cilantro, lime. Onion-free by design, not by substitution."},
-{t:"Pan of GF cornbread",n:"Cut into squares and freeze half — it goes stale by day three otherwise."},
-{t:"Cabbage-carrot slaw",n:"Dressed with yogurt, cider vinegar, celery seed, and honey."}
-],
-dinners:[
-{day:"Sunday",title:"Smoked turkey, cornbread, charred peaches",time:"About 3.5 hours",gear:"Smoker + oven + grill + rice cooker",
-blurb:"Turkey is underrated on a smoker — it takes smoke beautifully and a whole breast feeds a family twice over.",
-steps:[
-"Dry-brine the turkey breast the night before with 1 Tbsp kosher salt per 2 lb, uncovered in the fridge. This is the single highest-leverage step.",
-"Coat with the all-purpose rub. Smoker at 250°F, hickory or pecan. Skin side up, no water pan needed.",
-"Pull at 160°F in the thickest part of the breast — about three hours. Rest 25 minutes tented; it will carry to 165°F.",
-"Cornbread: 1½ cups GF cornmeal, 1 cup GF flour blend, 2 Tbsp sugar, 1 Tbsp baking powder, 1 tsp salt, 2 eggs, 1½ cups buttermilk, 1 stick melted butter. Bake 400°F for 25 minutes in a hot buttered skillet.",
-"Halve the peaches and grill cut-side down 4 minutes. Serve turkey with warm glaze on the side, cornbread, slaw, and grilled peaches."
-],
-kid:"Sliced turkey and cornbread with honey butter is a complete meal for a second grader. Keep the glaze off their plate — the chipotle sneaks up.",
-safe:"Store BBQ sauce is a lost cause on both counts: onion powder and often wheat-based thickeners. Base 3 solves it in 20 minutes.",
-again:"Save the turkey bones. They make a better stock than chicken and freeze indefinitely."},
-
-{day:"Night two",title:"Turkey rice bowls with peach salsa",time:"15 minutes",gear:"Stovetop",
-blurb:"Bright, cold-and-hot contrast. The peach salsa does all the lifting.",
-steps:[
-"Reheat the rice with a splash of water, covered.",
-"Warm the chopped turkey gently in a skillet with a spoon of BBQ glaze thinned with water — do not let it fry.",
-"Dice cucumber and toss with lime, mint, and salt.",
-"Build: rice, turkey, peach salsa, cucumber-mint, slaw.",
-"Finish with a spoon of yogurt and extra lime."
-],
-kid:"Peach salsa is sweeter than they expect, which usually wins. If not, plain diced peach on the side.",
-safe:"Peach and lime replace the sharpness raw onion contributes to salsa. Jalapeño is optional and separate."},
-
-{day:"Night three",title:"Grilled shrimp and green beans over rice",time:"20 minutes",gear:"Grill + stovetop",
-blurb:"A fast pivot away from turkey. Shrimp cooks in four minutes and the rice is already made.",
-steps:[
-"Toss shrimp with olive oil, smoked paprika, cumin, lime zest, and salt. Skewer them or use a grill basket.",
-"Blanch green beans 3 minutes, shock in ice water, then toss with olive oil and salt.",
-"Grill the shrimp over high direct heat, 2 minutes a side. They are done the moment they curl into a C — a tight O means overcooked.",
-"Char the green beans on the grill for 3 minutes alongside.",
-"Serve over reheated rice with peach salsa, lime, and cilantro."
-],
-kid:"Shrimp on a skewer counts as a novelty. Skip the paprika on two skewers if the color alone is a problem.",
-safe:"Pre-seasoned or marinated shrimp from the seafood counter is almost always garlic-forward. Buy plain."}
-]},
-
-{
-season:"summer",tag:"Late summer",name:"Coconut Rice & Skewers",
-sub:"Coconut-lime rice out of the rice cooker, chicken and shrimp skewers off the grill, and a peanut-lime sauce that makes leftovers feel intentional.",
-flowNote:"Skewers cook fast and unevenly if crowded — thread loosely and leave a thumb of space between pieces.",
-flow:[
-{lane:"stove",t:"Peanut-lime sauce",s:0,d:16},
-{lane:"rice",t:"Coconut-lime rice, double",s:20,d:55},
-{lane:"grill",t:"Chicken skewers",s:60,d:22},
-{lane:"air",t:"Coconut shrimp, par-cook",s:70,d:16},
-{lane:"grill",t:"Shrimp skewers",s:86,d:10},
-{lane:"grill",t:"Pineapple + bok choy",s:98,d:12}
-],
-groceries:[
-{cat:"Produce",items:["1 pineapple","4 heads baby bok choy","2 red bell peppers","3 zucchini","2 English cucumbers","1 lb sugar snap peas","2 carrots","2-inch knob ginger","2 bunches cilantro","1 bunch Thai basil or regular basil","6 limes","1 head green leaf lettuce"]},
-{cat:"Protein",items:["2 lb boneless skinless chicken thighs","1.5 lb large shrimp, peeled","1 lb extra-firm tofu","1 dozen eggs"]},
-{cat:"Fridge",items:["Butter","Greek yogurt"]},
-{cat:"Pantry",items:["3 cups jasmine rice","2 cans full-fat coconut milk","8 oz GF rice noodles","Creamy peanut butter (no additives)","Tamari (certified GF)","Rice vinegar","Toasted sesame oil","Honey","Sweetened shredded coconut","GF panko","Neutral oil"]},
-{cat:"Spice & sauce",items:["Ground coriander","Ground turmeric","Smoked paprika","Chili flakes","Kosher salt","Bamboo skewers"]}
-],
-yield:[
-{t:"Grilled chicken skewers",n:"Pull half off the skewers and chop for fried rice on night two."},
-{t:"Grilled shrimp",n:"Eat most of these Sunday — grilled shrimp does not reheat well. Cook the rest fresh."},
-{t:"7 cups coconut-lime rice",n:"Spread on a sheet pan to cool completely. Cold, dry rice is mandatory for fried rice."},
-{t:"2 cups peanut-lime sauce",n:"Peanut butter, tamari, lime, honey, ginger, rice vinegar, water to thin. Thickens in the fridge — loosen with hot water."},
-{t:"Breaded coconut shrimp, uncooked",n:"On a sheet pan in the fridge, ready for the air fryer on night three."}
-],
-dinners:[
-{day:"Sunday",title:"Chicken and shrimp skewers, coconut rice, grilled pineapple",time:"About 2 hours",gear:"Grill + rice cooker + air fryer",
-blurb:"A backyard plate that reads tropical without a single ingredient that is hard to find in August.",
-steps:[
-"Marinate the thighs 30 minutes in coconut milk, lime zest, coriander, turmeric, ginger, and salt. Soak bamboo skewers while you wait.",
-"Coconut rice: replace half the water in the rice cooker with coconut milk, add a pinch of salt. Stir in lime zest and juice after it finishes, never before.",
-"Thread and grill chicken skewers over direct medium-high, 5 minutes a side to 175°F.",
-"Shrimp skewers go on last, 2 minutes a side. Pineapple spears and halved bok choy get 3 minutes on the hot side.",
-"Serve over coconut rice with peanut-lime sauce, cilantro, basil, and lime."
-],
-kid:"Anything on a stick has a built-in advantage. Grilled pineapple is dessert as far as they are concerned — lean into it.",
-safe:"Check the peanut butter for added ingredients, and confirm your coconut milk has no additives beyond guar gum."},
-
-{day:"Night two",title:"Shrimp and vegetable fried rice",time:"20 minutes",gear:"Stovetop",
-blurb:"Cold coconut rice makes a better fried rice than plain — the fat is already in the grain.",
-steps:[
-"Get a wide skillet or wok genuinely hot with 2 Tbsp neutral oil. Not medium-high. Hot.",
-"Add diced bell pepper, carrot, and snap peas. Stir-fry 3 minutes, keeping everything moving.",
-"Push to one side, scramble 3 eggs in the empty space, then break them up into the vegetables.",
-"Add the cold rice, breaking up clumps with the back of a spatula. Fry undisturbed for a minute at a time so it can crisp.",
-"Fold in chopped chicken, a splash of tamari, sesame oil, and grated ginger. Finish with cilantro and lime."
-],
-kid:"Fried rice is the most forgiving kid meal there is. Let them pick their own add-ins before it hits the pan.",
-safe:"Tamari, not soy sauce. This is the recipe where the substitution matters most because the sauce is the flavor."},
-
-{day:"Night three",title:"Air fryer coconut shrimp with rice noodles",time:"25 minutes",gear:"Air fryer + stovetop",
-blurb:"A crunchy finish to the week, without a pot of frying oil in a hot kitchen.",
-steps:[
-"Set up three bowls: GF flour blend, beaten egg, and a mix of shredded coconut with GF panko.",
-"Dredge the shrimp through all three, pressing the coating on. Do this Sunday if you can — it holds fine overnight.",
-"Air fry at 375°F for 9 minutes, flipping once. Spritz with oil at the flip for even browning.",
-"Soak the rice noodles in hot water per the package, then toss with peanut-lime sauce, shredded cucumber, carrot, and herbs.",
-"Pile the shrimp on the noodles with extra lime and chili flakes for the adults."
-],
-kid:"Coconut shrimp with a honey-yogurt dip is basically a chicken nugget with better press.",
-safe:"Sweetened shredded coconut is usually GF but some brands dust with wheat starch to prevent clumping."}
-]},
-
-/* ================= FALL ================= */
-{
-season:"fall",tag:"Early fall",name:"Two Chickens, One Oven",
-sub:"Roast two birds while the squash caramelizes underneath, then ride the leftovers into grain bowls and a soup that tastes like it took all day.",
-flowNote:"Two chickens in one oven is the highest-yield hour in this entire guide. The stock pot goes on after dinner, not during.",
-flow:[
-{lane:"oven",t:"Two chickens, 425°F",s:15,d:80},
-{lane:"rice",t:"Wild rice blend",s:40,d:55},
-{lane:"air",t:"GF croutons",s:100,d:12},
-{lane:"oven",t:"Delicata + Brussels sprouts",s:98,d:34},
-{lane:"stove",t:"Maple-Dijon vinaigrette",s:110,d:10}
-],
-groceries:[
-{cat:"Produce",items:["3 delicata squash","2 lb Brussels sprouts","1 butternut squash","2 lb carrots","4 celery ribs","2 fennel bulbs","2 Honeycrisp apples","1 bunch kale","1 bunch flat-leaf parsley","1 bunch thyme","2 lemons","1 lb cremini mushrooms"]},
-{cat:"Protein",items:["2 whole chickens, about 4 lb each","1 dozen eggs","1 can cannellini beans"]},
-{cat:"Fridge",items:["2 sticks butter","Parmesan wedge","4 oz goat cheese","Greek yogurt"]},
-{cat:"Pantry",items:["2 cups wild rice blend","GF bread (for croutons)","Pecans","Dried cranberries","Maple syrup","Dijon mustard","Apple cider vinegar","Olive oil"]},
-{cat:"Spice & sauce",items:["Dried thyme","Ground sage","Smoked paprika","Ground fennel","Bay leaves","Kosher salt","Black peppercorns"]}
-],
-yield:[
-{t:"Two roast chickens",n:"Carve one Sunday. Strip the other while warm: breast sliced, dark meat pulled, skin snacked on by whoever is standing there."},
-{t:"Roasted delicata and Brussels",n:"Delicata skin is edible — no peeling. Roast cut-side down for the deepest caramelization."},
-{t:"5 cups wild rice",n:"Holds up better than white rice across three days."},
-{t:"Maple-Dijon vinaigrette",n:"Maple, Dijon, cider vinegar, olive oil, thyme. Shake in a jar."},
-{t:"2 chicken carcasses",n:"Into the stock pot tonight with fennel, celery, carrot, and bay. Bare simmer three hours, then strain and chill."}
-],
-dinners:[
-{day:"Sunday",title:"Roast chicken with delicata and Brussels",time:"About 2.5 hours",gear:"Oven + rice cooker + air fryer",
-blurb:"The most straightforward plan in the rotation and probably the best return on effort.",
-steps:[
-"Dry the birds thoroughly and salt them the night before if possible. Rub with softened butter, thyme, sage, and pepper; tuck lemon halves in the cavities.",
-"Roast at 425°F on a rack over a sheet pan, 70–80 minutes, until the thigh reads 170°F. Rotate the pan once.",
-"While they rest, crank the oven back to 425°F. Roast halved delicata rings and halved Brussels sprouts cut-side down with olive oil and salt, 30 minutes.",
-"Toss the roasted vegetables with maple-Dijon vinaigrette, pecans, and dried cranberries while still warm.",
-"Carve one chicken and serve over wild rice with the vegetables and pan drippings spooned over."
-],
-kid:"Drumsticks and wings, plain wild rice with butter, and delicata rings — the sweet ones look like little scalloped moons and go down easier than you would guess.",
-safe:"Compound butters and poultry seasoning blends often carry onion or garlic powder. Build the herb butter yourself from single-ingredient dried herbs.",
-again:"Both carcasses into the pot tonight. Tomorrow you will not want to."},
-
-{day:"Night two",title:"Harvest grain bowls",time:"20 minutes",gear:"Oven + air fryer",
-blurb:"Warm rice, cold apple, warm squash, sharp vinaigrette. Contrast is what makes a leftover bowl feel like a meal.",
-steps:[
-"Air fry cubes of GF bread with olive oil and salt at 375°F for 8 minutes for croutons.",
-"Massage torn kale with a little olive oil and salt for 30 seconds — it softens and stops tasting raw.",
-"Reheat the wild rice and roasted vegetables together in a covered pan or a 350°F oven for 10 minutes.",
-"Build bowls: rice, kale, roasted squash and Brussels, sliced chicken breast, thin apple slices, goat cheese, pecans, croutons.",
-"Dress generously with the maple-Dijon and finish with cracked pepper."
-],
-kid:"Kale is the fight. Substitute plain rice, chicken, apple slices, and croutons on a plate and call it done.",
-safe:"GF bread varies wildly in quality. A dense sandwich-style loaf makes far better croutons than a soft white one."},
-
-{day:"Night three",title:"Chicken, mushroom and wild rice soup",time:"30 minutes",gear:"Stovetop",
-blurb:"Your homemade stock is the reason this tastes better than the version with a can of cream in it.",
-steps:[
-"Melt 3 Tbsp butter in a heavy pot. Sweat diced fennel, carrot, and celery with a pinch of salt for 8 minutes until soft and sweet.",
-"Add sliced cremini mushrooms and cook hard for 6 minutes until browned and the liquid has cooked off. This is where the depth comes from — do not rush it.",
-"Add 2 quarts of your stock, 1 tsp thyme, a bay leaf, and the cannellini beans. Simmer 10 minutes.",
-"Stir in the pulled chicken and 2 cups cooked wild rice. Warm through.",
-"Finish off the heat with lemon juice, parsley, and a swirl of Greek yogurt for body instead of cream."
-],
-kid:"Ladle theirs light on mushrooms and heavy on rice and chicken. Serve with buttered GF bread for dunking.",
-safe:"Fennel plus celery plus browned mushroom is the allium-free savory base. Each one alone falls flat; together they carry it.",
-again:"Freezes well, but freeze it before adding the rice — cooked wild rice turns mushy on the thaw."}
-]},
-
-{
-season:"fall",tag:"Mid fall",name:"Smoked & Pulled",
-sub:"Chicken thighs on the smoker for two and a half hours, pulled into a homemade BBQ sauce, then stretched across stuffed sweet potatoes and a tray of nachos.",
-flowNote:"Thighs are almost impossible to ruin on a smoker. They stay juicy well past the point where breast meat would be sawdust.",
-flow:[
-{lane:"smoker",t:"Chicken thighs, 250°F",s:0,d:150},
-{lane:"stove",t:"BBQ sauce",s:60,d:26},
-{lane:"rice",t:"Rice for Tuesday bowls",s:100,d:50},
-{lane:"stove",t:"Slaw dressing",s:95,d:12},
-{lane:"oven",t:"GF cornbread, 400°F",s:120,d:28},
-{lane:"air",t:"Sweet potato wedges",s:155,d:22}
-],
-groceries:[
-{cat:"Produce",items:["6 large sweet potatoes","1 head green cabbage","1 head red cabbage","3 carrots","2 jalapeños","1 bunch cilantro","1 bunch parsley","1 bunch dill","4 limes","2 avocados","1 pint cherry tomatoes","1 lb green beans"]},
-{cat:"Protein",items:["5 lb boneless skinless chicken thighs","2 cans black beans","1 dozen eggs"]},
-{cat:"Fridge",items:["Buttermilk","2 sticks butter","12 oz sharp cheddar, shredded","16 oz sour cream","Greek yogurt"]},
-{cat:"Pantry",items:["2 cups long-grain rice","GF cornmeal","GF all-purpose flour blend","GF tortilla chips","Tomato paste","Molasses","Cider vinegar","Dijon mustard","Honey"]},
-{cat:"Spice & sauce",items:["All-purpose rub (Base 2)","Smoked paprika","Chipotle powder","Celery seed","Ground cumin","Kosher salt","Hickory or cherry smoking wood"]}
-],
-yield:[
-{t:"5 lb pulled smoked chicken",n:"Sauce half and leave half plain. Plain pulled chicken is more versatile than sauced, and you can always add sauce later."},
-{t:"3 cups BBQ sauce",n:"Base 3 recipe. Makes enough for all three dinners with some left for the freezer."},
-{t:"Two-cabbage slaw",n:"Dressed with buttermilk, cider vinegar, celery seed, and honey. Salt the cabbage 20 minutes and squeeze it dry first or it waters out."},
-{t:"Pan of GF cornbread",n:"Half for Sunday, half wrapped tight for later in the week."},
-{t:"4 cups cooked rice",n:"For bowls on night two if the sweet potatoes do not stretch."}
-],
-dinners:[
-{day:"Sunday",title:"Pulled smoked chicken, cornbread, slaw",time:"About 3 hours",gear:"Smoker + oven + air fryer",
-blurb:"The payoff plate: sauced chicken, hot cornbread, cold slaw, crisp sweet potato wedges.",
-steps:[
-"Coat the thighs generously with the all-purpose rub. Smoker at 250°F with hickory or cherry.",
-"Smoke 2 to 2.5 hours until they pull apart easily — somewhere around 195°F internal. Unlike breast, you want thighs well past 165°F so the collagen breaks down.",
-"Rest 15 minutes, then pull with two forks. Toss half with warm BBQ sauce.",
-"Cornbread in a hot buttered skillet at 400°F for 25 minutes. Sweet potato wedges get 20 minutes at 400°F in the air fryer with rub and oil.",
-"Plate sauced chicken with cornbread, slaw, and wedges. Extra sauce on the table."
-],
-kid:"Serve the plain unsauced chicken with cheese melted over it and sauce on the side for dipping. Smoke flavor plus BBQ tang is a lot at once for a kid palate.",
-safe:"Every commercial BBQ sauce on the shelf contains onion or garlic powder, and many use wheat-derived thickeners. This plan lives or dies on Base 3.",
-again:"Do not sauce all five pounds. Half plain gives you options."},
-
-{day:"Night two",title:"BBQ chicken stuffed sweet potatoes",time:"25 minutes",gear:"Oven or air fryer",
-blurb:"Bake the potatoes Sunday alongside everything else and this becomes a 10-minute night.",
-steps:[
-"Bake the sweet potatoes at 400°F for 50 minutes until completely collapsing — do this Sunday while the smoker runs.",
-"Split them open, fluff the insides with a fork, and add a pat of butter and salt.",
-"Warm the sauced pulled chicken with a splash of water so it does not go dry.",
-"Pile chicken into the potatoes, top with sharp cheddar, and run them under the broiler or in the air fryer at 375°F for 4 minutes.",
-"Finish with slaw right on top, plus sour cream and cilantro."
-],
-kid:"Slaw on top is optional. Cheese is not.",
-safe:"Cheddar is naturally gluten-free but pre-shredded cheese uses anti-caking starch — usually potato or corn, occasionally wheat."},
-
-{day:"Night three",title:"BBQ chicken nachos",time:"20 minutes",gear:"Oven",
-blurb:"The correct final act for a smoked chicken week, and the one meal all four people will agree on.",
-steps:[
-"Warm black beans with cumin and smoked paprika until they thicken.",
-"Spread GF tortilla chips on a sheet pan in a single layer — two thin layers beat one thick pile every time.",
-"Scatter pulled chicken, beans, and cheddar over the chips. Bake at 400°F for 10 minutes until the cheese fully melts.",
-"Top off the heat with cherry tomato, avocado, jalapeño, cilantro, and sour cream.",
-"Drizzle with thinned BBQ sauce and lime."
-],
-kid:"Give each kid their own small sheet pan and let them build it. Fifteen minutes of engagement for four minutes of prep.",
-safe:"Check the tortilla chips. Plain corn chips are fine; anything labeled nacho, ranch, or seasoned is not."}
-]},
-
-{
-season:"fall",tag:"Late fall",name:"Crispy Cutlet Week",
-sub:"Three batches of GF-breaded chicken cutlets out of the air fryer on Sunday, then chicken parm and a chopped salad that both feel like different meals.",
-flowNote:"The air fryer is the bottleneck. Three batches back to back, sixteen minutes each — start the marinara first so it can reduce while you bread.",
-flow:[
-{lane:"stove",t:"Allium-free marinara",s:0,d:52},
-{lane:"oven",t:"Smashed potatoes, 450°F",s:30,d:46},
-{lane:"rice",t:"Rice for the soup night",s:40,d:50},
-{lane:"air",t:"Cutlets, batch 1",s:60,d:16},
-{lane:"stove",t:"Green beans, blanch + shock",s:62,d:12},
-{lane:"air",t:"Cutlets, batch 2",s:78,d:16},
-{lane:"air",t:"Cutlets, batch 3",s:96,d:16}
-],
-groceries:[
-{cat:"Produce",items:["2 fennel bulbs","4 carrots","2 lb small yellow potatoes","1.5 lb green beans","2 heads romaine","1 pint cherry tomatoes","2 Honeycrisp apples","1 butternut squash","1 bunch basil","1 bunch parsley","3 lemons","1 English cucumber"]},
-{cat:"Protein",items:["4 lb boneless skinless chicken breasts, sliced into cutlets","1 dozen eggs","1 can chickpeas"]},
-{cat:"Fridge",items:["16 oz fresh mozzarella","Parmesan wedge","4 oz goat cheese","2 sticks butter"]},
-{cat:"Pantry",items:["GF panko breadcrumbs","GF all-purpose flour blend","1 lb GF spaghetti","2 cups rice","2 cans crushed tomatoes (28 oz)","Pecans","Dried cranberries","Olive oil","Red wine vinegar","Dijon mustard"]},
-{cat:"Spice & sauce",items:["Dried oregano","Dried basil","Chili flakes","Smoked paprika","Ground fennel","Kosher salt","Black pepper"]}
-],
-yield:[
-{t:"12 breaded cutlets",n:"Cool on a rack, never a plate — trapped steam is what makes breading go soft."},
-{t:"6 cups marinara",n:"Fennel and carrot sweated slowly stand in for the onion. Do not skip the slow sweat; that is where the sweetness comes from."},
-{t:"Smashed potatoes",n:"Re-crisp at 400°F for 6 minutes any night."},
-{t:"Blanched green beans",n:"Shocked in ice water so they stay bright. Sauté in butter to serve."},
-{t:"4 cups cooked rice",n:"Backup starch and the base for a fast soup if the week goes sideways."}
-],
-dinners:[
-{day:"Sunday",title:"Crispy cutlets, smashed potatoes, green beans",time:"About 2 hours",gear:"Air fryer + oven + stovetop",
-blurb:"Air fryer cutlets get 90 percent of the way to pan-fried with none of the oil splatter or the pan-watching.",
-steps:[
-"Pound the cutlets to an even half inch between two sheets of parchment. Even thickness matters more than thinness.",
-"Set up three dishes: GF flour blend seasoned with salt and paprika, beaten egg, and GF panko mixed with grated Parmesan and oregano.",
-"Dredge each cutlet through all three, pressing the panko on firmly. Let them sit 10 minutes so the coating sets.",
-"Air fry at 400°F for 14–16 minutes, flipping once, spritzing with oil at the flip. Do not crowd the basket — three batches, not one.",
-"Boil the potatoes, smash them on an oiled pan, roast at 450°F for 40 minutes. Sauté the blanched green beans in butter with lemon. Serve four cutlets with lemon wedges."
-],
-kid:"These are chicken tenders with a better zip code. Cut into strips and serve with marinara for dipping.",
-safe:"GF panko is the whole game. Regular panko is wheat, and so is most pre-seasoned breadcrumb. Aleia's and Ian's both work well.",
-again:"Eight cutlets go in the fridge. Store them on a rack in a container so air circulates underneath."},
-
-{day:"Night two",title:"Chicken parm over GF spaghetti",time:"25 minutes",gear:"Oven + stovetop",
-blurb:"Reheated cutlets under bubbling mozzarella. Nobody will guess this started on Sunday.",
-steps:[
-"Boil GF spaghetti to just under package time — it goes from firm to mush in about 60 seconds, so pull it early.",
-"Lay four cutlets on a sheet pan. Spoon marinara over each, but leave the edges bare so they stay crisp.",
-"Top with torn fresh mozzarella and grated Parmesan. Bake at 425°F for 12 minutes until browned and bubbling.",
-"Toss the drained pasta with warm marinara, olive oil, and a ladle of pasta water.",
-"Serve with torn basil and chili flakes for the adults."
-],
-kid:"Cheese-on-chicken is a reliable win. Serve their pasta with butter and Parmesan instead of sauce if the tomato is a hurdle.",
-safe:"Jarred marinara is one of the most consistent onion offenders in the grocery store. Base 3 takes 30 minutes and freezes."},
-
-{day:"Night three",title:"Cutlet chopped salad with apple and squash",time:"25 minutes",gear:"Oven + air fryer",
-blurb:"Warm crisp chicken over cold sharp salad — the temperature contrast is the whole idea.",
-steps:[
-"Roast cubed butternut squash at 425°F with olive oil, salt, and a pinch of chili flakes for 30 minutes.",
-"Re-crisp the last cutlets in the air fryer at 375°F for 6 minutes, then slice into strips.",
-"Chop romaine, cucumber, cherry tomato, and thin apple slices into a big bowl. Add chickpeas and pecans.",
-"Whisk a dressing: olive oil, red wine vinegar, Dijon, a spoon of honey, salt, pepper.",
-"Toss the salad, top with warm squash, cutlet strips, dried cranberries, and crumbled goat cheese."
-],
-kid:"Deconstruct entirely: chicken strips, apple slices, squash cubes, and cucumber in separate piles with dressing to dip.",
-safe:"Dijon and vinegar do the sharp work that a raw shallot would do in a standard vinaigrette."}
-]},
-
-/* ================= WINTER ================= */
-{
-season:"winter",tag:"Early winter",name:"The Big Pot",
-sub:"A pot of chicken and white beans that becomes white chicken chili on Tuesday and a skillet pot pie on Thursday.",
-flowNote:"One pot does most of the work. The oven runs vegetables and cornbread while it simmers.",
-flow:[
-{lane:"stove",t:"Chicken & white bean pot",s:0,d:120},
-{lane:"rice",t:"Brown rice",s:50,d:60},
-{lane:"oven",t:"Carrots + parsnips, 425°F",s:60,d:42},
-{lane:"oven",t:"GF cornbread, 400°F",s:105,d:28},
-{lane:"air",t:"Cheesy GF toasts",s:120,d:8}
-],
-groceries:[
-{cat:"Produce",items:["2 lb carrots","1.5 lb parsnips","2 fennel bulbs","6 celery ribs","1 lb cremini mushrooms","2 lb Yukon gold potatoes","1 bunch kale","1 bunch parsley","1 bunch thyme","2 poblano peppers","3 limes","2 lemons"]},
-{cat:"Protein",items:["4 lb bone-in chicken thighs","3 cans cannellini beans","1 dozen eggs"]},
-{cat:"Fridge",items:["Buttermilk","3 sticks butter","Heavy cream","12 oz Monterey Jack, shredded","16 oz sour cream","Parmesan wedge"]},
-{cat:"Pantry",items:["2 cups brown rice","GF cornmeal","GF all-purpose flour blend","GF bread","Allium-free broth (Base 1), 3 qt","Olive oil","Baking powder","Dijon mustard"]},
-{cat:"Spice & sauce",items:["Dried thyme","Ground cumin","Ground coriander","Smoked paprika","Bay leaves","Celery seed","Kosher salt","Black pepper"]}
-],
-yield:[
-{t:"Shredded chicken, 4 lb",n:"Pulled off the bone straight from the pot. Keep it submerged in a little broth so it does not dry out."},
-{t:"3 quarts chicken-bean broth",n:"The cooking liquid is the most valuable thing you made. Strain and keep it separate from the chicken."},
-{t:"Roasted carrots and parsnips",n:"Parsnips go sweet and almost caramel when roasted hard. Do not undercook them."},
-{t:"Pan of GF cornbread",n:"Serve half Sunday, save half for the chili."},
-{t:"4 cups brown rice",n:"Hearty enough to hold its own in soup without disintegrating."}
-],
-dinners:[
-{day:"Sunday",title:"Chicken and white bean pot with roasted roots",time:"About 2.5 hours",gear:"Stovetop + oven + rice cooker",
-blurb:"Somewhere between a stew and a soup. Bone-in thighs make the broth; the beans make it a meal.",
-steps:[
-"Brown the bone-in thighs skin-down in a heavy pot with olive oil, 6 minutes, until the skin releases on its own. Set aside.",
-"In the same fat, sweat diced fennel, celery, and carrot with salt for 10 minutes until soft and sweet — this is your aromatic base in place of onion.",
-"Return the thighs, add 3 quarts broth or water, 2 bay leaves, thyme, and peppercorns. Bare simmer 75 minutes.",
-"Pull the chicken, shred it off the bone, and return the meat. Add the cannellini beans and a big handful of kale; simmer 10 more minutes.",
-"Roast carrots and parsnips at 425°F with olive oil and thyme for 40 minutes. Serve the pot in bowls with roots on the side, cornbread, and lemon."
-],
-kid:"Ladle theirs with lots of chicken and beans, minimal broth, over rice. Broth-forward bowls read as soup, and soup is a harder sell than stew.",
-safe:"Bone-in thighs with skin build the body that a bouillon cube would otherwise provide. Bouillon is a guaranteed onion source.",
-again:"Strain and reserve the broth separately from the chicken. Both nights depend on having them apart."},
-
-{day:"Night two",title:"White chicken chili",time:"25 minutes",gear:"Stovetop",
-blurb:"Same ingredients, entirely different dish. Roasted poblano and cumin do the pivot.",
-steps:[
-"Char the poblanos directly over a burner or under the broiler until blackened. Steam in a covered bowl 10 minutes, then peel and dice.",
-"In a pot, toast 1 Tbsp cumin and 2 tsp coriander in butter for 45 seconds until fragrant.",
-"Add 2 quarts of the reserved broth, the diced poblano, shredded chicken, and 2 cans of beans. Simmer 12 minutes.",
-"Mash a cup of the beans against the side of the pot and stir back in — that is what thickens it, not flour.",
-"Finish off the heat with ½ cup sour cream, lime juice, and cilantro. Top with Monterey Jack."
-],
-kid:"Poblanos are mild but they look alarming. Blend a portion smooth for anyone suspicious of green flecks.",
-safe:"Chili seasoning packets are a triple threat: onion, garlic, and often wheat as an anti-caking agent. Toast whole spices instead."},
-
-{day:"Night three",title:"Skillet chicken pot pie with GF biscuit top",time:"35 minutes",gear:"Stovetop + oven",
-blurb:"The last of the chicken, under a drop-biscuit crust that goes together in five minutes.",
-steps:[
-"Melt 4 Tbsp butter in an oven-safe skillet. Sauté sliced mushrooms hard for 6 minutes until browned, then add diced celery and carrot for 5 more.",
-"Sprinkle in 4 Tbsp GF flour blend and cook 2 minutes. Whisk in 2 cups broth and ½ cup cream; simmer until it coats a spoon.",
-"Add the remaining shredded chicken, diced roasted parsnip, peas if you have them, thyme, Dijon, salt, and pepper.",
-"Biscuit top: 1½ cups GF flour blend, 1 Tbsp baking powder, ½ tsp salt, 6 Tbsp cold cubed butter, ¾ cup buttermilk. Mix just until shaggy and drop in eight spoonfuls over the filling.",
-"Bake at 425°F for 22 minutes until the biscuits are golden and the filling bubbles at the edges. Rest 10 minutes before serving."
-],
-kid:"Biscuits on top solve most objections. If the vegetables are a problem, dice them small enough to disappear into the sauce.",
-safe:"GF flour blends thicken differently — cup-for-cup blends with xanthan gum work best here. Almond flour will not.",
-again:"Assembles fully and refrigerates unbaked for a day. Add 8 minutes to the bake from cold."}
-]},
-
-{
-season:"winter",tag:"Deep winter",name:"Salmon & Roots, Meatballs on Deck",
-sub:"One oven session produces roasted salmon, a tray of turkey meatballs, and a pan of root vegetables — three dinners that share almost nothing in common.",
-flowNote:"The shortest session in the rotation, about ninety minutes, and it still yields three nights.",
-flow:[
-{lane:"stove",t:"Allium-free marinara",s:10,d:48},
-{lane:"rice",t:"Jasmine rice",s:20,d:55},
-{lane:"oven",t:"Root vegetable tray, 425°F",s:0,d:46},
-{lane:"oven",t:"Salmon, 400°F",s:48,d:16},
-{lane:"oven",t:"Turkey meatballs, 400°F",s:66,d:26},
-{lane:"stove",t:"Maple-mustard glaze",s:60,d:12}
-],
-groceries:[
-{cat:"Produce",items:["2 lb carrots","1.5 lb parsnips","2 lb baby potatoes","1 large celery root or 1 rutabaga","1 fennel bulb","2 lb Brussels sprouts","1 bunch dill","1 bunch parsley","1 bunch basil","3 lemons","1 English cucumber","4 celery ribs"]},
-{cat:"Protein",items:["2.5 lb salmon fillets, skin on","2 lb ground turkey (93 percent)","1 dozen eggs"]},
-{cat:"Fridge",items:["Greek yogurt","2 sticks butter","Heavy cream","Parmesan wedge","8 oz fresh mozzarella"]},
-{cat:"Pantry",items:["3 cups jasmine rice","1 lb GF spaghetti","GF panko breadcrumbs","2 cans crushed tomatoes (28 oz)","Maple syrup","Dijon mustard","Capers","Olive oil","Apple cider vinegar"]},
-{cat:"Spice & sauce",items:["Dried oregano","Dried thyme","Ground fennel","Smoked paprika","Celery seed","Bay leaves","Kosher salt","Black pepper"]}
-],
-yield:[
-{t:"Roasted salmon, 2.5 lb",n:"Eat half Sunday. Flake the rest cold — it turns into chowder without ever being reheated twice."},
-{t:"24 turkey meatballs",n:"Fully cooked and cooled. Freeze twelve if the week looks light."},
-{t:"Root vegetable tray",n:"Carrot, parsnip, celery root, potato, Brussels sprouts. Roast hard at 425°F until the edges genuinely darken."},
-{t:"6 cups marinara",n:"Fennel-and-carrot base. Makes enough for the meatball night with plenty left."},
-{t:"6 cups jasmine rice",n:"Sunday's starch and the base of the chowder night if you want it thicker."}
-],
-dinners:[
-{day:"Sunday",title:"Maple-mustard salmon over roasted roots",time:"About 1.5 hours",gear:"Oven + rice cooker + stovetop",
-blurb:"The fastest Sunday in the rotation. Everything happens in one oven, staggered.",
-steps:[
-"Cut all the root vegetables to roughly the same size and spread across two sheet pans — crowding steams them instead of roasting. Oil, salt, thyme, 425°F for 45 minutes.",
-"Whisk the glaze: 3 Tbsp maple syrup, 2 Tbsp Dijon, 1 Tbsp cider vinegar, salt, pepper.",
-"Salmon skin-down on a lined pan, brushed with half the glaze. Roast at 400°F for 14 minutes for medium — it should still be translucent at the very center.",
-"Turkey meatballs: 2 lb ground turkey, 1 cup GF panko, 2 eggs, ½ cup grated Parmesan, 2 tsp oregano, 1 tsp fennel, salt, pepper. Roll into 24 and bake at 400°F for 22 minutes.",
-"Serve half the salmon over rice with roasted roots and the remaining glaze. Everything else goes into containers."
-],
-kid:"Maple glaze buys a lot of goodwill on salmon. Roasted parsnip is sweet enough that most kids will try it if you call it a sweet carrot.",
-safe:"Ground turkey is sometimes sold pre-seasoned or with broth added — buy plain ground turkey, not seasoned patties.",
-again:"Cool the meatballs completely on a rack before they go into a container or they steam and go soft."},
-
-{day:"Night two",title:"Turkey meatballs in marinara over GF spaghetti",time:"20 minutes",gear:"Stovetop",
-blurb:"A weeknight staple that took twenty-two minutes of Sunday effort.",
-steps:[
-"Warm the marinara in a wide pan and lower the meatballs in. Simmer 10 minutes so they absorb sauce.",
-"Boil GF spaghetti to just under package time. Reserve a cup of the starchy water before draining.",
-"Toss the drained pasta directly in a ladle of sauce with a splash of the pasta water and a knob of butter.",
-"Plate with meatballs, torn mozzarella, and grated Parmesan.",
-"Roast or sauté the remaining Brussels sprouts in butter with lemon as a side."
-],
-kid:"Meatballs and sauce is one of the safest meals in this entire guide. Serve pasta plain on the side if the sauce is contentious.",
-safe:"Meatballs almost always start with minced onion and garlic. Fennel seed and Parmesan carry the savory weight here instead."},
-
-{day:"Night three",title:"Salmon and potato chowder",time:"30 minutes",gear:"Stovetop",
-blurb:"Cold flaked salmon folded into a hot base at the very end — it never gets cooked twice, so it never goes chalky.",
-steps:[
-"Sweat diced fennel and celery in 3 Tbsp butter with salt for 8 minutes until completely soft.",
-"Add diced potatoes from the roasted tray, 4 cups water or broth, a bay leaf, and ½ tsp celery seed. Simmer 12 minutes.",
-"Mash some of the potato against the side of the pot to thicken, then stir in ¾ cup cream.",
-"Kill the heat. Fold in the flaked salmon and let the residual heat warm it through — about two minutes.",
-"Finish with dill, lemon juice, black pepper, and capers. Serve with the last of the roasted roots on the side."
-],
-kid:"Chowder is a texture gamble. Have a backup of rice and plain salmon ready — it costs nothing since both are already made.",
-safe:"Clam juice and seafood bases are heavy onion territory. Fennel plus celery plus cream is enough on its own here."}
-]},
-
-{
-season:"winter",tag:"Late winter",name:"Chili, Three Ways",
-sub:"One enormous pot of turkey chili built entirely from whole toasted spices, then reshaped into loaded baked potatoes and a chili mac.",
-flowNote:"Toast the whole spices in fat before anything else goes in the pot. That thirty seconds is doing the work a seasoning packet would.",
-flow:[
-{lane:"stove",t:"Turkey chili, big pot",s:0,d:105},
-{lane:"oven",t:"Baking potatoes, 400°F",s:0,d:65},
-{lane:"rice",t:"Rice for the bowls night",s:40,d:50},
-{lane:"oven",t:"GF cornbread, 400°F",s:70,d:28},
-{lane:"air",t:"Sweet potato wedges",s:85,d:22}
-],
-groceries:[
-{cat:"Produce",items:["8 russet potatoes","3 lb sweet potatoes","3 poblano peppers","2 red bell peppers","2 fennel bulbs","6 celery ribs","4 carrots","2 jalapeños","2 bunches cilantro","4 limes","3 avocados","1 head romaine","1 pint cherry tomatoes"]},
-{cat:"Protein",items:["3 lb ground turkey (93 percent)","2 cans kidney beans","2 cans black beans","1 can pinto beans","1 dozen eggs"]},
-{cat:"Fridge",items:["16 oz sour cream","16 oz sharp cheddar, shredded","Buttermilk","2 sticks butter","8 oz cotija"]},
-{cat:"Pantry",items:["2 cups long-grain rice","1 lb GF elbow pasta","GF cornmeal","GF all-purpose flour blend","GF tortilla chips","2 cans fire-roasted crushed tomatoes","Tomato paste","Cider vinegar","Molasses","Olive oil"]},
-{cat:"Spice & sauce",items:["Ground cumin","Ground coriander","Smoked paprika","Chipotle powder","Mexican oregano","Ancho chile powder (pure, single ingredient)","Bay leaves","Kosher salt","Unsweetened cocoa powder"]}
-],
-yield:[
-{t:"8 quarts turkey chili",n:"Enough for three dinners with a quart left for the freezer. It genuinely improves overnight."},
-{t:"8 baked russet potatoes",n:"Bake them Sunday while the chili simmers. Reheat in the air fryer at 380°F for 8 minutes and the skin comes back crisp."},
-{t:"Pan of GF cornbread",n:"Cut and freeze what you do not eat Sunday."},
-{t:"Air fryer sweet potato wedges",n:"The counterpoint to all that chili — sweet, crisp, and fast to bring back."},
-{t:"4 cups cooked rice",n:"For anyone who wants their chili over rice instead of pasta."}
-],
-dinners:[
-{day:"Sunday",title:"Turkey chili with cornbread",time:"About 2 hours",gear:"Stovetop + oven + air fryer",
-blurb:"Chili without onion sounds impossible. Fennel, celery, roasted poblano, and a lot of toasted spice make it work.",
-steps:[
-"Brown 3 lb ground turkey in a heavy pot in batches. Do not stir constantly — let it sit and develop a crust before breaking it up. Set aside.",
-"Add olive oil and toast 2 Tbsp cumin, 1 Tbsp coriander, 2 Tbsp ancho, 2 tsp smoked paprika, and 1 tsp chipotle for 45 seconds until fragrant.",
-"Add diced fennel, celery, carrot, and bell pepper with salt. Sweat 12 minutes until fully soft.",
-"Stir in a whole can of tomato paste and cook it dark, 3 minutes. Add the fire-roasted tomatoes, the turkey, all the beans, 4 cups water, 2 bay leaves, 1 Tbsp cocoa powder, and 2 Tbsp cider vinegar.",
-"Simmer uncovered 60–75 minutes, stirring occasionally. Char and dice the poblanos and stir them in for the last 15 minutes. Serve with cornbread, sour cream, cheddar, avocado, and lime."
-],
-kid:"Cocoa and ancho give depth without much heat, but chipotle is the one to watch. Hold it back and let the adults add hot sauce at the table.",
-safe:"Chili powder in the spice aisle is a blend — it contains garlic and onion powder almost without exception. Ancho chile powder is a single ingredient. That distinction is the entire recipe.",
-again:"Chili tastes noticeably better on day two. This plan is arguably better on nights two and three than on Sunday."},
-
-{day:"Night two",title:"Chili-loaded baked potatoes",time:"20 minutes",gear:"Air fryer + stovetop",
-blurb:"The laziest possible good dinner. Everything is already cooked.",
-steps:[
-"Reheat the baked potatoes in the air fryer at 380°F for 8 minutes so the skins re-crisp.",
-"Warm the chili on the stove with a splash of water — it thickens a lot in the fridge.",
-"Split the potatoes, fluff the insides, and add butter and salt before anything else goes on.",
-"Load with chili, sharp cheddar, sour cream, and diced avocado.",
-"Serve with a romaine and cherry tomato salad dressed in lime and olive oil."
-],
-kid:"Let them build their own. A row of toppings in small bowls turns dinner into an activity.",
-safe:"Pre-shredded cheese uses anti-caking starch. Usually potato or corn, but check if celiac is in play."},
-
-{day:"Night three",title:"Chili mac",time:"25 minutes",gear:"Stovetop + oven",
-blurb:"The last of the chili, thickened with pasta and baked under cheese. Universally popular and slightly embarrassing.",
-steps:[
-"Boil GF elbows to two minutes under package time — they will keep cooking in the oven.",
-"Stir the drained pasta into the remaining chili with a cup of water or broth. It should look slightly too loose.",
-"Transfer to a baking dish and top with a heavy layer of sharp cheddar.",
-"Bake at 400°F for 18 minutes until the edges bubble and the top browns in spots.",
-"Top with cotija, cilantro, and lime. Crushed tortilla chips on top are not optional as far as the kids are concerned."
-],
-kid:"This is macaroni and cheese with a story. It is the meal most likely to get requested again.",
-safe:"GF elbows go from firm to mush faster than wheat pasta. Undercook them meaningfully before they hit the oven."}
-]}
-
-];
-
-
-/* ---------- season logic ---------- */
-var SEASONS=[
-  {id:"spring",label:"Spring",months:[2,3,4],start:[2,1]},
-  {id:"summer",label:"Summer",months:[5,6,7],start:[5,1]},
-  {id:"fall",label:"Fall",months:[8,9,10],start:[8,1]},
-  {id:"winter",label:"Winter",months:[11,0,1],start:[11,1]}
-];
-function seasonFor(d){
-  var m=d.getMonth();
-  for(var i=0;i<SEASONS.length;i++){if(SEASONS[i].months.indexOf(m)>-1)return SEASONS[i];}
-  return SEASONS[0];
-}
-function weekInSeason(d){
-  var s=seasonFor(d),y=d.getFullYear();
-  if(s.id==="winter"&&d.getMonth()<2)y-=1;
-  var start=new Date(y,s.start[0],s.start[1]);
-  return Math.floor((d-start)/(7*864e5));
-}
-var LANES=[
-  ["smoker","Smoker","var(--lane-smoker)"],
-  ["grill","Grill","var(--lane-grill)"],
-  ["oven","Oven","var(--lane-oven)"],
-  ["air","Air fryer","var(--lane-air)"],
-  ["rice","Rice cooker","var(--lane-rice)"],
-  ["stove","Stovetop","var(--lane-stove)"]
-];
-
-var now=new Date();
-var state={season:seasonFor(now).id,index:weekInSeason(now)%3,checked:{}};
-
-function plansFor(s){return PLANS.filter(function(p){return p.season===s;});}
-function current(){var l=plansFor(state.season);return l[Math.min(state.index,l.length-1)];}
-
-/* ---------- render: rails and chips ---------- */
-function renderSeasons(){
-  document.getElementById("seasons").innerHTML=SEASONS.map(function(s){
-    return '<button class="season-btn" data-s="'+s.id+'" aria-pressed="'+(s.id===state.season)+'"><i class="dot"></i>'+s.label+'</button>';
-  }).join("");
-  Array.prototype.forEach.call(document.querySelectorAll(".season-btn"),function(b){
-    b.onclick=function(){state.season=b.dataset.s;state.index=0;render();window.scrollTo({top:0,behavior:"smooth"});};
+function boot(){
+  var prots={},cuis={};
+  DB.recipes.forEach(function(r){
+    Object.keys(r.slots||{}).forEach(function(k){
+      if(k==="protein")(r.slots[k].accepts||[]).forEach(function(p){prots[p]=1;});});
+    (r.cuisines||[]).forEach(function(c){cuis[c]=1;});
   });
+  chips("fProtein",Object.keys(prots).sort(),function(v){return DB.swaps.proteins[v].label;},S.proteins);
+  chips("fCuisine",Object.keys(cuis).sort(),cap,S.cuisines);
+  chipsSingle("fSeason",["auto"].concat(SEASONS),function(v){
+    return v==="auto"?"Auto ("+seasonNow()+")":cap(v);});
+  document.getElementById("railMeta").textContent=
+    DB.counts.recipes+" recipes · "+DB.counts.components+" components";
+  document.getElementById("footMeta").textContent=
+    "Built "+DB.builtAt+" · "+DB.counts.recipes+" recipes, "+DB.counts.components+" components";
+  S.seed=Math.floor(Date.now()/1000)%100000;
+  roll();
 }
-function renderChips(){
-  var list=plansFor(state.season);
-  document.getElementById("chips").innerHTML=list.map(function(p,i){
-    return '<button class="chip" data-i="'+i+'" aria-pressed="'+(i===state.index)+'"><span class="n">Plan '+(i+1)+' · '+p.tag+'</span><span class="t">'+p.name+'</span></button>';
-  }).join("");
-  Array.prototype.forEach.call(document.querySelectorAll(".chip"),function(b){
-    b.onclick=function(){state.index=+b.dataset.i;state.checked={};render();};
-  });
-  var auto=seasonFor(now),autoIdx=weekInSeason(now)%3;
-  var opts={month:"long",day:"numeric"};
-  var txt="Today is "+now.toLocaleDateString(undefined,opts)+" — "+auto.label.toLowerCase()+", plan "+(autoIdx+1)+" in the rotation.";
-  if(state.season!==auto.id||state.index!==autoIdx)txt+=" You're viewing something else; that's fine.";
-  document.getElementById("autoNote").textContent=txt;
-  document.getElementById("footNote").textContent="Rotation: 4 seasons × 3 plans. Plans advance one slot per week.";
+function chips(id,vals,label,store){
+  var el=document.getElementById(id);
+  el.innerHTML=vals.map(function(v){
+    return '<button class="opt" data-v="'+v+'" aria-pressed="false">'+label(v)+'</button>';}).join("");
+  el.querySelectorAll(".opt").forEach(function(b){
+    b.onclick=function(){
+      var v=b.dataset.v,i=store.indexOf(v);
+      if(i>-1)store.splice(i,1);else store.push(v);
+      b.setAttribute("aria-pressed",i>-1?"false":"true");};});
+}
+function chipsSingle(id,vals,label){
+  var el=document.getElementById(id);
+  el.innerHTML=vals.map(function(v){
+    return '<button class="opt" data-v="'+v+'" aria-pressed="'+(v===S.season)+'">'+label(v)+'</button>';}).join("");
+  el.querySelectorAll(".opt").forEach(function(b){
+    b.onclick=function(){S.season=b.dataset.v;
+      el.querySelectorAll(".opt").forEach(function(x){
+        x.setAttribute("aria-pressed",x.dataset.v===S.season);});};});
 }
 
-/* ---------- render: cook flow ---------- */
-function fmtClock(mins){
-  var v=document.getElementById("startTime").value||"14:00";
-  var p=v.split(":"),t=(+p[0])*60+(+p[1])+mins;
-  t=((t%1440)+1440)%1440;
-  var h=Math.floor(t/60),m=t%60,ap=h>=12?"pm":"am",hh=h%12;if(hh===0)hh=12;
-  return hh+":"+(m<10?"0":"")+m+ap;
+/* ============ the roll engine ============ */
+function activeSeason(){return S.season==="auto"?seasonNow():S.season;}
+
+function eligible(r){
+  var sea=activeSeason();
+  if((r.seasons||[]).indexOf(sea)<0)return false;
+  if(S.cuisines.length&&!(r.cuisines||[]).some(function(c){return S.cuisines.indexOf(c)>-1;}))return false;
+  if(S.proteins.length){
+    var acc=(r.slots&&r.slots.protein&&r.slots.protein.accepts)||[];
+    if(!S.proteins.some(function(p){return acc.indexOf(p)>-1;}))return false;
+  }
+  return true;
 }
-function renderFlow(){
-  var p=current(),span=0;
-  p.flow.forEach(function(b){span=Math.max(span,b.s+b.d);});
-  span=Math.ceil(span/30)*30;
-  var used=LANES.filter(function(L){return p.flow.some(function(b){return b.lane===L[0];});});
-  var html=used.map(function(L){
-    var bars=p.flow.filter(function(b){return b.lane===L[0];}).map(function(b){
-      var left=(b.s/span*100).toFixed(2),w=(b.d/span*100).toFixed(2);
-      return '<div class="bar" style="left:'+left+'%;width:'+w+'%;background:'+L[2]+'" title="'+b.t+' — '+fmtClock(b.s)+' to '+fmtClock(b.s+b.d)+'">'+b.t+'<span class="clock">'+fmtClock(b.s)+'</span></div>';
+
+/* ingredient keys a recipe contributes, for overlap scoring */
+function keysOf(r,res){
+  var k=[];
+  (r.ingredients||[]).forEach(function(g){
+    if(g.slot){var s=res[g.slot];if(s)k.push(g.slot+":"+s);}
+    else k.push("i:"+g.item.toLowerCase());
+  });
+  (r.needs||[]).forEach(function(n){k.push("c:"+n);});
+  return k;
+}
+function overlap(a,b){
+  var set={},n=0;a.forEach(function(x){set[x]=1;});
+  b.forEach(function(x){if(set[x]){n++;}});
+  return n;
+}
+
+/* choose the slot value that maximises overlap with what's already in the week */
+function resolveSlots(r,inPlay,r2){
+  var res={};
+  Object.keys(r.slots||{}).forEach(function(slot){
+    var acc=r.slots[slot].accepts||[],def=r.slots[slot]["default"];
+    // user-featured proteins win outright
+    if(slot==="protein"&&S.proteins.length){
+      var want=S.proteins.filter(function(p){return acc.indexOf(p)>-1;});
+      if(want.length){res[slot]=want.length===1?want[0]:pick(want,r2);return;}
+    }
+    // otherwise prefer something already being bought this week
+    var already=acc.filter(function(v){return inPlay[slot+":"+v];});
+    if(already.length){res[slot]=already[0];return;}
+    res[slot]=Math.random!==null&&r2()<0.25?pick(acc,r2):def;
+  });
+  return res;
+}
+
+function roll(){
+  var r2=rng(S.seed),sea=activeSeason();
+  var pool=DB.recipes.filter(eligible);
+  var anchors=pool.filter(function(r){return r.role==="sunday";});
+  var nights=pool.filter(function(r){return r.role==="weeknight";});
+  if(!anchors.length||!nights.length){
+    document.getElementById("menu").innerHTML=
+      '<div class="empty">No recipes match those filters for '+sea+'. Loosen something and roll again.</div>';
+    ["flowGrid","tasks","groc"].forEach(function(i){document.getElementById(i).innerHTML="";});
+    return;
+  }
+
+  var menu=[],inPlay={};
+  var lockedAnchor=S.menu.filter(function(m){return m.role==="sunday"&&S.locked[m.recipe.id];})[0];
+
+  // 1. Sunday anchor
+  var a;
+  if(lockedAnchor){a=lockedAnchor;}
+  else{
+    var cand=pick(anchors,r2);
+    a={recipe:cand,role:"sunday",res:resolveSlots(cand,{},r2)};
+  }
+  keysOf(a.recipe,a.res).forEach(function(k){inPlay[k]=1;});
+  menu.push(a);
+
+  // 2. weeknights, greedily choosing the highest-overlap option each time
+  var lockedNights=S.menu.filter(function(m){return m.role==="weeknight"&&S.locked[m.recipe.id];});
+  var used={};used[a.recipe.id]=1;
+  lockedNights.forEach(function(m){
+    used[m.recipe.id]=1;menu.push(m);
+    keysOf(m.recipe,m.res).forEach(function(k){inPlay[k]=1;});
+  });
+
+  var want=parseInt(S.nights,10);
+  while(menu.length-1<want){
+    var options=nights.filter(function(r){return !used[r.id];});
+    if(!options.length)break;
+    var best=null;
+    options.forEach(function(r){
+      var res=resolveSlots(r,inPlay,r2);
+      var sc=overlap(keysOf(r,res),Object.keys(inPlay))+r2()*0.9;
+      if(!best||sc>best.sc)best={recipe:r,role:"weeknight",res:res,sc:sc};
+    });
+    used[best.recipe.id]=1;
+    keysOf(best.recipe,best.res).forEach(function(k){inPlay[k]=1;});
+    menu.push(best);
+  }
+
+  S.menu=menu;S.checked={};
+  render();
+}
+
+/* ============ token expansion ============ */
+function title(r,res){
+  var t=r.title;
+  Object.keys(res).forEach(function(slot){
+    var pool=slot==="protein"?DB.swaps.proteins:DB.swaps.starches;
+    var lab=pool[res[slot]].label;
+    t=t.replace("{"+cap(slot)+"}",cap(lab)).replace("{"+slot+"}",lab);
+  });
+  return t;
+}
+function expand(step,res){
+  var P=res.protein?DB.swaps.proteins[res.protein]:null;
+  var T=res.starch?DB.swaps.starches[res.starch]:null;
+  var map={"{PROTEIN}":P?P.label:"","{PROTEIN_COOK}":P?P.cook:"","{PROTEIN_REHEAT}":P?P.reheat:"",
+           "{PROTEIN_PREP}":P?P.prep:"","{STARCH}":T?T.label:"","{STARCH_COOK}":T?T.cook:"",
+           "{STARCH_REHEAT}":T?T.reheat:""};
+  var out=step;
+  Object.keys(map).forEach(function(k){out=out.split(k).join(map[k]);});
+  if(P)out=out.split("{Protein}").join(cap(P.label)).split("{protein}").join(P.label);
+  if(T)out=out.split("{Starch}").join(cap(T.label)).split("{starch}").join(T.label);
+  return out.trim();
+}
+
+/* ============ grocery merge ============ */
+function grocery(){
+  var acc={};
+  function add(item,qty,unit,cat,src){
+    var k=(item+"|"+(unit||"")).toLowerCase();
+    if(!acc[k])acc[k]={item:item,qty:0,unit:unit||"",cat:cat||"Pantry",src:{}};
+    acc[k].qty+=(qty||0);acc[k].src[src]=1;
+  }
+  var comps={};
+  S.menu.forEach(function(m){
+    (m.recipe.needs||[]).forEach(function(n){comps[n]=1;});
+    (m.recipe.ingredients||[]).forEach(function(g){
+      if(g.slot){
+        var pool=g.slot==="protein"?DB.swaps.proteins:DB.swaps.starches;
+        var v=pool[m.res[g.slot]];if(!v)return;
+        if(g.slot==="protein"){
+          add(v.buy,+(v.lbPerServing*4*(g.mult||1)).toFixed(2),"lb",v.cat,m.recipe.id);
+        }else{
+          add(v.buy,g.qty||1,g.unit||"",v.cat,m.recipe.id);
+        }
+      }else add(g.item,g.qty,g.unit,g.cat,m.recipe.id);
+    });
+  });
+  Object.keys(comps).forEach(function(id){
+    var c=DB.components.filter(function(x){return x.id===id;})[0];
+    if(!c)return;
+    (c.ingredients||[]).forEach(function(g){add(g.item,g.qty,g.unit,g.cat,c.id);});
+  });
+  return Object.keys(acc).map(function(k){return acc[k];});
+}
+function fmtQty(q,u){
+  if(!q)return"";
+  var n=Math.round(q*100)/100;
+  var s=(n%1===0)?String(n):(Math.abs(n-Math.round(n*4)/4)<0.001?
+    ({0.25:"¼",0.5:"½",0.75:"¾",0.33:"⅓"}[+(n%1).toFixed(2)]?
+      (Math.floor(n)||"")+({0.25:"¼",0.5:"½",0.75:"¾"}[+(n%1).toFixed(2)]||""):n.toFixed(2)):n.toFixed(2));
+  return s+(u&&u!=="ea"?" "+u:"");
+}
+
+/* ============ render ============ */
+function render(){
+  renderMenu();renderPrep();renderGroc();
+  document.getElementById("seedLine").textContent="Seed "+S.seed+" · "+activeSeason();
+}
+
+function renderMenu(){
+  var days=["Sunday","Night two","Night three","Night four"];
+  document.getElementById("menu").innerHTML=S.menu.map(function(m,i){
+    var r=m.recipe,lk=!!S.locked[r.id];
+    var swaps=Object.keys(m.res).map(function(slot){
+      var pool=slot==="protein"?DB.swaps.proteins:DB.swaps.starches;
+      var def=r.slots[slot]["default"],cur=m.res[slot];
+      var opts=(r.slots[slot].accepts||[]).map(function(o){
+        return '<option value="'+o+'"'+(o===cur?" selected":"")+'>'+pool[o].label+'</option>';}).join("");
+      return '<label>'+slot+'</label><select data-i="'+i+'" data-slot="'+slot+'">'+opts+'</select>'+
+             (cur!==def?' <span class="swapped" style="font-family:var(--mono);font-size:10px;align-self:center">swapped from '+pool[def].label+'</span>':'');
     }).join("");
-    return '<div class="lane"><div class="lane-name"><i style="background:'+L[2]+'"></i>'+L[1]+'</div><div class="lane-track" style="--tick:'+(30/span*100).toFixed(3)+'%">'+bars+'</div></div>';
+    return '<article class="mcard'+(lk?" locked":"")+'">'+
+      '<div class="mtop"><span class="daytag">'+days[i]+'</span><h3>'+title(r,m.res)+'</h3>'+
+      '<div class="mact"><button class="icobtn'+(lk?" on":"")+'" data-lock="'+i+'">'+(lk?"Locked":"Lock")+'</button>'+
+      '<button class="icobtn" data-swapout="'+i+'">Swap</button></div></div>'+
+      '<div class="mmeta"><span>'+(r.effort==="cook"?"Cook":"Assemble")+'</span><span>'+r.activeMin+' min active</span>'+
+      '<span>'+(r.cuisines||[]).map(cap).join(", ")+'</span>'+
+      ((r.needs||[]).length?'<span>uses '+r.needs.length+' Sunday component'+(r.needs.length>1?'s':'')+'</span>':'')+'</div>'+
+      '<div class="slotrow">'+swaps+'</div>'+
+      '<div class="mbody"><ol>'+r.steps.map(function(s){return "<li>"+expand(s,m.res)+"</li>";}).join("")+'</ol></div>'+
+      (r.kid?'<div class="note"><b>Kid move</b>'+r.kid+'</div>':'')+
+      (r.note?'<div class="note"><b>Note</b>'+r.note+'</div>':'')+
+      '</article>';
   }).join("");
+
+  document.querySelectorAll("[data-lock]").forEach(function(b){
+    b.onclick=function(){var m=S.menu[+b.dataset.lock];
+      S.locked[m.recipe.id]=!S.locked[m.recipe.id];render();};});
+  document.querySelectorAll("[data-swapout]").forEach(function(b){
+    b.onclick=function(){var i=+b.dataset.swapout;
+      S.menu.forEach(function(m,j){if(j!==i)S.locked[m.recipe.id]=true;});
+      S.locked[S.menu[i].recipe.id]=false;
+      S.seed=(S.seed+7919)%100000;roll();
+      S.menu.forEach(function(m){S.locked[m.recipe.id]=false;});
+      renderMenu();};});
+  document.querySelectorAll(".slotrow select").forEach(function(sel){
+    sel.onchange=function(){S.menu[+sel.dataset.i].res[sel.dataset.slot]=sel.value;render();};});
+}
+
+function renderPrep(){
+  var comps={},order=[];
+  S.menu.forEach(function(m){(m.recipe.needs||[]).forEach(function(n){
+    if(!comps[n]){comps[n]=[];order.push(n);}comps[n].push(m.recipe.id);});});
+
+  var anchor=S.menu[0],bars=[],cursor={};
+  order.forEach(function(id){
+    var c=DB.components.filter(function(x){return x.id===id;})[0];if(!c)return;
+    var lane=c.lane||"stove",st=cursor[lane]||0;
+    bars.push({lane:lane,t:c.name,s:st,d:c.min});cursor[lane]=st+c.min+4;
+  });
+  (anchor.recipe.lanes||[]).forEach(function(L){
+    var lane=L.lane,st=Math.max(L.s,cursor[lane]||0);
+    bars.push({lane:lane,t:expand(L.label,anchor.res),s:st,d:L.d});cursor[lane]=st+L.d+4;
+  });
+  // starch gets its own lane task
+  Object.keys(anchor.res).forEach(function(slot){
+    if(slot!=="starch")return;
+    var T=DB.swaps.starches[anchor.res[slot]],lane=T.lane,st=cursor[lane]||0;
+    bars.push({lane:lane,t:cap(T.label),s:st,d:50});cursor[lane]=st+54;
+  });
+
+  var span=0;bars.forEach(function(b){span=Math.max(span,b.s+b.d);});
+  span=Math.max(60,Math.ceil(span/30)*30);
+  var used=LANES.filter(function(L){return bars.some(function(b){return b.lane===L[0];});});
+  var html=used.map(function(L){
+    var bb=bars.filter(function(b){return b.lane===L[0];}).map(function(b){
+      return '<div class="bar" style="left:'+(b.s/span*100).toFixed(2)+'%;width:'+(b.d/span*100).toFixed(2)+
+        '%;background:'+L[2]+'" title="'+b.t+'">'+b.t+'<span class="clock">'+clk(b.s)+'</span></div>';}).join("");
+    return '<div class="lane"><div class="lane-name"><i style="background:'+L[2]+'"></i>'+L[1]+
+      '</div><div class="lane-track">'+bb+'</div></div>';}).join("");
   var ticks="";
-  for(var m=0;m<=span;m+=60)ticks+='<span style="left:'+(m/span*100).toFixed(2)+'%">'+fmtClock(m)+'</span>';
+  for(var m2=0;m2<=span;m2+=60)ticks+='<span style="left:'+(m2/span*100).toFixed(2)+'%">'+clk(m2)+'</span>';
   html+='<div class="axis"><div></div><div class="axis-ticks">'+ticks+'</div></div>';
   document.getElementById("flowGrid").innerHTML=html;
-  document.getElementById("flowTotal").textContent=Math.floor(span/60)+"h "+(span%60?span%60+"m":"00m")+" total · dinner at "+fmtClock(span);
-  document.getElementById("flowLegend").textContent=p.flowNote;
+  document.getElementById("flowTotal").textContent=
+    Math.floor(span/60)+"h "+(span%60||"00")+"m · dinner at "+clk(span);
+
+  var cards=order.map(function(id){
+    var c=DB.components.filter(function(x){return x.id===id;})[0];if(!c)return"";
+    var uses=comps[id].length;
+    return '<div class="task comp"><b>'+c.name+'</b><span class="k">Component · '+c.keeps+
+      ' · feeds '+uses+' meal'+(uses>1?'s':'')+'</span><ol>'+
+      c.steps.map(function(s){return "<li>"+s+"</li>";}).join("")+'</ol>'+
+      (c.why?'<div class="why">'+c.why+'</div>':'')+'</div>';}).join("");
+  cards+='<div class="task"><b>'+title(anchor.recipe,anchor.res)+'</b>'+
+    '<span class="k">Sunday dinner · cook double</span><ol>'+
+    anchor.recipe.steps.map(function(s){return "<li>"+expand(s,anchor.res)+"</li>";}).join("")+'</ol></div>';
+  document.getElementById("tasks").innerHTML=cards;
+}
+function clk(mins){
+  var v=document.getElementById("startTime").value||"14:00",p=v.split(":");
+  var t=((+p[0])*60+(+p[1])+mins)%1440;
+  var h=Math.floor(t/60),m=t%60,ap=h>=12?"pm":"am",hh=h%12||12;
+  return hh+":"+(m<10?"0":"")+m+ap;
 }
 
-/* ---------- render: grocery ---------- */
 function renderGroc(){
-  var p=current(),n=0,done=0;
-  document.getElementById("groc").innerHTML=p.groceries.map(function(g){
-    return '<div class="groc-col"><h3>'+g.cat+'</h3><ul>'+g.items.map(function(it){
-      var k=g.cat+"|"+it,on=!!state.checked[k];if(on)done++;n++;
-      return '<li><label><input type="checkbox" data-k="'+k.replace(/"/g,"&quot;")+'"'+(on?" checked":"")+'><span>'+it+'</span></label></li>';
-    }).join("")+'</ul></div>';
-  }).join("");
-  Array.prototype.forEach.call(document.querySelectorAll('.groc-col input'),function(c){
-    c.onchange=function(){state.checked[c.dataset.k]=c.checked;updateCart();};
-  });
-  updateCart();
+  var items=grocery(),cats=["Produce","Protein","Fridge","Pantry","Spice"];
+  var by={};cats.forEach(function(c){by[c]=[];});
+  items.forEach(function(i){(by[i.cat]||by.Pantry).push(i);});
+  document.getElementById("groc").innerHTML=cats.filter(function(c){return by[c].length;}).map(function(c){
+    return '<div class="gcol"><h3>'+c+'</h3><ul>'+by[c].sort(function(a,b){
+      return a.item.localeCompare(b.item);}).map(function(i){
+      var k=c+"|"+i.item,n=Object.keys(i.src).length;
+      return '<li><label><input type="checkbox" data-k="'+k.replace(/"/g,"&quot;")+'"'+
+        (S.checked[k]?" checked":"")+'><span>'+i.item+
+        (i.qty?' <span class="qty">'+fmtQty(i.qty,i.unit)+'</span>':'')+
+        (n>1?'<span class="used">used in '+n+' dishes</span>':'')+'</span></label></li>';
+    }).join("")+'</ul></div>';}).join("");
+  document.querySelectorAll(".gcol input").forEach(function(c){
+    c.onchange=function(){S.checked[c.dataset.k]=c.checked;cartMeter();};});
+  cartMeter();
 }
-function updateCart(){
-  var p=current(),n=0,done=0;
-  p.groceries.forEach(function(g){g.items.forEach(function(it){n++;if(state.checked[g.cat+"|"+it])done++;});});
-  document.getElementById("cartCount").textContent=done+" of "+n+" in the cart";
-  document.getElementById("cartMeter").style.width=(n?done/n*100:0)+"%";
-}
-
-/* ---------- render: yield + dinners ---------- */
-function renderYield(){
-  document.getElementById("yield").innerHTML=current().yield.map(function(y){
-    return '<div class="yield-card"><b>'+y.t+'</b><span>'+y.n+'</span></div>';
-  }).join("");
-}
-function renderDinners(){
-  document.getElementById("dinners").innerHTML=current().dinners.map(function(d){
-    var notes="";
-    if(d.kid)notes+='<div class="note kid"><b>Kid move</b>'+d.kid+'</div>';
-    if(d.safe)notes+='<div class="note safe"><b>Allium + gluten check</b>'+d.safe+'</div>';
-    if(d.again)notes+='<div class="note again"><b>Cook once, use twice</b>'+d.again+'</div>';
-    return '<article class="dinner"><div class="dinner-top"><span class="daytag">'+d.day+'</span><h3>'+d.title+'</h3></div>'+
-      '<div class="dinner-meta"><span>Serves 4</span><span>'+d.time+'</span><span>'+d.gear+'</span></div>'+
-      '<div class="dinner-body"><p>'+d.blurb+'</p><ol>'+d.steps.map(function(s){return "<li>"+s+"</li>";}).join("")+'</ol></div>'+
-      (notes?'<div class="notes">'+notes+'</div>':'')+'</article>';
-  }).join("");
+function cartMeter(){
+  var all=document.querySelectorAll(".gcol input"),done=0;
+  all.forEach(function(c){if(c.checked)done++;});
+  document.getElementById("cartCount").textContent=done+" of "+all.length+" in the cart";
+  document.getElementById("cartMeter").style.width=(all.length?done/all.length*100:0)+"%";
 }
 
-function render(){
-  var p=current();
-  renderSeasons();renderChips();
-  document.getElementById("planEyebrow").textContent=p.tag+" · plan "+(state.index+1)+" of "+plansFor(state.season).length;
-  document.getElementById("planTitle").textContent=p.name;
-  document.getElementById("planSub").textContent=p.sub;
-  renderFlow();renderGroc();renderYield();renderDinners();
-}
-document.getElementById("startTime").addEventListener("input",renderFlow);
-document.getElementById("clearBtn").onclick=function(){state.checked={};renderGroc();};
+/* ============ events ============ */
+document.getElementById("rollBtn").onclick=function(){
+  S.seed=(S.seed+1013)%100000;roll();
+  document.getElementById("menuSec").scrollIntoView({behavior:"smooth",block:"start"});};
+document.getElementById("clearBtn").onclick=function(){
+  S.proteins.length=0;S.cuisines.length=0;S.season="auto";S.locked={};
+  document.querySelectorAll("#fProtein .opt,#fCuisine .opt").forEach(function(b){
+    b.setAttribute("aria-pressed","false");});
+  document.querySelectorAll("#fSeason .opt").forEach(function(b){
+    b.setAttribute("aria-pressed",b.dataset.v==="auto");});
+  roll();};
+document.getElementById("fNights").onchange=function(e){S.nights=e.target.value;roll();};
+document.getElementById("startTime").oninput=function(){renderPrep();};
+document.getElementById("clearChecks").onclick=function(){S.checked={};renderGroc();};
 document.getElementById("printBtn").onclick=function(){window.print();};
-render();
 </script>
 </body>
 </html>

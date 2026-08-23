@@ -1,0 +1,187 @@
+{
+  "proteins": {
+    "chicken": {
+      "label": "chicken",
+      "buy": "boneless skinless chicken thighs",
+      "cat": "Protein",
+      "lbPerServing": 0.5,
+      "tags": [
+        "poultry"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Grill over direct medium heat, 6–7 minutes a side, to 175°F internal. Thighs want to go past 165°F — that is where they turn tender.",
+      "reheat": "Warm the sliced chicken in a covered skillet with a splash of water or broth. The steam is what keeps it from drying out.",
+      "prep": "Pat dry and season at least 20 minutes ahead."
+    },
+    "turkey": {
+      "label": "ground turkey",
+      "buy": "ground turkey, 93 percent",
+      "cat": "Protein",
+      "lbPerServing": 0.5,
+      "tags": [
+        "poultry",
+        "ground"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": true,
+      "cook": "Brown in a heavy pot in batches. Let it sit undisturbed to build a crust before breaking it up.",
+      "reheat": "Warm gently with a splash of water — it dries out fast.",
+      "prep": "Buy plain ground turkey, not seasoned patties."
+    },
+    "salmon": {
+      "label": "salmon",
+      "buy": "salmon fillets, skin on",
+      "cat": "Protein",
+      "lbPerServing": 0.45,
+      "tags": [
+        "fish",
+        "oily"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Roast skin-down at 400°F for 12–14 minutes. Pull it while the center is still slightly translucent.",
+      "reheat": "Do not. Flake it cold into the dish and let residual heat warm it through.",
+      "prep": "Salt 30 minutes ahead and leave uncovered in the fridge."
+    },
+    "whitefish": {
+      "label": "white fish",
+      "buy": "cod or halibut fillets",
+      "cat": "Protein",
+      "lbPerServing": 0.45,
+      "tags": [
+        "fish",
+        "lean"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": true,
+      "cook": "Roast at 400°F for 10–12 minutes until it flakes under light pressure.",
+      "reheat": "Serve cold and flaked, or warm very gently in a covered pan.",
+      "prep": "Pat very dry — wet fish steams instead of browning."
+    },
+    "swordfish": {
+      "label": "swordfish",
+      "buy": "swordfish steaks",
+      "cat": "Protein",
+      "lbPerServing": 0.5,
+      "tags": [
+        "fish",
+        "steaky"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Grill over direct high heat about 4 minutes a side. It overcooks fast — pull it the moment it flakes but still holds together.",
+      "reheat": "Serve cold and flaked. Reheating turns it tough.",
+      "prep": "Oil the steaks, not the grate."
+    },
+    "shrimp": {
+      "label": "shrimp",
+      "buy": "large shrimp, peeled",
+      "cat": "Protein",
+      "lbPerServing": 0.4,
+      "tags": [
+        "shellfish"
+      ],
+      "grill": true,
+      "smoke": false,
+      "roast": true,
+      "cook": "Grill over high heat 2 minutes a side. Done the moment they curl into a C — a tight O means overcooked.",
+      "reheat": "Poorly. Cook shrimp fresh the night you eat it.",
+      "prep": "Buy plain — pre-marinated shrimp is almost always garlic-forward."
+    },
+    "tofu": {
+      "label": "tofu",
+      "buy": "extra-firm tofu",
+      "cat": "Protein",
+      "lbPerServing": 0.4,
+      "tags": [
+        "plant"
+      ],
+      "grill": true,
+      "smoke": true,
+      "roast": true,
+      "cook": "Press 45 minutes, cube, toss in cornstarch, air fry at 400°F for 14 minutes, shaking halfway.",
+      "reheat": "Air fry 5 minutes at 375°F to bring the crust back.",
+      "prep": "Press it Sunday and leave it in marinade — it needs no cooking until you want it."
+    },
+    "beans": {
+      "label": "white beans",
+      "buy": "cannellini beans, canned",
+      "cat": "Pantry",
+      "lbPerServing": 0.35,
+      "tags": [
+        "plant",
+        "pantry"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": false,
+      "cook": "Simmer with the aromatics 15 minutes, mashing some against the pot to thicken.",
+      "reheat": "Warm with a splash of water; they thicken overnight.",
+      "prep": "Rinse well. Skip anything labeled seasoned or chili-style."
+    },
+    "eggs": {
+      "label": "eggs",
+      "buy": "eggs",
+      "cat": "Fridge",
+      "lbPerServing": 0.25,
+      "tags": [
+        "plant",
+        "quick"
+      ],
+      "grill": false,
+      "smoke": false,
+      "roast": false,
+      "cook": "Jammy-boil 7 minutes, then ice bath. They keep peeled for four days.",
+      "reheat": "Serve at room temperature.",
+      "prep": "Older eggs peel more cleanly."
+    }
+  },
+  "starches": {
+    "rice": {
+      "label": "rice",
+      "buy": "jasmine rice",
+      "cat": "Pantry",
+      "lane": "rice",
+      "cook": "Rice cooker, double batch. Spread on a sheet pan to cool before storing.",
+      "reheat": "Add a tablespoon of water per cup and cover."
+    },
+    "tortilla": {
+      "label": "corn tortillas",
+      "buy": "GF corn tortillas",
+      "cat": "Pantry",
+      "lane": "stove",
+      "cook": "No Sunday prep needed.",
+      "reheat": "20 seconds a side in a dry skillet."
+    },
+    "potato": {
+      "label": "potatoes",
+      "buy": "baby potatoes",
+      "cat": "Produce",
+      "lane": "oven",
+      "cook": "Boil until fork-tender, smash on an oiled sheet pan, roast at 450°F for 35 minutes.",
+      "reheat": "Air fryer, 400°F for 6 minutes. They come back almost new."
+    },
+    "sweetpotato": {
+      "label": "sweet potatoes",
+      "buy": "sweet potatoes",
+      "cat": "Produce",
+      "lane": "oven",
+      "cook": "Bake whole at 400°F for 50 minutes until collapsing.",
+      "reheat": "Air fryer, 380°F for 8 minutes — the skin re-crisps."
+    },
+    "pasta": {
+      "label": "GF pasta",
+      "buy": "GF penne or spaghetti",
+      "cat": "Pantry",
+      "lane": "stove",
+      "cook": "Boil to just under package time, drain, rinse cold, toss with oil.",
+      "reheat": "Warm directly in sauce with a splash of pasta water."
+    }
+  }
+}
