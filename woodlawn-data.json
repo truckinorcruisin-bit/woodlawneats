@@ -164,7 +164,7 @@
   "syrup": "Pantry",
   "tenderloin": "Protein",
   "thighs": "Protein",
-  "thyme": "Spice",
+  "thyme": "Produce",
   "tofu": "Protein",
   "tomatillos": "Produce",
   "tomato": "Pantry",
@@ -183,7 +183,41 @@
   "yeast": "Pantry",
   "yellow": "Produce",
   "yogurt": "Fridge",
-  "zucchini": "Produce"
+  "zucchini": "Produce",
+  "macadamia": "Produce",
+  "cashew": "Pantry",
+  "oat": "Pantry",
+  "peanuts": "Produce",
+  "chocolate": "Pantry",
+  "currants": "Pantry",
+  "matcha": "Pantry",
+  "pistachios": "Produce",
+  "pistachio": "Produce",
+  "tahini": "Pantry",
+  "sesame": "Pantry",
+  "cardamom": "Spice",
+  "turmeric": "Spice",
+  "vanilla": "Pantry",
+  "strawberries": "Pantry",
+  "almond": "Pantry",
+  "cauliflower": "Produce",
+  "spinach": "Produce",
+  "basmati": "Pantry",
+  "harissa": "Pantry",
+  "ricotta": "Fridge",
+  "lasagna": "Pantry",
+  "orecchiette": "Pantry",
+  "bucatini": "Pantry",
+  "fettuccine": "Pantry",
+  "pecorino": "Fridge",
+  "pine": "Pantry",
+  "microgreens": "Produce",
+  "tarragon": "Produce",
+  "sage": "Produce",
+  "cayenne": "Spice",
+  "coriander": "Spice",
+  "cardamom pods": "Spice",
+  "cauliflower florets": "Produce"
  },
  "swaps": {
   "proteins": {
@@ -451,6 +485,34 @@
     "reheat": "Warm directly in sauce with a splash of pasta water.",
     "containsGluten": true,
     "accommodateNote": "Boil a small separate pot of GF penne or spaghetti for your spouse — a cup dry is plenty for one serving. Keep it in its own pot; GF pasta clouds the water fast."
+   },
+   "farro": {
+    "label": "farro",
+    "buy": "farro or soft wheat berries",
+    "cat": "Pantry",
+    "lane": "stove",
+    "containsGluten": true,
+    "cook": "Simmer 1 cup dry farro in salted water 25-30 minutes until tender but chewy, drain.",
+    "reheat": "Warm with a splash of water, covered.",
+    "accommodateNote": "Cook a small pot of quinoa alongside for your spouse instead of farro — about 1 cup dry, ready in 15 minutes, same salt water."
+   },
+   "quinoa": {
+    "label": "quinoa",
+    "buy": "quinoa",
+    "cat": "Pantry",
+    "lane": "stove",
+    "cook": "Rinse, then simmer 1 part quinoa to 2 parts water, covered, 15 minutes. Fluff with a fork.",
+    "reheat": "Warm with a splash of water, covered."
+   },
+   "lasagna": {
+    "label": "lasagna noodles",
+    "buy": "lasagna noodles, plus 2 extra",
+    "cat": "Pantry",
+    "lane": "stove",
+    "containsGluten": true,
+    "cook": "Boil in heavily salted water to al dente per package time — don't overcook or they'll tear when rolled.",
+    "reheat": "n/a — baked once, eaten from the dish.",
+    "accommodateNote": "Boil 2-3 GF lasagna noodles separately for your spouse's roll-ups — they turn to mush fast if boiled together with regular."
    }
   }
  },
@@ -897,6 +959,47 @@
     "Let it sit 15 minutes before tasting."
    ],
    "accommodate": "Stir your spouse's portion together before the shallot goes in — capers and lemon carry it fine alone."
+  },
+  {
+   "id": "date-ball-base",
+   "name": "Date ball base",
+   "type": "component",
+   "keeps": "2 weeks room temp",
+   "lane": "stove",
+   "min": 10,
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "why": "One base, six flavors. The base is always the same 10 dates and a pinch of salt — the food processor does the rest.",
+   "ingredients": [
+    "10 soft Medjool dates, pitted",
+    "0.5 tsp sea salt"
+   ],
+   "steps": [
+    "Pulse the dates and salt in a food processor until they form a sticky, crumbly mass.",
+    "This is the base every flavor below builds on — don't add mix-ins yet, that happens per flavor."
+   ]
+  },
+  {
+   "id": "tahini-dressing",
+   "name": "Lemon tahini dressing",
+   "type": "component",
+   "keeps": "10 days fridge",
+   "lane": "stove",
+   "min": 8,
+   "source": "Cookbook (photographed, p.219, title unconfirmed), adapted",
+   "why": "The dressing that makes the farro and sweet potato taste like one dish instead of two sides.",
+   "ingredients": [
+    "0.5 cup tahini",
+    "0.25 cup lemon juice",
+    "1 garlic clove, minced",
+    "0.25 tsp sea salt",
+    "0.25 cup water"
+   ],
+   "steps": [
+    "Whisk tahini, lemon juice, garlic, and salt.",
+    "Add water a tablespoon at a time, whisking, until it's pourable — tahini seizes up before it loosens, keep whisking through that stage.",
+    "Thin further with water each time you use it; it firms up in the fridge."
+   ],
+   "accommodate": "Whisk a small batch without the garlic clove for your spouse — lemon carries it fine alone."
   }
  ],
  "recipes": [
@@ -2074,6 +2177,573 @@
    ],
    "kid": "Deconstruct it. Same food in separate piles, zero negotiation.",
    "note": "Pure assembly. Nothing here is actually cooked tonight."
+  },
+  {
+   "id": "date-balls-lemon-coconut",
+   "title": "Lemon coconut date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.5 cup shredded coconut",
+    "1 cup macadamia nuts",
+    "0.33 cup cashew butter",
+    "1.5 Tbsp lemon zest",
+    "1 Tbsp fresh lemon juice",
+    "0.25 tsp ground turmeric"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. Roll in a mix of 0.33 cup shredded coconut and 0.5 tsp lemon zest.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "date-balls-pbj",
+   "title": "PB&J date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.25 cup oat flour",
+    "1 cup peanuts",
+    "0.33 cup peanut butter",
+    "3 Tbsp water"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. Roll in 0.5 cup crushed freeze-dried strawberries.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "date-balls-carrot-granola",
+   "title": "Carrot granola date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.5 cup whole rolled oats",
+    "1 cup walnuts",
+    "0.67 cup peeled and chopped carrot",
+    "0.33 cup almond butter",
+    "0.25 cup dried currants",
+    "0.5 tsp ground cinnamon"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. No roll-in for this one — leave it plain after shaping.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "date-balls-matcha-pistachio",
+   "title": "Matcha pistachio date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.5 cup almond flour",
+    "1 cup shelled pistachios",
+    "0.33 cup cashew butter",
+    "0.25 tsp matcha powder",
+    "1 Tbsp water"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. Roll in a mix of 0.33 cup crushed pistachios and 0.25 tsp matcha powder.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "date-balls-tahini-spice",
+   "title": "Tahini spice date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.5 cup shredded coconut",
+    "0.33 cup tahini",
+    "1 cup sesame seeds",
+    "2 Tbsp maple syrup",
+    "1 tsp cinnamon",
+    "0.25 tsp ground cardamom"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. Roll in 0.33 cup sesame seeds.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "date-balls-cookie-dough",
+   "title": "Cookie dough date balls",
+   "source": "Cookbook (photographed, title unconfirmed), adapted — spot-check quantities against the book",
+   "role": "snack",
+   "effort": "assemble",
+   "activeMin": 10,
+   "cuisines": [
+    "snack"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "date-ball-base"
+   ],
+   "ingredients": [
+    "1.5 cup oat flour",
+    "1 cup walnuts",
+    "0.33 cup almond butter",
+    "1 tsp vanilla extract",
+    "2 Tbsp water"
+   ],
+   "steps": [
+    "Add the base and this flavor's ingredients to a food processor together.",
+    "Pulse until the mixture sticks together when pinched — if it's too crumbly, add water a teaspoon at a time.",
+    "Roll into balls. Fold in 0.5 cup chocolate chips — stir these in by hand at the end, don't process them.",
+    "Store at room temperature up to two weeks."
+   ],
+   "kid": "This whole category is built for lunchboxes — no cooking, no allergens beyond nuts, and kids can help roll them.",
+   "note": "role:snack means the weekly roll never picks this automatically. Make a batch whenever the freezer's low."
+  },
+  {
+   "id": "sweet-potato-farro",
+   "title": "Sweet potato wedges with herbed farro and tahini",
+   "source": "Cookbook (photographed, p.219, title unconfirmed), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 35,
+   "cuisines": [
+    "mediterranean",
+    "vegetarian"
+   ],
+   "seasons": [
+    "fall",
+    "winter",
+    "spring"
+   ],
+   "slots": {
+    "starch": {
+     "default": "farro",
+     "accepts": [
+      "farro",
+      "quinoa"
+     ]
+    }
+   },
+   "needs": [
+    "tahini-dressing"
+   ],
+   "ingredients": [
+    "@starch 2 cup",
+    "1 medium sweet potato, cut into 12 wedges",
+    "2 tsp olive oil",
+    "0.33 cup chopped parsley",
+    "0.33 cup chopped cilantro",
+    "2 Tbsp chopped chives",
+    "2 cup baby arugula",
+    "1 Tbsp lemon juice",
+    "1 pinch cayenne pepper"
+   ],
+   "steps": [
+    "Toss the sweet potato wedges with olive oil, salt, and pepper on a parchment-lined sheet pan, spread with a little space between pieces.",
+    "Roast at 425°F for 25-30 minutes until golden brown at the edges.",
+    "{STARCH_COOK}",
+    "In a large bowl, toss the cooked farro with olive oil, salt, lemon juice, parsley, cilantro, chives, arugula, and a pinch of cayenne.",
+    "Arrange the herbed farro on a platter, top with the roasted sweet potato wedges, and drizzle with tahini dressing. Serve with lemon wedges and red pepper flakes if you want more heat."
+   ],
+   "kid": "Sweet potato wedges alone are the win here. Give them the wedges plain with the dressing on the side and skip the arugula.",
+   "accommodate": "Toss your spouse's portion of farro salad before the chives go in — parsley and lemon carry it fine without."
+  },
+  {
+   "id": "pasta-summer-thyme",
+   "title": "Summer thyme pasta",
+   "source": "Cookbook (photographed, 'Five Easy Favorites' pasta spread), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "italian"
+   ],
+   "seasons": [
+    "summer"
+   ],
+   "ingredients": [
+    "4 Tbsp olive oil",
+    "0.5 cup chopped shallot",
+    "6 cup cherry tomatoes",
+    "12 thyme sprigs",
+    "4 garlic cloves, minced",
+    "1.5 tsp balsamic vinegar",
+    "8 oz orecchiette",
+    "pecorino, shaved",
+    "fresh basil"
+   ],
+   "steps": [
+    "Heat olive oil in a wide skillet over low heat. Add shallot and cook gently until soft.",
+    "Add cherry tomatoes and thyme sprigs, a pinch of salt and red pepper flakes. Cook until the tomatoes start bursting, about 6 minutes, then add garlic and cook 1 minute more.",
+    "Stir in balsamic vinegar and cooked orecchiette. Toss with a splash of pasta water until it comes together.",
+    "Top with shaved pecorino and fresh basil."
+   ],
+   "kid": "Plain buttered pasta with a spoon of pecorino on the side covers most of these if the vegetable mix is a hard sell that night.",
+   "accommodate": "Cook your spouse's portion of tomatoes and thyme without the shallot and garlic — pull it aside right after the tomatoes burst, before those go in."
+  },
+  {
+   "id": "pasta-zucchini-carbonara",
+   "title": "Zucchini carbonara",
+   "source": "Cookbook (photographed, 'Five Easy Favorites' pasta spread), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "italian"
+   ],
+   "seasons": [
+    "summer"
+   ],
+   "ingredients": [
+    "2 eggs",
+    "0.25 cup almond milk",
+    "0.67 cup grated pecorino",
+    "1 Tbsp olive oil",
+    "2 zucchini, thinly sliced into strips",
+    "8 oz bucatini",
+    "fresh basil"
+   ],
+   "steps": [
+    "Whisk the eggs with almond milk and grated pecorino in a small bowl.",
+    "Heat olive oil in a skillet over medium heat. Add zucchini strips with a pinch of salt and pepper, sauté until soft, about 6 minutes.",
+    "Remove from heat, add the cooked bucatini, then pour in the egg mixture and toss immediately — the residual heat cooks the egg into a sauce without scrambling it.",
+    "Top with fresh basil."
+   ],
+   "kid": "Plain buttered pasta with a spoon of pecorino on the side covers most of these if the vegetable mix is a hard sell that night.",
+   "accommodate": "Boil a small separate pot of GF bucatini or spaghetti for your spouse — regular and GF pasta shouldn't share water."
+  },
+  {
+   "id": "pasta-lemon-aglio-kale",
+   "title": "Lemon aglio olio with kale",
+   "source": "Cookbook (photographed, 'Five Easy Favorites' pasta spread), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "italian"
+   ],
+   "seasons": [
+    "fall",
+    "winter",
+    "spring"
+   ],
+   "ingredients": [
+    "2 Tbsp olive oil",
+    "2 garlic cloves, minced",
+    "0.5 tsp red pepper flakes",
+    "8 cup chopped lacinato kale",
+    "12 oz spaghetti",
+    "0.25 cup lemon zest",
+    "toasted pine nuts",
+    "pecorino, shaved"
+   ],
+   "steps": [
+    "Heat olive oil in a large skillet over low heat. Add garlic and red pepper flakes, cook until fragrant, about 1 minute — don't let the garlic brown.",
+    "Add kale in batches with a pinch of salt, cooking until wilted, about 6 minutes.",
+    "Add the cooked spaghetti and lemon zest, tossing with a little pasta water until it comes together.",
+    "Top with toasted pine nuts and shaved pecorino."
+   ],
+   "kid": "Plain buttered pasta with a spoon of pecorino on the side covers most of these if the vegetable mix is a hard sell that night.",
+   "accommodate": "Sauté your spouse's portion of kale in its own small pan without garlic — red pepper flakes and lemon zest carry it fine alone."
+  },
+  {
+   "id": "pasta-fennel-fettuccine",
+   "title": "Fennel fettuccine",
+   "source": "Cookbook (photographed, 'Five Easy Favorites' pasta spread), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "italian"
+   ],
+   "seasons": [
+    "spring",
+    "fall"
+   ],
+   "needs": [
+    "caesar-dressing"
+   ],
+   "ingredients": [
+    "2 fennel bulbs, sliced",
+    "8 oz fettuccine",
+    "0.5 cup pasta cooking water",
+    "0.5 cup peas",
+    "0.25 cup chopped chives",
+    "fresh tarragon",
+    "lemon wedges"
+   ],
+   "steps": [
+    "Slice the fennel bulbs into wedges and roast or sauté until tender.",
+    "Mix the caesar dressing with the reserved pasta cooking water until smooth and pourable.",
+    "Toss the cooked fettuccine with the fennel, peas, chopped chives, tarragon, and the dressing.",
+    "Serve with lemon wedges."
+   ],
+   "kid": "Plain buttered pasta with a spoon of pecorino on the side covers most of these if the vegetable mix is a hard sell that night.",
+   "accommodate": "Toss your spouse's portion before the chives go in, and use the caesar dressing's garlic-free batch (see that component) — tarragon and lemon fill the gap."
+  },
+  {
+   "id": "pasta-roasted-cauliflower",
+   "title": "Roasted cauliflower pasta with yogurt and harissa",
+   "source": "Cookbook (photographed, 'Five Easy Favorites' pasta spread), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "mediterranean"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "ingredients": [
+    "8 oz pasta",
+    "4 cup roasted cauliflower florets",
+    "0.5 cup harissa",
+    "0.5 cup Greek yogurt",
+    "1 cup roasted chickpeas",
+    "fresh mint",
+    "arugula or microgreens"
+   ],
+   "steps": [
+    "Roast the cauliflower florets at 425°F with olive oil and salt for 25 minutes until charred at the edges.",
+    "Toss the cooked pasta with roasted cauliflower, harissa, and Greek yogurt until everything is coated.",
+    "Top with roasted chickpeas, fresh mint, and arugula or microgreens."
+   ],
+   "kid": "Plain buttered pasta with a spoon of pecorino on the side covers most of these if the vegetable mix is a hard sell that night.",
+   "accommodate": "No allium or red meat here — the only accommodation is pasta shape if gluten is the concern for a given night; swap in GF pasta same as any other night."
+  },
+  {
+   "id": "lasagna-rollups",
+   "title": "Kale and sweet potato lasagna roll-ups",
+   "source": "Cookbook (photographed, 'Kale & Sweet Potato Lasagna Roll-Ups'), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 45,
+   "totalMin": 90,
+   "serves": 4,
+   "cuisines": [
+    "italian",
+    "vegetarian"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "slots": {
+    "starch": {
+     "default": "lasagna",
+     "accepts": [
+      "lasagna"
+     ]
+    }
+   },
+   "needs": [
+    "marinara"
+   ],
+   "lanes": [
+    {
+     "lane": "oven",
+     "label": "Sweet potato, 425°F",
+     "s": 0,
+     "d": 28
+    },
+    {
+     "lane": "stove",
+     "label": "Steam kale + boil noodles",
+     "s": 0,
+     "d": 20
+    },
+    {
+     "lane": "oven",
+     "label": "Bake roll-ups, 425°F",
+     "s": 50,
+     "d": 20
+    }
+   ],
+   "ingredients": [
+    "@starch 12",
+    "1 large sweet potato, cut into small cubes",
+    "olive oil",
+    "6 kale leaves, coarse stems removed",
+    "3 cup ricotta or vegan ricotta",
+    "0.25 cup minced sage",
+    "red pepper flakes"
+   ],
+   "steps": [
+    "Toss the sweet potato cubes with olive oil, salt, and pepper on a parchment-lined sheet pan. Roast at 425°F for 25-30 minutes until golden brown.",
+    "Steam the kale leaves 1 minute until just wilted, then squeeze the excess water out on a kitchen towel.",
+    "{STARCH_COOK} Toss the cooked noodles with a little olive oil so they don't stick together while you work.",
+    "Spread a cup of marinara across the bottom of a 9x13 baking dish.",
+    "Lay each noodle flat, spread 3-4 tablespoons of ricotta down the middle, then a piece of kale, sweet potato cubes, a pinch of sage, and red pepper flakes. Roll each one up and place seam-side down in the dish.",
+    "Spoon the remaining marinara over the top, cover, and bake at 425°F for 20 minutes.",
+    "This makes 12 rolls — three per adult tonight, the rest for two more nights."
+   ],
+   "kid": "Unroll theirs into an open-face version — noodle on the bottom, everything else on top, easier to eat and just as good.",
+   "accommodate": "Boil 2-3 GF lasagna noodles in a separate small pot for your spouse's rolls — they turn to mush fast if boiled together with regular noodles."
+  },
+  {
+   "id": "sunshine-curry",
+   "title": "Sunshine sweet potato curry",
+   "source": "Cookbook (photographed, 'Sunshine Sweet Potato Curry'), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 35,
+   "serves": 4,
+   "cuisines": [
+    "indian",
+    "curry"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "slots": {
+    "protein": {
+     "default": "chickpeas",
+     "accepts": [
+      "chickpeas",
+      "chicken",
+      "shrimp",
+      "tofu"
+     ]
+    },
+    "starch": {
+     "default": "rice",
+     "accepts": [
+      "rice"
+     ]
+    }
+   },
+   "ingredients": [
+    "@protein 1.0",
+    "@starch 3 cup",
+    "1 Tbsp coconut oil",
+    "0.5 yellow onion, chopped",
+    "2 garlic cloves",
+    "1 sweet potato, cubed",
+    "1 red bell pepper, julienned",
+    "0.5 cauliflower, cut into florets",
+    "1 can full-fat coconut milk",
+    "10 cardamom pods, seeds removed",
+    "1 tsp coriander seeds",
+    "0.5 tsp cumin seeds",
+    "1 Tbsp grated fresh ginger",
+    "0.5 tsp ground turmeric",
+    "0.25 tsp cayenne pepper",
+    "zest of 1 lime",
+    "0.5 tsp white wine vinegar",
+    "0.5 jalapeño, diced",
+    "6 cup baby spinach",
+    "juice of 1 lime",
+    "cilantro",
+    "toasted cashews, crushed"
+   ],
+   "steps": [
+    "In a pot, warm coconut oil and sauté the onion until soft, about 6 minutes. Add garlic and cook 1 minute more.",
+    "Add cardamom seeds, coriander, and cumin, toasting 30 seconds until fragrant. Stir in ginger, turmeric, and cayenne.",
+    "Add coconut milk and simmer 10 minutes to let the spices bloom. Stir in lime zest and vinegar. This is the curry base.",
+    "Add the sweet potato and cauliflower, simmer 12-15 minutes until just tender. Add the bell pepper and jalapeño for the last 5 minutes.",
+    "{PROTEIN_COOK} Fold it in along with the spinach, cooking just until wilted.",
+    "{STARCH_COOK} Serve the curry over rice with lime juice, cilantro, and crushed cashews."
+   ],
+   "kid": "Curry flavor is a coin flip at this age. Serve a plain portion of rice, cauliflower, and sweet potato on the side before the sauce goes on, with yogurt to cool it down.",
+   "accommodate": "Simmer your spouse's curry base before the onion and garlic go in — bloom the spices in coconut oil directly, then coconut milk and spices as normal. It's a slightly flatter base; extra ginger and lime make up the difference."
   }
  ]
 }
