@@ -123,6 +123,13 @@ select{font-family:var(--mono);font-size:12px;padding:7px 10px;border:1px solid 
 
 /* grocery */
 .cart-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.email-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;
+  padding:12px 14px;background:var(--card);border:1px solid var(--line-soft);border-radius:2px}
+.email-bar input[type=email]{font-family:var(--mono);font-size:12.5px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);flex:1 1 220px;min-width:180px}
+.email-bar input[type=email]:invalid:not(:placeholder-shown){border-color:var(--beet)}
+.email-hint{font-family:var(--mono);font-size:10.5px;color:var(--smoke);letter-spacing:.02em;flex:1 1 100%}
+.email-hint.err{color:var(--beet)}
 .meter{flex:1 1 180px;height:5px;background:var(--line-soft);border-radius:99px;overflow:hidden;min-width:120px}
 .meter i{display:block;height:100%;background:var(--turmeric);width:0;transition:width .2s}
 .count{font-family:var(--mono);font-size:10.5px;color:var(--smoke);letter-spacing:.06em}
@@ -207,12 +214,17 @@ footer p{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
 
 <section id="grocSec">
   <h2 class="sec">Grocery list</h2>
-  <p class="sec-note">Merged across all three dinners, quantities summed. Items feeding more than one meal are flagged.</p>
+  <p class="sec-note">Merged across all three dinners, quantities summed. Check off anything you already have at home — checked items are left off the emailed list.</p>
   <div class="cart-bar">
     <span class="count" id="cartCount"></span>
     <span class="meter"><i id="cartMeter"></i></span>
     <button class="btn" id="clearChecks">Clear checks</button>
     <button class="btn" id="printBtn">Print</button>
+  </div>
+  <div class="email-bar">
+    <input type="email" id="emailAddr" placeholder="you@email.com" autocomplete="email">
+    <button class="btn" id="emailBtn">Email list</button>
+    <span class="email-hint" id="emailHint">Opens your email app with the menu and grocery list — nothing is sent from this site.</span>
   </div>
   <div class="groc" id="groc"></div>
 </section>
@@ -494,7 +506,7 @@ function fmtQty(q,u){
   var n=Math.round(q*100)/100;
   var s=(n%1===0)?String(n):(Math.abs(n-Math.round(n*4)/4)<0.001?
     ({0.25:"¼",0.5:"½",0.75:"¾",0.33:"⅓"}[+(n%1).toFixed(2)]?
-      (Math.floor(n)||"")+({0.25:"¼",0.5:"½",0.75:"¾"}[+(n%1).toFixed(2)]||""):n.toFixed(2)):n.toFixed(2));
+      (Math.floor(n)||"")+({0.25:"¼",0.5:"½",0.75:"¾"}[+(n%1).toFixed(2)]||""):String(parseFloat(n.toFixed(2)))):String(parseFloat(n.toFixed(2))));
   return s+(u&&u!=="ea"?" "+u:"");
 }
 
@@ -642,6 +654,51 @@ function cartMeter(){
   document.getElementById("cartMeter").style.width=(all.length?done/all.length*100:0)+"%";
 }
 
+/* ============ email ============ */
+function emailBody(){
+  var days=["Sun","Tue","Thu","Sat"];
+  var lines=["WOODLAWN EATS - "+cap(activeSeason())+" plan",""];
+  lines.push("MENU");
+  S.menu.forEach(function(m,i){lines.push((days[i]||"Night "+(i+1))+": "+title(m.recipe,m.res));});
+  lines.push("");
+  lines.push("GROCERY LIST");
+  var items=grocery(),cats=["Produce","Protein","Fridge","Pantry","Spice"];
+  var by={};cats.forEach(function(c){by[c]=[];});
+  items.forEach(function(i){(by[i.cat]||by.Pantry).push(i);});
+  cats.filter(function(c){return by[c].length;}).forEach(function(c){
+    var left=by[c].filter(function(i){return !S.checked[c+"|"+i.item];})
+      .sort(function(a,b){return a.item.localeCompare(b.item);});
+    if(!left.length)return;
+    lines.push("");
+    lines.push(c.toUpperCase());
+    left.forEach(function(i){
+      var q=fmtQty(i.qty,i.unit);
+      lines.push("- "+(q?q+" ":"")+i.item);
+    });
+  });
+  return lines.join("\n");
+}
+function sendEmail(){
+  var addr=document.getElementById("emailAddr").value.trim();
+  var hint=document.getElementById("emailHint");
+  var ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr);
+  if(!ok){
+    hint.textContent="Enter a valid email address first.";
+    hint.className="email-hint err";
+    return;
+  }
+  var subject="Woodlawn Eats - "+cap(activeSeason())+" grocery list";
+  var body=emailBody();
+  var url="mailto:"+addr+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  hint.className="email-hint";
+  hint.textContent=(url.length>1800)
+    ?"List is long - some email apps may cut off the end."
+    :"Opens your email app with the menu and grocery list - nothing is sent from this site.";
+  var a=document.createElement("a");
+  a.href=url;a.style.display="none";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+
 /* ============ events ============ */
 document.getElementById("rollBtn").onclick=function(){
   S.seed=(S.seed+1013)%100000;roll();
@@ -657,6 +714,9 @@ document.getElementById("fNights").onchange=function(e){S.nights=e.target.value;
 document.getElementById("startTime").oninput=function(){renderPrep();};
 document.getElementById("clearChecks").onclick=function(){S.checked={};renderGroc();};
 document.getElementById("printBtn").onclick=function(){window.print();};
+document.getElementById("emailBtn").onclick=sendEmail;
+document.getElementById("emailAddr").addEventListener("keydown",function(e){
+  if(e.key==="Enter")sendEmail();});
 </script>
 </body>
 </html>
