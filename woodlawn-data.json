@@ -103,7 +103,7 @@
   "molasses": "Pantry",
   "mozzarella": "Fridge",
   "mushrooms": "Produce",
-  "mustard": "Pantry",
+  "mustard": "Spice",
   "nutritional": "Pantry",
   "olive": "Pantry",
   "onion": "Produce",
@@ -217,7 +217,16 @@
   "cayenne": "Spice",
   "coriander": "Spice",
   "cardamom pods": "Spice",
-  "cauliflower florets": "Produce"
+  "cauliflower florets": "Produce",
+  "leek": "Produce",
+  "millet": "Pantry",
+  "amaranth": "Produce",
+  "chile": "Produce",
+  "chiles": "Produce",
+  "chipotles": "Pantry",
+  "adobo": "Pantry",
+  "cane": "Pantry",
+  "heirloom": "Produce"
  },
  "swaps": {
   "proteins": {
@@ -513,6 +522,14 @@
     "cook": "Boil in heavily salted water to al dente per package time — don't overcook or they'll tear when rolled.",
     "reheat": "n/a — baked once, eaten from the dish.",
     "accommodateNote": "Boil 2-3 GF lasagna noodles separately for your spouse's roll-ups — they turn to mush fast if boiled together with regular."
+   },
+   "millet": {
+    "label": "millet",
+    "buy": "millet",
+    "cat": "Pantry",
+    "lane": "stove",
+    "cook": "Toast dry in a pot 2 minutes, then simmer 1 part millet to 2.5 parts water, covered, 18-20 minutes until fluffy.",
+    "reheat": "Warm with a splash of water, covered."
    }
   }
  },
@@ -1000,6 +1017,389 @@
     "Thin further with water each time you use it; it firms up in the fridge."
    ],
    "accommodate": "Whisk a small batch without the garlic clove for your spouse — lemon carries it fine alone."
+  },
+  {
+   "id": "pickle-cucumber-dill",
+   "name": "Cucumber dill pickles",
+   "type": "component",
+   "keeps": "1 month fridge",
+   "lane": "stove",
+   "min": 5,
+   "source": "Cookbook (photographed, 'Homemade Pickles: One Brine, Four Ways'), adapted",
+   "why": "One brine, four jars. Make all four the same afternoon and you've got condiments for weeks.",
+   "ingredients": [
+    "2 cup white vinegar",
+    "2 cup water",
+    "0.33 cup cane sugar",
+    "2 Tbsp sea salt",
+    "2 small cucumbers, sliced",
+    "1 dill sprig",
+    "2 garlic cloves, halved",
+    "1 tsp mustard seeds",
+    "1 tsp mixed peppercorns"
+   ],
+   "steps": [
+    "Heat the vinegar, water, sugar, and salt in a saucepan until the sugar dissolves, about 1 minute.",
+    "Pack the vegetables and aromatics into a 16-ounce jar.",
+    "Pour the hot brine over, let cool, then chill overnight before eating.",
+    "This one brine recipe makes enough for two jars — double it if you're packing all four at once."
+   ],
+   "accommodate": "Pack a third small jar without garlic for your spouse — same brine, same everything else."
+  },
+  {
+   "id": "pickle-yellow-squash",
+   "name": "Yellow squash pickles",
+   "type": "component",
+   "keeps": "1 month fridge",
+   "lane": "stove",
+   "min": 5,
+   "source": "Cookbook (photographed, 'Homemade Pickles: One Brine, Four Ways'), adapted",
+   "why": "One brine, four jars. Make all four the same afternoon and you've got condiments for weeks.",
+   "ingredients": [
+    "2 cup white vinegar",
+    "2 cup water",
+    "0.33 cup cane sugar",
+    "2 Tbsp sea salt",
+    "2 small yellow squash, sliced",
+    "1 cilantro sprig",
+    "2 garlic cloves, halved",
+    "1 tsp coriander seeds",
+    "1 tsp mixed peppercorns"
+   ],
+   "steps": [
+    "Heat the vinegar, water, sugar, and salt in a saucepan until the sugar dissolves, about 1 minute.",
+    "Pack the vegetables and aromatics into a 16-ounce jar.",
+    "Pour the hot brine over, let cool, then chill overnight before eating.",
+    "This one brine recipe makes enough for two jars — double it if you're packing all four at once."
+   ],
+   "accommodate": "Pack a third small jar without garlic for your spouse."
+  },
+  {
+   "id": "pickle-red-onion",
+   "name": "Quick pickled red onions",
+   "type": "component",
+   "keeps": "1 month fridge",
+   "lane": "stove",
+   "min": 5,
+   "source": "Cookbook (photographed, 'Homemade Pickles: One Brine, Four Ways'), adapted",
+   "why": "One brine, four jars. Make all four the same afternoon and you've got condiments for weeks.",
+   "ingredients": [
+    "2 cup white vinegar",
+    "2 cup water",
+    "0.33 cup cane sugar",
+    "2 Tbsp sea salt",
+    "2 small red onions, thinly sliced",
+    "2 garlic cloves, halved",
+    "1 tsp mixed peppercorns"
+   ],
+   "steps": [
+    "Heat the vinegar, water, sugar, and salt in a saucepan until the sugar dissolves, about 1 minute.",
+    "Pack the vegetables and aromatics into a 16-ounce jar.",
+    "Pour the hot brine over, let cool, then chill overnight before eating.",
+    "This one brine recipe makes enough for two jars — double it if you're packing all four at once."
+   ],
+   "accommodate": "This one is onion by definition — there's no version of it for your spouse. Use the cucumber-dill or cauliflower jar for her plate instead when this is the topping."
+  },
+  {
+   "id": "pickle-cauliflower",
+   "name": "Cauliflower pickles",
+   "type": "component",
+   "keeps": "1 month fridge",
+   "lane": "stove",
+   "min": 5,
+   "source": "Cookbook (photographed, 'Homemade Pickles: One Brine, Four Ways'), adapted",
+   "why": "One brine, four jars. Make all four the same afternoon and you've got condiments for weeks.",
+   "ingredients": [
+    "2 cup white vinegar",
+    "2 cup water",
+    "0.33 cup cane sugar",
+    "2 Tbsp sea salt",
+    "1.5 cup small cauliflower florets",
+    "1 small red chile pepper",
+    "1 tsp whole cumin seeds",
+    "1 tsp mixed peppercorns",
+    "0.25 tsp ground turmeric"
+   ],
+   "steps": [
+    "Heat the vinegar, water, sugar, and salt in a saucepan until the sugar dissolves, about 1 minute.",
+    "Pack the vegetables and aromatics into a 16-ounce jar.",
+    "Pour the hot brine over, let cool, then chill overnight before eating.",
+    "This one brine recipe makes enough for two jars — double it if you're packing all four at once."
+   ],
+   "accommodate": "No garlic in this one — safe for your spouse as written."
+  },
+  {
+   "id": "elote-corn-salad",
+   "name": "Grilled Mexican corn salad",
+   "type": "component",
+   "keeps": "3 days fridge",
+   "lane": "grill",
+   "min": 15,
+   "source": "Cookbook (photographed, 'Grilled Mexican Corn Salad'), adapted",
+   "why": "Elote-style, off the cob. Works as a side for any taco or nacho night — pairs well with the existing Tex-Mex dinners.",
+   "ingredients": [
+    "4 ears fresh corn, husked",
+    "0.5 tsp extra-virgin olive oil",
+    "2 Tbsp adobo sauce from canned chipotles",
+    "0.33 cup crumbled cotija or feta",
+    "0.33 cup chopped cilantro",
+    "juice of 0.5 lime",
+    "sea salt and black pepper"
+   ],
+   "steps": [
+    "Preheat a grill or grill pan to medium-high. Brush the corn with olive oil and grill, rotating, until kernels are tender and charred in spots, about 10 minutes.",
+    "Remove from heat and slice the kernels off the cob with a knife.",
+    "Toss the kernels with adobo sauce, crumbled cheese, cilantro, lime juice, salt, and pepper."
+   ],
+   "accommodate": "Canned chipotles in adobo almost always list garlic in the packing sauce — check the can. If it does, mix your spouse's portion with a pinch of smoked paprika and a little extra lime instead of the adobo sauce."
+  },
+  {
+   "id": "carrot-ginger-sauce",
+   "name": "Carrot-ginger sauce",
+   "type": "component",
+   "keeps": "1 week fridge",
+   "lane": "stove",
+   "min": 10,
+   "source": "Not from the book — page 287 wasn't photographed, so this is a standard composition, not a transcription. Swap in the book's actual version if you get that page.",
+   "why": "Carrot and ginger blended smooth. This is the sauce that makes the grain bowl taste like a specific dish instead of a pile of roasted vegetables.",
+   "ingredients": [
+    "2 carrots, chopped",
+    "1 inch fresh ginger, peeled",
+    "2 Tbsp rice vinegar",
+    "1 Tbsp toasted sesame oil",
+    "2 Tbsp tamari",
+    "0.25 cup water",
+    "1 Tbsp neutral oil"
+   ],
+   "steps": [
+    "Blend everything until completely smooth, adding water as needed to loosen it.",
+    "Taste — it should be sweet from the carrot, sharp from the ginger and vinegar.",
+    "Thins in the fridge; give it a stir before using."
+   ]
+  },
+  {
+   "id": "coconut-brussels-sauce",
+   "name": "Tamari-lime dressing for coconut rice bowls",
+   "type": "component",
+   "keeps": "1 week fridge",
+   "lane": "stove",
+   "min": 10,
+   "source": "Cookbook (photographed, 'Coconut Rice with Brussels Sprouts'), adapted",
+   "why": "Tamari, garlic, lime, and chile — the sauce this whole bowl is built around.",
+   "ingredients": [
+    "1 Tbsp tamari",
+    "2 small garlic cloves, minced",
+    "2 tsp fresh lime juice",
+    "2 tsp rice vinegar",
+    "1 Tbsp cane sugar",
+    "2 Tbsp water",
+    "2 Thai chilies, diced, or 0.5 tsp red pepper flakes"
+   ],
+   "steps": [
+    "Whisk everything together until the sugar dissolves.",
+    "Adjust chile to taste — Thai chilies run hot."
+   ],
+   "accommodate": "Whisk a small batch without the garlic for your spouse — lime and chile still carry it."
+  },
+  {
+   "id": "broccoli-soup",
+   "name": "Creamy broccoli soup",
+   "type": "component",
+   "keeps": "5 days fridge / 3 months frozen",
+   "lane": "stove",
+   "min": 25,
+   "source": "Cookbook (photographed, 'Creamy Broccoli Soup'), adapted",
+   "why": "Coconut milk instead of cream, so it's vegan and dairy-free while staying genuinely creamy. Garlic sautés with the leek, not raw.",
+   "ingredients": [
+    "1 large leek, white and light green parts, sliced",
+    "1 Tbsp olive oil",
+    "2 garlic cloves, crushed",
+    "1 medium head broccoli, florets and stems",
+    "1.5 tsp white wine vinegar",
+    "2 cup light coconut milk",
+    "2.5 cup vegetable broth",
+    "2 cup loosely packed amaranth greens or spinach",
+    "juice of 1 small lemon"
+   ],
+   "steps": [
+    "Rinse the sliced leek thoroughly in a strainer — grit hides between the layers.",
+    "Heat olive oil in a large pot over medium heat. Add the leek and a few pinches of salt and pepper, stir and cook until softened, about 5 minutes.",
+    "Add the garlic and cook 1 minute more. Chop the broccoli, stems and all, into coarse florets and add to the pot. Stir and cook until just softened, about 3 minutes.",
+    "Stir in the white wine vinegar, then add the vegetable broth and coconut milk. Reduce heat to low and simmer 5 minutes.",
+    "Stir in the amaranth greens or spinach, cooking until wilted, about 1 minute.",
+    "Let cool slightly, then blend in batches until smooth. Taste and adjust seasoning, adding lemon juice to brighten it up."
+   ],
+   "accommodate": "Ladle out 2 cups of the broccoli and broth before the garlic goes in, and finish that portion with a little extra vinegar and lemon for your spouse."
+  },
+  {
+   "id": "spicy-cornbread",
+   "name": "Spicy cornbread",
+   "type": "component",
+   "keeps": "3 days room temp / 2 months frozen",
+   "lane": "oven",
+   "min": 22,
+   "source": "Cookbook (photographed, 'Spicy Cornbread'), adapted",
+   "why": "A side that pairs with either soup this week — the red pepper and carrot soup or the broccoli soup.",
+   "ingredients": [
+    "1 cup cornmeal",
+    "1 cup spelt flour or all-purpose flour",
+    "2 tsp baking powder",
+    "0.25 tsp baking soda",
+    "1 tsp salt",
+    "0.75 cup unsweetened almond milk",
+    "0.25 cup maple syrup",
+    "0.25 cup melted coconut oil",
+    "1 Tbsp apple cider vinegar",
+    "0.5 cup corn kernels, fresh or frozen",
+    "0.5 serrano pepper, sliced"
+   ],
+   "steps": [
+    "Preheat oven to 350°F.",
+    "Stir the cornmeal, flour, baking powder, baking soda, and salt together in a large bowl.",
+    "In a separate bowl, whisk the almond milk, maple syrup, coconut oil, and vinegar until combined.",
+    "Pour the wet ingredients into the dry and stir until just combined — don't overmix.",
+    "Fold in the corn kernels and sliced serrano.",
+    "Brush a 10-inch cast-iron skillet with coconut oil. Spread the batter in and bake 20-22 minutes, or until a toothpick comes out clean.",
+    "Cool 15 minutes before serving. Also works in mini skillets (18-20 min) or a 12-cup muffin tin (15-18 min)."
+   ],
+   "accommodate": "Bake your spouse's portion with a 1:1 GF flour blend instead of spelt or AP flour — same ratios, works fine in a mini skillet on the side of the same bake."
+  },
+  {
+   "id": "basil-pesto",
+   "name": "Basil pesto",
+   "type": "component",
+   "keeps": "5 days fridge / 3 months frozen",
+   "lane": "stove",
+   "min": 10,
+   "source": "Not from the book — page 275 wasn't photographed, so this is a standard composition, not a transcription. Swap in the book's actual version if you get that page.",
+   "why": "The tartine recipe just says 'any pesto' — this is a straightforward basil version to fill the gap.",
+   "ingredients": [
+    "2 cup packed fresh basil",
+    "0.33 cup pine nuts or walnuts",
+    "2 garlic cloves",
+    "0.5 cup olive oil",
+    "2 Tbsp lemon juice",
+    "0.33 cup grated Parmesan",
+    "sea salt"
+   ],
+   "steps": [
+    "Toast the nuts in a dry pan 2-3 minutes until fragrant, then cool slightly.",
+    "Blend basil, nuts, garlic, and half the olive oil until mostly smooth.",
+    "With the blender running, stream in the rest of the oil. Stir in Parmesan and lemon juice, season with salt."
+   ],
+   "accommodate": "Blend a small batch before the garlic goes in for your spouse — lemon and Parmesan carry it fine without."
+  },
+  {
+   "id": "red-pepper-carrot-soup",
+   "name": "Roasted red pepper and carrot soup",
+   "type": "component",
+   "keeps": "5 days fridge / 3 months frozen",
+   "lane": "stove",
+   "min": 40,
+   "source": "Cookbook (photographed, 'Roasted Red Pepper & Carrot Soup'), adapted",
+   "why": "Fennel sweetens the base the same way it does everywhere else in this collection, layered with real onion and garlic here since it's the household default.",
+   "ingredients": [
+    "2 Tbsp olive oil",
+    "1 medium yellow onion, chopped",
+    "2 garlic cloves, coarsely chopped",
+    "1 small fennel bulb, chopped",
+    "4 large carrots, chopped",
+    "1 Tbsp fresh thyme leaves",
+    "2 Tbsp balsamic vinegar",
+    "1 roasted red bell pepper",
+    "1 Tbsp tomato paste",
+    "0.25 cup cannellini beans, drained and rinsed",
+    "4 cup vegetable broth"
+   ],
+   "steps": [
+    "Heat olive oil in a large pot over medium heat. Add onion with a pinch of salt and pepper, cook until translucent, about 5 minutes.",
+    "Add garlic, fennel, carrots, and thyme. Cook, stirring, until the carrot edges begin to brown, 3-4 minutes more.",
+    "Stir in balsamic vinegar, roasted red pepper, tomato paste, cannellini beans, and the broth.",
+    "Simmer until the carrots are tender, 15-20 minutes.",
+    "Cool slightly, then puree in batches in a blender until smooth. Taste and adjust seasoning."
+   ],
+   "accommodate": "Ladle out 2 cups of the vegetables and broth right before the garlic goes in, and simmer that portion separately for your spouse — a little extra balsamic and thyme makes up the difference."
+  },
+  {
+   "id": "butternut-risotto",
+   "name": "Butternut squash risotto",
+   "type": "component",
+   "keeps": "4 days fridge",
+   "lane": "stove",
+   "min": 40,
+   "source": "Cookbook (photographed, 'Butternut Squash Risotto & Arancini'), adapted",
+   "why": "The book's own move: make this once, eat it as risotto Sunday, then roll the leftovers into arancini a couple nights later.",
+   "ingredients": [
+    "1 Tbsp olive oil",
+    "1 small yellow onion, chopped",
+    "2 cup cubed butternut squash",
+    "2 garlic cloves, minced",
+    "1 cup uncooked arborio rice",
+    "0.5 cup dry white wine",
+    "4 cup hot vegetable broth",
+    "2 Tbsp butter",
+    "0.5 cup grated Parmesan",
+    "0.5 cup fresh parsley or basil"
+   ],
+   "steps": [
+    "Heat olive oil in a large skillet over medium heat, season with salt and pepper. Add onion and squash, cook 2-3 minutes.",
+    "Add garlic and cook 1 minute more. Add the rice, stirring to coat, and cook 1-2 minutes.",
+    "Add the wine and cook until absorbed, about 2 minutes.",
+    "Add the hot broth a ladle at a time, stirring continuously and letting each addition absorb before the next — this takes about 20 minutes total, until the rice is tender and creamy.",
+    "Stir in butter, Parmesan, and herbs off the heat. Season to taste.",
+    "Set aside about half the batch, cooled, in the fridge — that's what becomes arancini."
+   ],
+   "accommodate": "Ladle a portion into a small pot before the garlic goes in, and finish it there with a splash of broth and extra Parmesan for your spouse."
+  },
+  {
+   "id": "tofu-ricotta",
+   "name": "Zucchini tofu ricotta",
+   "type": "component",
+   "keeps": "4 days fridge",
+   "lane": "stove",
+   "min": 10,
+   "source": "Cookbook (photographed, 'Zucchini Lasagna with Zucchini Ricotta'), adapted",
+   "why": "Tofu blended with walnuts and lemon reads shockingly close to real ricotta — the book's own promise, and it holds up.",
+   "ingredients": [
+    "0.25 cup chopped walnuts",
+    "2 garlic cloves",
+    "7 oz extra-firm tofu, chopped",
+    "0.5 cup chopped zucchini",
+    "1 Tbsp fresh lemon juice",
+    "1 tsp dried oregano",
+    "0.25 tsp red pepper flakes",
+    "0.5 cup fresh basil"
+   ],
+   "steps": [
+    "Combine walnuts, garlic, tofu, zucchini, lemon juice, oregano, red pepper flakes, salt, and pepper in a food processor.",
+    "Process to a spreadable consistency — similar texture to real ricotta.",
+    "Fold in the basil by hand at the end so it stays bright rather than pureeing fully green."
+   ],
+   "accommodate": "Process a small batch before the garlic goes in for your spouse — lemon and oregano still carry it."
+  },
+  {
+   "id": "turkey-gravy",
+   "name": "Pan gravy from turkey drippings",
+   "type": "component",
+   "keeps": "4 days fridge",
+   "lane": "stove",
+   "min": 15,
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "why": "Built straight from the roasted turkey's own drippings — nothing here works without the roast happening first.",
+   "ingredients": [
+    "2.5 cup reserved pan drippings, strained",
+    "0.25 cup butter",
+    "0.25 cup all-purpose flour",
+    "2 tsp fresh thyme",
+    "1 Tbsp chopped parsley"
+   ],
+   "steps": [
+    "Strain the pan drippings through a fine-mesh sieve, discarding the solids. Measure out 2.5 cups.",
+    "Melt butter in a saucepan over medium heat. Whisk in flour and thyme, cooking until lightly browned, about 1 minute.",
+    "Gradually whisk in the drippings. Bring to a boil, then reduce heat and simmer, whisking constantly, until thickened, 5-10 minutes.",
+    "Stir in parsley, season with salt and pepper to taste."
+   ],
+   "accommodate": "Use a GF flour blend (1:1) for a small side batch made with a portion of the drippings, for your spouse — same technique, same result."
   }
  ],
  "recipes": [
@@ -2744,6 +3144,705 @@
    ],
    "kid": "Curry flavor is a coin flip at this age. Serve a plain portion of rice, cauliflower, and sweet potato on the side before the sauce goes on, with yogurt to cool it down.",
    "accommodate": "Simmer your spouse's curry base before the onion and garlic go in — bloom the spices in coconut oil directly, then coconut milk and spices as normal. It's a slightly flatter base; extra ginger and lime make up the difference."
+  },
+  {
+   "id": "carrot-ginger-grain-bowl",
+   "title": "Carrot-ginger grain bowl with tofu",
+   "source": "Cookbook (photographed, 'Carrot-Ginger Grain Bowl'), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 30,
+   "serves": 4,
+   "cuisines": [
+    "vegetarian",
+    "asian"
+   ],
+   "seasons": [
+    "fall",
+    "winter",
+    "spring"
+   ],
+   "slots": {
+    "protein": {
+     "default": "tofu",
+     "accepts": [
+      "tofu",
+      "chicken",
+      "shrimp",
+      "salmon"
+     ]
+    },
+    "starch": {
+     "default": "millet",
+     "accepts": [
+      "millet",
+      "rice",
+      "quinoa"
+     ]
+    }
+   },
+   "needs": [
+    "carrot-ginger-sauce"
+   ],
+   "ingredients": [
+    "@protein 1.0",
+    "@starch 2 cup",
+    "10 small heirloom carrots, cut into cubes",
+    "0.5 tsp sriracha",
+    "0.25 cup chopped almonds",
+    "2 cup mixed greens or kale",
+    "1 avocado, diced",
+    "sea salt and black pepper"
+   ],
+   "steps": [
+    "Peel 3 of the carrots into ribbons with a vegetable peeler and set aside for the salad; cube the rest.",
+    "{PROTEIN_PREP} Toss the cubed protein and cubed carrots separately with oil, salt, and pepper on a sheet pan.",
+    "{PROTEIN_COOK} Roast the carrots alongside at 400°F for 15-17 minutes until browned at the edges but still with some bite.",
+    "{STARCH_COOK}",
+    "Toss the greens with the cooked millet, carrot ribbons, and almonds.",
+    "Assemble the bowls with the salad, roasted carrots, protein, and avocado. Serve with carrot-ginger sauce on the side."
+   ],
+   "kid": "Deconstruct it — millet, plain roasted carrots, avocado, and protein in separate piles, sauce for dipping.",
+   "note": "The book's ingredient list didn't include a protein — the photo shows what looks like tofu, but I didn't fabricate a quantity for it. I added a protein slot defaulting to tofu since a family dinner needs one; adjust the default if you'd rather it default to something else."
+  },
+  {
+   "id": "coconut-brussels-bowl",
+   "title": "Coconut rice with charred Brussels sprouts",
+   "source": "Cookbook (photographed, 'Coconut Rice with Brussels Sprouts'), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 25,
+   "serves": 4,
+   "cuisines": [
+    "thai",
+    "vegetarian"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "slots": {
+    "starch": {
+     "default": "rice",
+     "accepts": [
+      "rice"
+     ]
+    }
+   },
+   "needs": [
+    "coconut-brussels-sauce"
+   ],
+   "ingredients": [
+    "1.25 cup jasmine rice",
+    "1.75 cup canned light coconut milk",
+    "0.25 tsp sea salt",
+    "2 cup halved Brussels sprouts",
+    "0.25 cup chopped scallions",
+    "0.25 cup torn basil",
+    "1 small avocado, diced",
+    "0.25 cup sesame seeds",
+    "lime slices, for serving",
+    "sriracha, for serving"
+   ],
+   "steps": [
+    "Cook the rice using coconut milk in place of some of the water, per package ratio. Fluff with a fork and keep warm.",
+    "Heat oil in a large skillet over medium-high. Add the halved Brussels sprouts cut-side down and sear undisturbed 2-3 minutes until deeply browned. Toss and continue cooking 7-10 minutes until tender.",
+    "Add the scallions during the last 2 minutes of cooking.",
+    "Serve the rice in bowls with the Brussels sprouts, basil, avocado, and sesame seeds. Drizzle with the sauce and sriracha, lime on the side."
+   ],
+   "kid": "Plain rice with a little of the coconut milk and some avocado usually works even when the sprouts don't.",
+   "note": "As printed this is a vegetarian side/light dinner — no protein was in the book's ingredient list, despite what the plated photo suggests. Pair it with a simply grilled protein on the side if you want it heartier, or leave it as written."
+  },
+  {
+   "id": "broccoli-soup-bowls",
+   "title": "Creamy broccoli soup with crispy {Protein}",
+   "source": "see broccoli-soup component",
+   "role": "weeknight",
+   "effort": "assemble",
+   "activeMin": 15,
+   "serves": 4,
+   "cuisines": [
+    "vegetarian",
+    "american"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "slots": {
+    "protein": {
+     "default": "chickpeas",
+     "accepts": [
+      "chickpeas",
+      "chicken",
+      "salmon",
+      "tofu",
+      "shrimp"
+     ]
+    }
+   },
+   "needs": [
+    "broccoli-soup"
+   ],
+   "ingredients": [
+    "@protein 1.0",
+    "0.25 cup coconut milk, for garnish",
+    "red pepper flakes"
+   ],
+   "steps": [
+    "Warm the broccoli soup gently on the stove — it thickens in the fridge, thin with a splash of broth if needed.",
+    "{PROTEIN_REHEAT}",
+    "Ladle into bowls and top with the crispy protein, a swirl of coconut milk, and red pepper flakes."
+   ],
+   "kid": "Blend theirs extra smooth and skip the red pepper flakes. Serve with something to dip — GF crackers or toast.",
+   "note": "Soup was made entirely on Sunday. Tonight is warming and topping."
+  },
+  {
+   "id": "avocado-pesto-tartines",
+   "title": "Avocado pesto mozzarella tartines",
+   "source": "Cookbook (photographed, 'Avocado Pesto Mozzarella Tartines'), adapted",
+   "role": "weeknight",
+   "effort": "assemble",
+   "activeMin": 15,
+   "serves": 4,
+   "cuisines": [
+    "vegetarian",
+    "italian"
+   ],
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "needs": [
+    "basil-pesto"
+   ],
+   "ingredients": [
+    "8 slices whole-grain bread",
+    "olive oil, for drizzling",
+    "16 fresh sage leaves, de-stemmed",
+    "8 oz fresh mozzarella, sliced",
+    "1 avocado, sliced",
+    "watercress",
+    "fresh thyme sprigs"
+   ],
+   "steps": [
+    "Drizzle the bread with olive oil and toast in a toaster or on a grill.",
+    "Heat a thin layer of olive oil in a small skillet over medium heat. When it shimmers, add the sage leaves and fry lightly without browning, 10-15 seconds a side. Drain on a paper towel.",
+    "Top each piece of toast with mozzarella, avocado, watercress, thyme, and fried sage. Dollop with pesto.",
+    "Season with salt and pepper. Serve extra pesto on the side."
+   ],
+   "kid": "Skip the watercress and sage for theirs — bread, mozzarella, avocado, and a small dollop of pesto covers most of what they'll eat here.",
+   "accommodate": "The book's own gluten-free note applies directly: use GF bread for your spouse's slices, same everything else."
+  },
+  {
+   "id": "red-pepper-soup-bowls",
+   "title": "Red pepper carrot soup with garlic croutons and {Protein}",
+   "source": "see red-pepper-carrot-soup component",
+   "role": "weeknight",
+   "effort": "assemble",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "vegetarian",
+    "american"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "slots": {
+    "protein": {
+     "default": "beans",
+     "accepts": [
+      "beans",
+      "chicken",
+      "salmon",
+      "tofu"
+     ]
+    }
+   },
+   "needs": [
+    "red-pepper-carrot-soup"
+   ],
+   "ingredients": [
+    "@protein 1.0",
+    "4 slices day-old bread, cubed",
+    "0.5 garlic clove, minced",
+    "olive oil, for drizzling"
+   ],
+   "steps": [
+    "Toss the bread cubes with a drizzle of olive oil and the minced garlic on a baking sheet. Season with salt and pepper.",
+    "Bake at 350°F for 10-15 minutes until crispy.",
+    "Warm the soup on the stove.",
+    "{PROTEIN_REHEAT}",
+    "Serve bowls with a drizzle of olive oil, the protein, and croutons on top."
+   ],
+   "kid": "Croutons are the whole sell here. Give them extra on the side even if the soup itself is a hard pass.",
+   "accommodate": "Make your spouse's croutons in a separate small batch without the garlic clove — plain olive oil and salt still crisps up fine."
+  },
+  {
+   "id": "risotto-dinner",
+   "title": "Butternut squash risotto",
+   "source": "see butternut-risotto component",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 40,
+   "totalMin": 45,
+   "serves": 4,
+   "cuisines": [
+    "italian",
+    "vegetarian"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "butternut-risotto"
+   ],
+   "lanes": [
+    {
+     "lane": "stove",
+     "label": "Butternut risotto",
+     "s": 0,
+     "d": 40
+    }
+   ],
+   "ingredients": [
+    "fresh herbs, extra for serving",
+    "grated Parmesan, extra for serving"
+   ],
+   "steps": [
+    "Ladle the risotto into bowls right off the stove — it doesn't hold well, so serve it the moment it's done.",
+    "Top with extra herbs and Parmesan.",
+    "Set aside roughly half the batch, cooled, before anyone goes back for seconds — that's arancini night."
+   ],
+   "kid": "Risotto is basically fancy rice and cheese as far as they're concerned. Serve it slightly cooler than you'd like it — kids tend to want it less molten than a risotto normally comes off the stove.",
+   "note": "The book's printed quantities are written to feed 4 with leftovers for arancini already built in. If your crew tends to finish the pot, double the batch."
+  },
+  {
+   "id": "squash-arancini",
+   "title": "Squash arancini with marinara",
+   "source": "see butternut-risotto component",
+   "role": "weeknight",
+   "effort": "assemble",
+   "activeMin": 35,
+   "serves": 4,
+   "cuisines": [
+    "italian",
+    "vegetarian"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "butternut-risotto",
+    "marinara"
+   ],
+   "ingredients": [
+    "1 cup panko breadcrumbs",
+    "2 oz smoked mozzarella, cut into 12 small cubes (optional)"
+   ],
+   "steps": [
+    "Preheat oven to 400°F and line a baking sheet with parchment.",
+    "Spread the panko on a plate. Scoop a heaping tablespoon of the leftover risotto and roll it into a 2-inch ball.",
+    "If using, press a cube of smoked mozzarella into the center of each ball and re-seal it around the cheese.",
+    "Roll each ball in the panko to coat, then place on the baking sheet.",
+    "Bake 25 minutes until golden brown and crispy.",
+    "Warm the marinara and serve alongside for dipping."
+   ],
+   "kid": "Fried rice balls with a dipping sauce is about as close to a guaranteed win as this whole collection gets.",
+   "accommodate": "Roll your spouse's balls in GF panko instead — the book's own gluten-free note for this recipe. Keep them on their own corner of the tray."
+  },
+  {
+   "id": "zucchini-lasagna",
+   "title": "Zucchini lasagna with tofu ricotta",
+   "source": "Cookbook (photographed, 'Zucchini Lasagna with Zucchini Ricotta'), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 45,
+   "totalMin": 75,
+   "serves": 4,
+   "cuisines": [
+    "italian",
+    "vegetarian"
+   ],
+   "seasons": [
+    "summer",
+    "fall"
+   ],
+   "needs": [
+    "tofu-ricotta"
+   ],
+   "lanes": [
+    {
+     "lane": "stove",
+     "label": "Boil lasagna noodles",
+     "s": 0,
+     "d": 15
+    },
+    {
+     "lane": "oven",
+     "label": "Bake lasagna, 375°F",
+     "s": 30,
+     "d": 35
+    }
+   ],
+   "ingredients": [
+    "5 oz brown rice lasagna noodles",
+    "olive oil, for drizzling",
+    "1 can diced tomatoes (14.5 oz)",
+    "2 zucchini, sliced into thin planks",
+    "1 cup grated pecorino cheese",
+    "black pepper"
+   ],
+   "steps": [
+    "Preheat oven to 375°F.",
+    "Bring a large pot of salted water to a boil. Cook the lasagna noodles per package directions until al dente. Drain and rinse.",
+    "Drizzle a 9x13-inch pan with olive oil. Layer: a third of the noodles, half the tofu ricotta, half the diced tomatoes.",
+    "Layer more zucchini planks over that, then add the remaining tomatoes.",
+    "Repeat with the remaining noodles, ricotta, and zucchini, finishing with a layer of zucchini planks on top.",
+    "Top with grated pecorino, or skip it to keep it fully vegan. Drizzle with olive oil.",
+    "Bake, covered, 20-30 minutes, or until the zucchini is tender but still has a bite and the tomatoes are bubbling. Uncover and bake 10 more minutes.",
+    "Let rest 15 minutes before serving. Season with fresh cracked black pepper."
+   ],
+   "kid": "The tofu genuinely doesn't read as tofu once it's blended and baked — most kids treat this like a regular vegetable lasagna.",
+   "accommodate": "The lasagna noodles here are already brown rice — no gluten workaround needed beyond the tofu ricotta's own note about the garlic."
+  },
+  {
+   "id": "cast-iron-chicken",
+   "title": "Cast iron chicken",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 25,
+   "totalMin": 25,
+   "serves": 4,
+   "cuisines": [
+    "american"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "roast-veg"
+   ],
+   "lanes": [
+    {
+     "lane": "stove",
+     "label": "Sear chicken",
+     "s": 0,
+     "d": 8
+    },
+    {
+     "lane": "oven",
+     "label": "Finish, 400°F",
+     "s": 8,
+     "d": 16
+    }
+   ],
+   "ingredients": [
+    "4 bone-in, skin-on chicken breasts (about 2.5 lb)",
+    "olive oil",
+    "sea salt and black pepper"
+   ],
+   "steps": [
+    "Turn on the range fan — this sears hot enough to smoke a little.",
+    "Preheat oven to 400°F.",
+    "Season the chicken generously with salt and pepper. Sear skin-side down in a hot cast-iron pan with oil, 4 minutes per side.",
+    "Transfer the pan to the oven and finish 16 minutes, until the thickest part reads 165°F.",
+    "Rest 5 minutes before slicing."
+   ],
+   "kid": "Slice it thin off the bone — plain seared chicken is one of the least controversial proteins in the house.",
+   "note": "The book's version doesn't specify a quantity — this assumes 4 bone-in breasts for the family. Adjust sear time down if using boneless."
+  },
+  {
+   "id": "beer-can-smoked-chicken",
+   "title": "Beer can smoked chicken",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 20,
+   "totalMin": 100,
+   "serves": 4,
+   "cuisines": [
+    "bbq",
+    "american"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall"
+   ],
+   "needs": [
+    "roast-veg"
+   ],
+   "lanes": [
+    {
+     "lane": "smoker",
+     "label": "Beer can chicken, 275°F",
+     "s": 0,
+     "d": 90
+    }
+   ],
+   "ingredients": [
+    "2 whole chickens",
+    "2 cans beer",
+    "4 Tbsp paprika",
+    "4 Tbsp chili powder",
+    "2 Tbsp dried thyme",
+    "2 Tbsp garlic powder",
+    "2 Tbsp onion powder",
+    "1 tsp cayenne",
+    "2 Tbsp salt",
+    "4 Tbsp black pepper"
+   ],
+   "steps": [
+    "Mix the rub: paprika, chili powder, thyme, garlic powder, onion powder, cayenne, salt, and black pepper. This makes enough for two chickens.",
+    "Coat both chickens generously with the rub, including under the skin if you can get a hand in there.",
+    "Open the beer cans and set each chicken upright on top of one, using it as a stand in the smoker.",
+    "Fire up the smoker to 275°F. Cook about 90 minutes, or until the thickest part of the breast reads 165°F.",
+    "Carve one chicken for tonight. Strip the second — breast sliced, dark meat pulled — for weeknight bowls, tacos, or soup."
+   ],
+   "kid": "Plain sliced breast meat off either bird. The rub has a little cayenne — scrape it off their portion if the color alone is a tell.",
+   "accommodate": "Rub a third smaller portion of thighs with a version of this mix made without garlic and onion powder — smoked paprika and thyme still carry it for your spouse."
+  },
+  {
+   "id": "chicken-wings",
+   "title": "Oven baked chicken wings",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 20,
+   "totalMin": 75,
+   "serves": 4,
+   "cuisines": [
+    "american"
+   ],
+   "seasons": [
+    "fall",
+    "winter",
+    "spring",
+    "summer"
+   ],
+   "ingredients": [
+    "3.5 lb chicken wings",
+    "2 Tbsp baking powder",
+    "0.75 Tbsp salt",
+    "1 Tbsp salt",
+    "0.5 Tbsp garlic powder",
+    "1 pinch cayenne",
+    "1 Tbsp baking powder",
+    "2 Tbsp chopped rosemary",
+    "0.33 cup Frank's hot sauce",
+    "0.25 stick butter",
+    "0.25 cup ranch dressing"
+   ],
+   "steps": [
+    "The night before: toss the wings with baking powder and salt, then refrigerate uncovered overnight — this is what gets the skin crackling crisp without frying.",
+    "Preheat oven to 425°F. Line a baking sheet with foil and set a wire rack on top, sprayed with nonstick spray.",
+    "Pat the wings dry and arrange skin-side up in a single layer on the rack.",
+    "Bake, turning every 20 minutes, until crispy and browned — 45 minutes to an hour depending on wing size.",
+    "For the rosemary dry rub version: toss cooked wings with salt, garlic powder, cayenne, baking powder, and chopped rosemary before serving.",
+    "For the hot sauce version: melt butter with Frank's hot sauce, toss wings in it, and serve with ranch dressing on the side."
+   ],
+   "kid": "Plain wings, sauce on the side for dipping rather than tossed.",
+   "accommodate": "Toss a portion without garlic powder for your spouse if going the rosemary route — rosemary and cayenne still carry it. The hot sauce version has no allium at all.",
+   "note": "This one is a standalone dinner night, not a leftover-generating Sunday anchor — pair with a starch and vegetable side and eat it all in one sitting. Needs the overnight fridge step, so start the dry brine the night before."
+  },
+  {
+   "id": "turkey-zucchini-meatballs",
+   "title": "Turkey zucchini meatballs with lemon-garlic yogurt",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 25,
+   "serves": 4,
+   "cuisines": [
+    "mediterranean",
+    "american"
+   ],
+   "seasons": [
+    "spring",
+    "summer",
+    "fall"
+   ],
+   "ingredients": [
+    "1 lb ground turkey",
+    "1 large zucchini, coarsely grated",
+    "3 green onions, thinly sliced",
+    "1 egg",
+    "1 Tbsp chopped mint",
+    "1 Tbsp chopped cilantro",
+    "2 garlic cloves, crushed",
+    "1 tsp ground cumin",
+    "1 tsp salt",
+    "0.5 tsp black pepper",
+    "0.5 tsp cayenne pepper",
+    "0.25 cup cream",
+    "0.33 cup Greek yogurt",
+    "0.5 tsp lemon zest",
+    "0.5 Tbsp lemon juice",
+    "1 garlic clove, crushed",
+    "1 Tbsp olive oil",
+    "0.5 Tbsp sumac (or extra lemon)",
+    "0.25 tsp salt"
+   ],
+   "steps": [
+    "Make the sauce first: stir together cream, yogurt, lemon zest and juice, crushed garlic, olive oil, sumac, salt, and pepper. Chill while you make the meatballs.",
+    "Squeeze the grated zucchini in a towel to get rid of excess water — skip this and the meatballs won't hold together.",
+    "Combine the turkey, zucchini, green onion, egg, mint, cilantro, garlic, cumin, salt, pepper, and cayenne in a large bowl. Mix with your hands and shape into small patties.",
+    "Pan-sear over medium-high heat until browned and cooked through, about 4 minutes a side.",
+    "Serve with the sauce for dipping."
+   ],
+   "kid": "Skip the sauce for theirs, or serve it on the side — the sumac has a sharp, unfamiliar tang that's a bigger sell than the meatballs themselves.",
+   "accommodate": "Leave the garlic and green onion out of a quarter of the meatball mix and skip the garlic in a small side portion of sauce, for your spouse — mint, cilantro, and cumin still carry the meatballs, and lemon carries the sauce."
+  },
+  {
+   "id": "turkey-basil-meatballs-pasta",
+   "title": "Turkey basil meatballs with burrata",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 25,
+   "serves": 4,
+   "cuisines": [
+    "italian"
+   ],
+   "seasons": [
+    "fall",
+    "winter",
+    "spring"
+   ],
+   "needs": [
+    "marinara"
+   ],
+   "ingredients": [
+    "1.5 lb ground turkey",
+    "1 egg",
+    "2 tsp dried basil",
+    "1 tsp Dijon mustard",
+    "1 tsp black pepper",
+    "1 tsp Italian seasoning",
+    "1 tsp ground cumin",
+    "0.5 tsp garlic powder",
+    "0.5 tsp red pepper flakes",
+    "0.5 tsp salt",
+    "0.25 tsp cayenne pepper",
+    "0.33 cup panko breadcrumbs",
+    "6 oz burrata cheese",
+    "cooked pasta, for serving"
+   ],
+   "steps": [
+    "Combine turkey, egg, basil, Dijon, black pepper, Italian seasoning, cumin, garlic powder, red pepper flakes, salt, cayenne, and panko in a large bowl. Roll into 16 golf-ball-sized meatballs.",
+    "Brown the edges in a large skillet over medium-high heat with a little olive oil, about 5 minutes — they don't need to cook through yet.",
+    "Reduce to medium-low, add the marinara, cover, and cook 10 more minutes.",
+    "Nestle the burrata into the sauce in clumps and let it sit as whole 'cheese balls' rather than stirring it in. Cook 5 more minutes.",
+    "Serve over pasta, spaghetti squash, or with garlic bread."
+   ],
+   "kid": "Meatballs and cheese-forward sauce is about as close to a guaranteed win as this whole rotation gets. Skip the red pepper flakes on their portion if you're making it milder overall.",
+   "accommodate": "Regular panko — swap in GF panko for a portion made separately for your spouse. Garlic powder is light here; leave it out of a quarter of the mix if it matters, basil and Italian seasoning still carry it."
+  },
+  {
+   "id": "ginger-glazed-sea-bass",
+   "title": "Ginger glazed sea bass",
+   "source": "Mullins Family Cookbook (family site), adapted and doubled to serve 4",
+   "role": "weeknight",
+   "effort": "cook",
+   "activeMin": 20,
+   "serves": 4,
+   "cuisines": [
+    "asian"
+   ],
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "slots": {
+    "starch": {
+     "default": "rice",
+     "accepts": [
+      "rice"
+     ]
+    }
+   },
+   "ingredients": [
+    "@starch 3 cup",
+    "4 (6 oz) sea bass fillets",
+    "3 Tbsp honey",
+    "3 Tbsp soy sauce",
+    "3 Tbsp balsamic vinegar",
+    "1 tsp grated fresh ginger",
+    "1 garlic clove, crushed",
+    "2 tsp olive oil",
+    "1 Tbsp vegetable oil"
+   ],
+   "steps": [
+    "Stir together honey, soy sauce, balsamic vinegar, ginger, garlic, and olive oil in a shallow dish.",
+    "Season the fillets with salt and pepper and place in the marinade, skin-side down if applicable. Cover and refrigerate 20 minutes.",
+    "{STARCH_COOK}",
+    "Heat vegetable oil in a large skillet over medium-high. Remove the fish, reserving the marinade, and fry 4-6 minutes a side, turning once, until it flakes easily.",
+    "Pour the reserved marinade into the skillet and reduce over medium heat until it's glaze-thick, a couple minutes.",
+    "Spoon the glaze over the fish and serve over rice."
+   ],
+   "kid": "Sea bass is mild and flaky — a good one to introduce without much resistance. Go light on the glaze for their piece since the marinade skews savory.",
+   "accommodate": "Marinate a portion without garlic — ginger and honey still do most of the work. Use tamari in place of soy sauce for that portion too, same ratio, since it's already the gluten swap for this pantry."
+  },
+  {
+   "id": "roasted-turkey-breast",
+   "title": "Roasted turkey breast with herb butter",
+   "source": "Mullins Family Cookbook (family site), adapted",
+   "role": "sunday",
+   "effort": "cook",
+   "activeMin": 30,
+   "totalMin": 140,
+   "serves": 4,
+   "cuisines": [
+    "american"
+   ],
+   "seasons": [
+    "fall",
+    "winter"
+   ],
+   "needs": [
+    "turkey-gravy",
+    "roast-veg"
+   ],
+   "lanes": [
+    {
+     "lane": "oven",
+     "label": "Turkey breast, 325°F",
+     "s": 30,
+     "d": 90
+    }
+   ],
+   "ingredients": [
+    "1 5-lb bone-in, skin-on turkey breast",
+    "1 lemon, sliced",
+    "6 Tbsp unsalted butter, room temp",
+    "3 garlic cloves, minced",
+    "2 tsp chopped fresh thyme",
+    "1.5 tsp chopped fresh sage",
+    "1.5 tsp chopped fresh rosemary",
+    "2 tsp kosher salt",
+    "1 tsp black pepper"
+   ],
+   "steps": [
+    "Let the turkey stand at room temperature 30 minutes before cooking.",
+    "Preheat oven to 325°F. Lightly oil a baking dish and spread the lemon slices across the bottom.",
+    "Combine the softened butter with garlic, thyme, sage, and rosemary.",
+    "Dry the turkey thoroughly. Loosen the skin from the breast meat with your fingers and spread half the herb butter underneath. Secure the skin with toothpicks if needed.",
+    "Set the turkey breast-side up on the lemon slices. Spread the remaining butter over the top and season with salt and pepper.",
+    "Roast until the thickest part reads 165°F, about 90 minutes. Reserve the pan drippings for gravy.",
+    "Let stand 20 minutes before carving."
+   ],
+   "kid": "Plain sliced turkey with gravy poured tableside rather than over the whole plate — some kids are particular about sauce touching everything.",
+   "accommodate": "Spread a garlic-free version of the herb butter under a portion of the skin for your spouse — thyme, sage, and rosemary carry it fine without.",
+   "note": "This one pairs naturally with several weeknights already in the rotation that accept turkey as a protein — bowls, soup, pasta, nachos, and stuffed sweet potatoes will all pull it in if there's turkey left over."
   }
  ]
 }
