@@ -1576,7 +1576,8 @@
       "shrimp",
       "eggs",
       "beans",
-      "beef"
+      "beef",
+      "pork"
      ]
     },
     "starch": {
@@ -1697,7 +1698,8 @@
       "tofu",
       "shrimp",
       "beans",
-      "beef"
+      "beef",
+      "pork"
      ]
     },
     "starch": {
@@ -1964,7 +1966,8 @@
       "turkey",
       "beans",
       "tofu",
-      "groundbeef"
+      "groundbeef",
+      "pork"
      ]
     },
     "starch": {
@@ -2125,8 +2128,7 @@
    "totalMin": 150,
    "serves": 4,
    "cuisines": [
-    "american",
-    "french"
+    "american"
    ],
    "seasons": [
     "fall",
@@ -2483,7 +2485,8 @@
       "turkey",
       "beans",
       "tofu",
-      "beef"
+      "beef",
+      "pork"
      ]
     },
     "starch": {
@@ -2545,7 +2548,8 @@
       "tofu",
       "swordfish",
       "beans",
-      "groundbeef"
+      "groundbeef",
+      "pork"
      ]
     },
     "starch": {
