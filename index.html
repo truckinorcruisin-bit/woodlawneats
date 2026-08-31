@@ -498,6 +498,15 @@ function expand(step,res){
   var map={"{PROTEIN}":P?P.label:"","{PROTEIN_COOK}":P?P.cook:"","{PROTEIN_REHEAT}":P?P.reheat:"",
            "{PROTEIN_PREP}":P?P.prep:"","{STARCH}":T?T.label:"","{STARCH_COOK}":T?T.cook:"",
            "{STARCH_REHEAT}":T?T.reheat:""};
+  /* When a step is nothing but a cook/reheat token, the expanded text never names what it's
+     about ("Add a tablespoon of water per cup and cover." — of what?). Prefix it with the
+     ingredient so the instruction stands on its own, on the site and in the email. */
+  var bare=step.trim();
+  var labelFor={"{PROTEIN_COOK}":P,"{PROTEIN_REHEAT}":P,"{PROTEIN_PREP}":P,
+                "{STARCH_COOK}":T,"{STARCH_REHEAT}":T};
+  if(labelFor.hasOwnProperty(bare)&&labelFor[bare]&&map[bare]){
+    return cap(labelFor[bare].label)+": "+map[bare];
+  }
   var out=step;
   Object.keys(map).forEach(function(k){out=out.split(k).join(map[k]);});
   if(P)out=out.split("{Protein}").join(cap(P.label)).split("{protein}").join(P.label);
@@ -533,14 +542,38 @@ function grocery(){
     if(!c)return;
     ingredientsOf(c).forEach(function(g){add(g.item,g.qty,g.unit,g.cat,c.id);});
   });
-  return Object.keys(acc).map(function(k){return acc[k];});
+  var list=Object.keys(acc).map(function(k){return acc[k];});
+  /* "olive oil" (no qty) and "4 Tbsp olive oil" key separately because the unit differs,
+     which puts the same item on two shopping lines. Fold the unquantified one into the
+     quantified entry, keeping both sources so the attribution stays complete. */
+  var byName={};
+  list.forEach(function(i){
+    var n=i.item.toLowerCase();
+    if(!byName[n])byName[n]=[];
+    byName[n].push(i);
+  });
+  var drop={};
+  Object.keys(byName).forEach(function(n){
+    var group=byName[n];
+    if(group.length<2)return;
+    var quantified=group.filter(function(i){return i.qty>0;});
+    if(!quantified.length)return;
+    group.forEach(function(i){
+      if(i.qty>0)return;
+      Object.keys(i.src).forEach(function(s){quantified[0].src[s]=1;});
+      drop[i.item+"|"+i.unit]=1;
+    });
+  });
+  return list.filter(function(i){return !drop[i.item+"|"+i.unit];});
 }
 function fmtQty(q,u){
   if(!q)return"";
   var n=Math.round(q*100)/100;
-  var s=(n%1===0)?String(n):(Math.abs(n-Math.round(n*4)/4)<0.001?
-    ({0.25:"¼",0.5:"½",0.75:"¾",0.33:"⅓"}[+(n%1).toFixed(2)]?
-      (Math.floor(n)||"")+({0.25:"¼",0.5:"½",0.75:"¾"}[+(n%1).toFixed(2)]||""):String(parseFloat(n.toFixed(2)))):String(parseFloat(n.toFixed(2))));
+  var whole=Math.floor(n),frac=+(n-whole).toFixed(2),s;
+  var GLYPH={0.25:"¼",0.33:"⅓",0.5:"½",0.67:"⅔",0.75:"¾"};
+  if(frac===0)s=String(whole);
+  else if(GLYPH[frac])s=(whole||"")+GLYPH[frac];
+  else s=String(parseFloat(n.toFixed(2)));
   return s+(u&&u!=="ea"?" "+u:"");
 }
 
@@ -690,12 +723,28 @@ function cartMeter(){
 
 /* ============ email ============ */
 function emailBody(){
-  var days=["Sun","Tue","Thu","Sat"];
-  var lines=["WOODLAWN EATS - "+cap(activeSeason())+" plan",""];
-  lines.push("MENU");
-  S.menu.forEach(function(m,i){lines.push((days[i]||"Night "+(i+1))+": "+title(m.recipe,m.res));});
+  var abbr=["Sun","Tue","Thu","Sat"],full=["SUNDAY","TUESDAY","THURSDAY","SATURDAY"];
+  var lines=["WOODLAWN EATS - "+cap(activeSeason())+" plan"];
+
+  /* Map every recipe/component id to a short human label, so each grocery line can say
+     what it's for. Recipes get their day tag; components get their name. */
+  var label={},usedBy={};
+  S.menu.forEach(function(m,i){label[m.recipe.id]=abbr[i]||("Night "+(i+1));});
+  var comps=[],seen={};
+  S.menu.forEach(function(m,i){
+    (m.recipe.needs||[]).forEach(function(n){
+      if(!seen[n]){seen[n]=1;comps.push(n);usedBy[n]=[];}
+      usedBy[n].push(abbr[i]||("Night "+(i+1)));
+    });
+  });
+  comps.forEach(function(id){
+    var c=DB.components.filter(function(x){return x.id===id;})[0];
+    if(c)label[id]=c.name.toLowerCase();
+  });
+
+  /* ---- 1. GROCERY LIST ---- */
   lines.push("");
-  lines.push("GROCERY LIST");
+  lines.push("1. GROCERY LIST");
   var items=grocery(),cats=["Produce","Protein","Fridge","Pantry","Spice"];
   var by={};cats.forEach(function(c){by[c]=[];});
   items.forEach(function(i){(by[i.cat]||by.Pantry).push(i);});
@@ -707,33 +756,59 @@ function emailBody(){
     lines.push(c.toUpperCase());
     left.forEach(function(i){
       var q=fmtQty(i.qty,i.unit);
-      lines.push("- "+(q?q+" ":"")+i.item);
+      var src=Object.keys(i.src).map(function(id){return label[id]||id;});
+      lines.push("- "+(q?q+" ":"")+i.item+(src.length?" ("+src.join(", ")+")":""));
     });
   });
 
+  /* ---- 2. THE WEEK ---- */
   lines.push("");
-  lines.push("RECIPES");
-
-  var comps={},order=[];
-  S.menu.forEach(function(m){
-    (m.recipe.needs||[]).forEach(function(n){if(!comps[n]){comps[n]=1;order.push(n);}});
+  lines.push("2. THE WEEK");
+  S.menu.forEach(function(m,i){
+    var r=m.recipe;
+    var meta=[(r.effort==="cook"?"cook":"assemble"),r.activeMin+" min"];
+    lines.push((abbr[i]||("Night "+(i+1)))+": "+title(r,m.res)+" ("+meta.join(", ")+")");
   });
-  if(order.length){
+  if(comps.length){
     lines.push("");
-    lines.push("SUNDAY PREP");
-    order.forEach(function(id){
-      var c=DB.components.filter(function(x){return x.id===id;})[0];
-      if(!c)return;
-      lines.push("");
-      lines.push(c.name.toUpperCase());
-      (c.steps||[]).forEach(function(s,i){lines.push((i+1)+". "+s);});
-    });
+    lines.push("Made Sunday, used later: "+comps.map(function(id){
+      return label[id]+" -> "+usedBy[id].join("/");}).join("; "));
   }
 
-  S.menu.forEach(function(m,i){
+  /* ---- 3. COOKING ---- */
+  lines.push("");
+  lines.push("3. COOKING");
+
+  /* Sunday: longest-running components first so the slow things are underway while you
+     do the fast ones — same logic as the cook-flow chart on the site. */
+  lines.push("");
+  lines.push(full[0]);
+  var ordered=comps.map(function(id){
+    return DB.components.filter(function(x){return x.id===id;})[0];
+  }).filter(Boolean).sort(function(a,b){return (b.min||0)-(a.min||0);});
+  ordered.forEach(function(c){
     lines.push("");
-    lines.push((days[i]||"Night "+(i+1)).toUpperCase()+": "+title(m.recipe,m.res).toUpperCase());
+    lines.push("MAKE AHEAD - "+c.name.toUpperCase()+
+      " ("+(c.min?c.min+" min, ":"")+"for "+usedBy[c.id].join("/")+
+      (c.keeps?", keeps "+c.keeps:"")+")");
+    (c.steps||[]).forEach(function(s,i){lines.push((i+1)+". "+s);});
+    if(c.accommodate)lines.push("Spouse: "+c.accommodate);
+  });
+  var a=S.menu[0];
+  if(a){
+    lines.push("");
+    lines.push("DINNER - "+title(a.recipe,a.res).toUpperCase());
+    (a.recipe.steps||[]).forEach(function(s,i){lines.push((i+1)+". "+expand(s,a.res));});
+    if(a.recipe.accommodate)lines.push("Spouse: "+a.recipe.accommodate);
+  }
+
+  S.menu.slice(1).forEach(function(m,i){
+    lines.push("");
+    lines.push(full[i+1]||("NIGHT "+(i+2)));
+    lines.push("");
+    lines.push("DINNER - "+title(m.recipe,m.res).toUpperCase()+" ("+m.recipe.activeMin+" min)");
     (m.recipe.steps||[]).forEach(function(s,j){lines.push((j+1)+". "+expand(s,m.res));});
+    if(m.recipe.accommodate)lines.push("Spouse: "+m.recipe.accommodate);
   });
 
   return lines.join("\n");
